@@ -1,0 +1,11 @@
+
+gcc fdb_throughput.c -lforestdb
+
+export LIBRARY_PATH=/usr/local/lib
+export LD_LIBRARY_PATH=/usr/local/lib
+export LDFLAGS="-L/usr/local/lib"
+
+
+use lldb for debugging
+
+https://github.com/golang/go/issues/8310

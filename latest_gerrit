@@ -1,0 +1,20 @@
+
+//Checkout a intermediate commit on a branch
+git checkout -b <new_branch_name> <SHA1>
+
+To resolve a merge conflict
+-make sure master is uptodate
+git pull (on master branch)
+then go to topic branch
+git rebase -i master
+(delete any not required commits)
+(resolve conflicts)
+git add
+git rebase --continue
+git push gerrit
+
+
+Remove a file from a commit
+
+git reset HEAD^ -- protobuf/common.go
+git commit --amend

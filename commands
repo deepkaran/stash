@@ -1,0 +1,20 @@
+
+/opt/couchbase/bin/memcachetest -i 10000 -l
+
+/opt/couchbase/bin/cbstats IP:11210 all | egrep 
+
+go to install/bin
+./cbstats 127.0.0.1:12000 all | grep max_conns
+
+
+Collecting memory info
+/opt/couchbase/bin/cbstats localhost:11210 raw memory 
+/opt/couchbase/bin/cbstats localhost:11210 raw allocator 
+cat /proc/6591/maps 
+free -m
+cat /proc/meminfo 
+
+
+
+./cbstats 10.3.3.95:11210 all | grep mem
+./cbstats 10.3.3.95:11210 all | grep items

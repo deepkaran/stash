@@ -1,0 +1,1 @@
+{"id":"_design/dev_ddoc1","views":{"view1":{"map":"function (doc) {\n emit(doc._id, null);\n}"}}} 

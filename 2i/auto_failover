@@ -1,0 +1,6 @@
+ Regarding "the policy to determine if a service should be failed over”:
+  - If data service is running on the node, then its auto-failover policy is given preference – Node can be auto-failed over if there are at least 3 data nodes in the cluster.
+  - If there are any non-KV services running on the node, including index, their auto-failover polices are not taken in to consideration while deciding whether to auto-failover the node.
+  - If data service is not running on the node, then all other services are treated equally. If the policy of any service running on the node prevents auto-failover, then the node will not be failed over. This may happen if:
+  -- Auto-failover of the service is disabled. Currently, index is the only service whose auto-failover is disabled. There should be at least 2 nodes running the service. 
+ E.g. Say a non-KV node running index and query service goes down. Auto-failover including that of the index service is enabled. There are total 2 nodes in the cluster running the index service but only one (the down node) running the query service, then the down node will not be auto-failed over because of insufficient query nodes.

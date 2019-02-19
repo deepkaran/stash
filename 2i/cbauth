@@ -1,0 +1,4 @@
+- cbauth only works for http connections
+- for index service, the golang http allows the auth to be added to any outgoing request. 
+This is what cbauth uses.
+- for incoming requests, the request needs to be sent to cbauth to authenticate it and get the creds.

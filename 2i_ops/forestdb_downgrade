@@ -1,0 +1,3 @@
+1. curl -X POST -u <user:pass> http://localhost:9102/settings --data '{"indexer.settings.storage_mode.disable_upgrade":true}'
+2. curl -X POST -u <user:pass> http://localhost:9102/settings/storageMode?downgrade=true
+3. Restart Indexer

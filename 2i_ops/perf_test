@@ -1,0 +1,6 @@
+watch -n1 "curl -s 172.23.96.123:9102/stats| json_pp| egrep 'docs_indexed|queue_size|memory_used|docs_pending'|sort"
+
+watch -n1 "curl -s 172.23.96.123:9102/stats/mem| json_pp|egrep 'HeapInuse|HeapIdle|NumGC'|sort"
+
+go tool pprof http://172.23.96.123:9102/debug/pprof/heap
+

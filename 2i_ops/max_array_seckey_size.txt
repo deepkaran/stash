@@ -1,0 +1,5 @@
+If the index definition is: create index idx on bucket( a, distinct (array (x.y) for x in b end) , c )
+then max_array_seckey_size = ( size ( a ) + size ( y ) + size ( c ) ) * (num of elements in b array)
+
+
+curl -X POST http://<ip>:9102/settings -u <username:password> -d '{"indexer.settings.max_array_seckey_size": 50000}'

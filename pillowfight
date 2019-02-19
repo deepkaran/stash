@@ -1,0 +1,1 @@
+cbc-pillowfight --password password --batch-size 1000 --num-items 20000000 --num-threads 4 --min-size 256 --max-size 256 --json --spec couchbase://172.23.133.13/bucket-1 --set-pct 0 --num-cycles 400000 --no-population 2>/dev/null

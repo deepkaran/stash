@@ -1,0 +1,27 @@
+
+sudo apt-get install autoconf automake cmake liblua5.1-dev
+
+$ mkdir couchbase
+$ cd couchbase
+$ repo init -u git://github.com/couchbase/manifest.git -m sherlock.xml
+repo init -u git://github.com/couchbase/manifest -m watson.xml -g all
+$ repo sync
+$ make
+$ COUCHBASE_NUM_VBUCKETS=128 ./cluster_run -n1
+$ ./cluster_connect -n 1
+
+
+For mac, install cmake from the .dmg available on the website
+
+
+Trond's steps:
+https://plus.google.com/+TrondNorbye/posts/aA12z6hfSVm
+
+
+./cluster_connect -n 2 -T n0:kv+index+n1ql,n1:kv -s 2048
+
+
+download java for analytics
+make EXTRA_CMAKE_OPTIONS=-DCB_DOWNLOAD_JAVA=true
+
+brew install openssl for complaints about pyenv setup

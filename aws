@@ -1,0 +1,8 @@
+upload a file to s3
+
+curl -X PUT -T indexer.log https://forumlogs.s3-us-west-1.amazonaws.com/indexer.log
+
+url to be specified in UI cbcollect
+forumlogs.s3-us-west-1.amazonaws.com
+or 
+s3-us-west-1.amazonaws.com/forumlogs

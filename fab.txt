@@ -1,0 +1,20 @@
+
+fab -i ~/ssh/blrcluster.pem -f bin/fabinstaller.py cb_uninstall
+
+fab -i ~/ssh/blrcluster.pem -f bin/fabinstaller.py setup
+
+fab -i ~/ssh/blrcluster.pem -f bin/fabinstaller.py cb_install:url=http://54.251.41.134/installer-01.04-10.33.tar
+
+fab -i ~/ssh/blrcluster.pem -f bin/fabinstaller.py cluster_init
+        
+        fab -i ~/ssh/blrcluster.pem -f bin/fabinstaller.py loadgen:count=500000,par=5      
+        fab -i ~/ssh/blrcluster.pem -f bin/fabinstaller.py loadgen:count=12500,par=100,prods="projects.prod",procs=4
+        fab -i ~/ssh/blrcluster.pem -f bin/fabinstaller.py loadgen:count=12500,par=100,prods="users.prod",procs=4
+
+
+        fab -i ~/ssh/blrcluster.pem -f bin/fabinstaller.py indexing_unstable
+        fab -i ~/ssh/blrcluster.pem -f bin/fabinstaller.py rebuild_indexing:R1=0d637140b
+
+        fab -i ~/ssh/blrcluster.pem -f bin/fabinstaller.py cb_service:do=stop
+        fab -i ~/ssh/blrcluster.pem -f bin/fabinstaller.py cb_service:do=start
+

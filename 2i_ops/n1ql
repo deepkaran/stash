@@ -1,0 +1,7 @@
+curl -u Administrator:asdasd http://localhost:9499/admin/settings -XPOST -d '{"max-index-api":1}'
+curl -u Administrator:asdasd http://localhost:9499/admin/settings -XPOST -d '{"max-index-api”:2}’
+
+
+\SET -scan_consistency REQUEST_PLUS
+
+"statement=SELECT * FROM bucket where type = 'translation' order by date_created desc limit 1 & scan_consistency=request_plus"

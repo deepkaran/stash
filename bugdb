@@ -1,0 +1,18 @@
+
+python  -c 'import uuid; print str(uuid.uuid4())[:8]'
+
+
+cbcollect_info.exe c:/collect_info/collect_info.zip
+
+curl -v --upload-file c:/collect_info/cbcollect_info.zip https://s3.amazonaws.com/bugdb/jira/MB-7902/e9125b6b/cbcollect_info_10.142.174.97.zip
+
+for windows use http
+
+./scripts/ssh.py -i vm-list.ini ls -ltr "/cygdrive/c/'Program Files'/Couchbase/Server/bin/"
+
+./scripts/ssh.py -i bug.ini "/cygdrive/c/'Program Files'/Couchbase/Server/bin/cbcollect_info.exe collect_info.zip"
+
+
+scp Administrator@10.131.33.89:/home/Administrator/collect_info.zip collect_info.zip.10.131.33.89
+
+curl -v --upload-file  collect_info.zip.10.142.174.97 https://s3.amazonaws.com/bugdb/jira/MB-7941/e9125b6b/collect_info.zip.10.142.174.97

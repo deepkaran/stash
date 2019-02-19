@@ -1,0 +1,8 @@
+sudo ngrep -W byline -d lo0 port 8094
+
+
+"sudo /usr/sbin/tcpdump -w /var/tmp/capture.out port 8091 or port 11210 or port 8092"
+
+netstat -tnp | grep TIME_WAIT | wc -l
+
+watch -n1 "netstat -tnp | grep TIME_WAIT | wc -l"

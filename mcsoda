@@ -1,0 +1,17 @@
+
+Create
+./lib/perf_engines/mcsoda.py membase://10.1.3.70:8091 vbuckets=128 doc-gen=0 doc-cache=0 ratio-creates=1 ratio-sets=1 min-value-size=256,512  max-items=500000 exit-after-creates=1 prefix=70one
+
+Update
+./lib/perf_engines/mcsoda.py membase://10.1.3.70:8091 vbuckets=128 doc-gen=0 doc-cache=0 ratio-creates=1 ratio-sets=1 min-value-size=256,512  max-items=100000 exit-after-creates=1 prefix=70one
+
+
+./lib/perf_engines/mcsoda.py membase://10.3.2.57:8091 vbuckets=128 doc-gen=0 doc-cache=0 ratio-creates=1 ratio-sets=1 ratio-misses=0 min-value-size=256,512  max-items=500000 exit-after-creates=1 prefix=70one
+
+
+./lib/perf_engines/mcsoda.py saslbucket:saslpass@10.3.2.57 vbuckets=128 doc-gen=0 doc-cache=0 ratio-creates=1 ratio-sets=1 ratio-misses=0 min-value-size=256,512  max-items=500000 exit-after-creates=1 prefix=70one
+
+standard bucket:
+
+./lib/perf_engines/mcsoda.py memcached-ascii://10.3.3.166:11215  vbuckets=1024 doc-gen=0 doc-cache=0 ratio-creates=1 ratio-sets=1 min-value-size=256,512  max-items=10000 exit-after-creates=1 prefix=70one
+

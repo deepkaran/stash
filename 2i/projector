@@ -1,0 +1,16 @@
+
+FEED(Topic) 
+    |
+    |
+    |---- Feeder(dcp library)
+    |
+    |
+    |---- KVDATA
+            |
+            |
+            |------ VbucketWorker
+            |         |
+            |         |----(TransformRoute/EndpointSend)
+
+- mutch returned by Feeder is passed to kvdata 
+- kvdata receives the mutations and does runScatter to distribute among VbucketWorkers

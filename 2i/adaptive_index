@@ -1,0 +1,25 @@
+
+1. An adaptive index is a composite index where first field is the "field" name and second field is the VALUE.
+2. An array is indexed both as a complete array and also as exploded array(like in array index).
+
+Example:
+CREATE INDEX IDX1 on default(ALL PAIRS(SELF));
+
+
+bin > ./cbindex -auth Administrator:asdasd -type=scanAll -bucket default -index IDX1 -server 127.0.0.1:9000
+ScanAll index:
+[[age 10]] ... doc1
+[[age 20]] ... doc2
+[[age 30]] ... doc2
+[[age [20 30]]] ... doc2
+[[name deep]] ... doc1
+[[name deep2]] ... doc2
+Total number of entries:  6
+
+explain plan for age = 10
+
+{
+"high": "[\"age\", 10]",
+"inclusion": 3,
+"low": "[\"age\", 10]"
+}

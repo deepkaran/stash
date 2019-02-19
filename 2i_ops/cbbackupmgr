@@ -1,0 +1,14 @@
+mkdir /Users/deepkaran/workspace/triage/dec/new/backup
+
+/Users/deepkaran/workspace/cb_vulcan/install/bin/cbbackupmgr config -a /Users/deepkaran/workspace/triage/dec/new/backup -r cluster
+
+/Users/deepkaran/workspace/cb_vulcan/install/bin/cbbackupmgr list -a /Users/deepkaran/workspace/triage/dec/new/backup
+
+
+/Users/deepkaran/workspace/cb_vulcan/install/bin/cbbackupmgr restore -a /Users/deepkaran/workspace/triage/dec/new/backup -r L6CCB \
+ -c http://127.0.0.1:9000 -u Administrator -p asdasd \
+  --start 2019-01-02T03_00_02.058465203+01_00 \
+   --end 2019-01-02T03_00_02.058465203+01_00
+
+    
+

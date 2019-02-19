@@ -1,0 +1,11 @@
+
+Did you try to ping, from the query receiving node (merger), the other nodes and see what times you get? From the merger node, you also run 'time nc -vvv -z othernodeip 8092'), or use hping3 to measure TCP connection/response timings.
+
+This effectively shows there's network with congestion, slow nodes (perhaps under heavy swap, use atop or dstat to check) or connectivity problems.
+
+./scripts/ssh.py -i ~/workspace/stash/ini/vm-4nodes-3.ini ls -ltr /opt/couchbase/var/lib/couchbase/data/@indexes/saslbucket
+
+python scripts/ssh.py -i b/resources/my.ini "top -b -n 1 | grep beam | awk '{print \"Vm: \"\$5 \"  \"\"Rm: \"\$6 \"  \"\"CPU: \"\$9 \"  \"\$12}'"
+
+
+

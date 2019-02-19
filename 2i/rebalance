@@ -1,0 +1,6 @@
+
+Important cases:
+
+- Move Index from A to B and failover B when movement is in progress. Now recover B and rebalance in. [The TT needs special cleanup. Rebalance would fail on recovery if index data in large.]
+- Move Index from A to B and failover B when movement is in progress. Now rebalance out and rebalance in. [Will trigger orphan token logic]
+- Move Index from A to B and failover A when movement is in progress. Now recover A and rebalance in. 

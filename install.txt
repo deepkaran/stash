@@ -1,0 +1,3 @@
+python scripts/install.py -p product=cb,version=2.0.0-1416-rel,parallel=True,vbuckets=128 -i ~/workspace/stash/ini/vm-4nodes.ini
+
+python scripts/install.py -p product=cb,version=2.0.1-108-rel,parallel=True,vbuckets=1024,erlang_threads=16 ../ini/vm-4nodes-3.ini

@@ -1,0 +1,7 @@
+./cbindexperf -cluster 127.0.0.1:9000 -configfile config.json -resultfile result.json -cpuprofile cpu_prof.svg -logLevel info
+
+OR
+./cbindexperf -cluster 127.0.0.1:9000 -configfile config.json -resultfile result.json
+and
+go tool pprof -seconds=40 -svg /Users/deepkaran/workspace/cb_vulcan/install/bin/indexer http://localhost:9102/debug/pprof/profile > cpu_prof.svg
+go tool pprof -seconds=40 /Users/deepkaran/workspace/cb_vulcan/install/bin/indexer http://localhost:9102/debug/pprof/profile 

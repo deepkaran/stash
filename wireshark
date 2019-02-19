@@ -1,0 +1,3 @@
+tshark -n "host 10.17.1.19 and port 8093" -d tcp.port==8093,http -V | grep Hypertext -A 20
+
+sudo tcpdump -C 500 -W 10 -w ./query.pcap -s 0 port 11210 or 8093

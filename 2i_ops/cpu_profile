@@ -1,0 +1,37 @@
+
+
+Indexer
+
+Running svg in pprof may require you to install graphviz on your machine.
+
+curl http://localhost:9102/debug/pprof/profile?seconds=60 > pprof.out
+
+go tool pprof -seconds=60 /opt/couchbase/bin/indexer http://localhost:9102/debug/pprof/profile
+
+go tool pprof -seconds=60 -svg /opt/couchbase/bin/indexer http://localhost:9102/debug/pprof/profile > cpu_prof.svg
+
+OR
+
+curl http://localhost:9102/settings -u <username>:<password> -d '{"indexer.settings.cpuProfFname":"idx.cprof","indexer.settings.cpuProfile":true}'
+wait for 60 seconds
+curl http://localhost:9102/settings -u <username:password> -d '{"indexer.settings.cpuProfFname":"idx.cprof","indexer.settings.cpuProfile":false}'
+collect the idx.cprof file from /opt/couchbase/bin
+
+Projector
+
+curl http://localhost:9999/settings -u <username>:<password> -d '{"projector.cpuProfFname":"proj.cprof","projector.cpuProfile":true}'
+wait for 60 seconds
+curl http://localhost:9999/settings -u <username:password> -d '{"projector.cpuProfFname":"proj.cprof","projector.cpuProfile":false}'
+collect the proj.cprof file from /opt/couchbase/bin
+
+
+REMOTE:
+
+Indexer(works)
+go tool pprof -seconds 10 -svg http://Administrator:password@172.23.97.39:9102/debug/pprof/profile > pprof.svg
+
+Projector(localhost only) (DOESN'T SEEM TO WORK)
+go tool pprof -seconds 10 -svg http://Administrator:password@localhost:9999/debug/pprof/profile > pprof.svg
+
+Projector(works)
+curl http://<username:password>@localhost:9999/debug/pprof/profile?seconds=60 > cpu_prof.out

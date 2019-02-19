@@ -1,0 +1,3 @@
+MOI does a cleanup of items (after drop index, rollback) at the rate of 800K/sec
+It is a single threaded operation
+

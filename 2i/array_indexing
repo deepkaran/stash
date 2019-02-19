@@ -1,0 +1,4 @@
+
+Q. If one attribute of the array is changed, does all the elements of the array need to be changed?
+A. No, Indexer can find the diff of the elements changed and compute tobeAdded and tobeDeleted stuff and then update
+

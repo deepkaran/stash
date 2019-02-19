@@ -1,0 +1,12 @@
+
+./cbworkloadgen -n 10.3.121.100:8091 -i 50000 -r 100
+
+./cbworkloadgen -n 10.3.121.100:8091 -i 50000 -r 100 -j True
+
+./cbworkloadgen -n 127.0.0.1:9000 -i 50 -r 100 -j True
+
+
+./install/bin/cbworkloadgen -n 127.0.0.1:9000 -i 100000 -r 90
+
+
+./cbworkloadgen -n localhost:8091 -i10000000 -t6 -j -s1000

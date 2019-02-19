@@ -1,0 +1,27 @@
+export GODEBUG=gctrace=1
+
+Understanding above output
+https://software.intel.com/en-us/blogs/2014/05/10/debugging-performance-issues-in-go-programs
+
+go tool pprof -alloc_space /opt/couchbase/bin/indexer http://apple:9102/debug/pprof/heap 
+go tool pprof -inuse_space /opt/couchbase/bin/indexer http://apple:9102/debug/pprof/heap 
+
+go tool pprof -alloc_space -svg /opt/couchbase/bin/indexer http://apple:9102/debug/pprof/heap > mprofa.svg
+go tool pprof -inuse_space -svg /opt/couchbase/bin/indexer http://apple:9102/debug/pprof/heap > mprofi.svg
+
+go tool pprof http://apple:9102/debug/pprof/heap
+go tool pprof http://apple:9102/debug/pprof/profile
+
+go tool pprof -seconds=60 /opt/couchbase/bin/indexer http://apple:9102/debug/pprof/profile 
+
+go tool pprof -seconds=90 -svg /opt/couchbase/bin/indexer http://apple:9102/debug/pprof/profile  > cprof.svg
+
+
+curl http://localhost:9102/debug/pprof/goroutine?debug=1
+
+curl <host>:9102/settings -u <username:password>
+
+curl <host>:9102/debug/pprof/goroutine?debug=1 -u <username:password>
+
+/settings/runtime/forceGC
+curl <host>:9102//settings/runtime/forceGC -u <username:password>

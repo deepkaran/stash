@@ -1,0 +1,5 @@
+Today I had a discussion with Siri regarding memdb persistence writer sharding and tried out a test to see if SSD parallel channels would be utilized in case of single sequential writer.
+Reading up a bit on SSDs, learned if write payload is >= SSD cluster size, no matter random or sequential IO, SSDs will be able to deliver maximum throughput
+Internally io scheduler will make use of all parallel channels
+Most SSDs will have either 16MB or 32MB cluster block sizes
+So, it looks like setting 32MB buffer size as default for memdb persistent writer would be enough to make use of SSD with single writer.

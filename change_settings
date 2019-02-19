@@ -1,0 +1,5 @@
+curl http://Administrator:asdasd@localhost:9102/settings > settings.json
+curl http://Administrator:asdasd@localhost:9102/settings -d  @settings.json
+
+"indexer.stream_reader.fdb.mutationBuffer"
+"indexer.dataport.dataChanSize"

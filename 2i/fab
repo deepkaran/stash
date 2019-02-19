@@ -1,0 +1,32 @@
+fab -i ~/ssh/blrcluster.pem -f bin/fabinstaller.py cb_uninstall
+fab -i ~/ssh/blrcluster.pem -f bin/fabinstaller.py cleanall
+
+fab -i ~/ssh/blrcluster.pem -f bin/fabinstaller.py setup
+fab -i ~/ssh/blrcluster.pem -f bin/fabinstaller.py cb_install:url=http://54.251.41.134/installer-12.04-10.54.tar
+fab -i ~/ssh/blrcluster.pem -f bin/fabinstaller.py cluster_init
+        
+        fab -i ~/ssh/blrcluster.pem -f bin/fabinstaller.py loadgen:count=500000,par=5      
+        fab -i ~/ssh/blrcluster.pem -f bin/fabinstaller.py loadgen:count=12500,par=100,prods="projects.prod",procs=4
+        fab -i ~/ssh/blrcluster.pem -f bin/fabinstaller.py loadgen:count=12500,par=100,prods="users.prod",procs=4
+        fab -i ~/ssh/blrcluster.pem -f bin/fabinstaller.py loadgen:count=25000,par=10,prods="users.prod",procs=4
+
+
+        fab -i ~/ssh/blrcluster.pem -f bin/fabinstaller.py indexing_unstable
+        fab -i ~/ssh/blrcluster.pem -f bin/fabinstaller.py rebuild_indexing:R1=d2fb4b0fb7
+        fab -i ~/ssh/blrcluster.pem -f bin/fabinstaller.py rebuild_indexing
+        fab -i ~/ssh/blrcluster.pem -f bin/fabinstaller.py cb_service:do=stop
+        fab -i ~/ssh/blrcluster.pem -f bin/fabinstaller.py cb_service:do=start
+
+        export PATH=/opt/goproj/bin:$PATH 
+        export GOPATH=/opt/goproj
+        export GOROOT=/usr/local/go
+        go run tools/upr/upr.go -auth Administrator:asdasd 122.248.204.207:8091
+
+        ssh -i ssh/blrcluster.pem admin@ec2-54-254-63-224.ap-southeast-1.compute.amazonaws.com
+
+        --- Rebalance + front end load
+        --- Rebalance + frond end load + create index
+
+
+
+

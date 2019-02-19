@@ -1,0 +1,4 @@
+
+make clean-xfd-hard
+make -j4
+

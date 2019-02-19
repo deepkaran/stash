@@ -1,0 +1,1 @@
+curl -u Administrator:asdasd http://localhost:8093/admin/settings -XPOST -d '{"max-index-api”:1}’

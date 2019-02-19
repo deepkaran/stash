@@ -1,0 +1,7 @@
+Note that GSI client (which runs inside query engine) buffers data to disk if the memory buffer (channel) becomes full.
+
+By default, this is limited to 5GB but is a setting customer can change.
+
+While this is not a lot in terms of space, it can represent a significant IO load to disk.
+
+It can be turned off as well (in which case, long scans will timeout after 2 minutes by default).

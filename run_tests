@@ -1,0 +1,7 @@
+make dataclean
+COUCHBASE_NUM_VBUCKETS=1024 ./cluster_run --nodes=2
+
+./cluster_connect -n2  -T n0:index+kv n1:kv
+
+cd tests/functionaltests
+go test -v

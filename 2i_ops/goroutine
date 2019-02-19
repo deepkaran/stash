@@ -1,0 +1,1 @@
+kill -ABRT <pid> to get goroutine from a hung process when http is not running or process not responding on that.

@@ -1,0 +1,14 @@
+
+Servers
+coconut-h20801.hq.couchbase.com
+coconut-h20802.hq.couchbase.com
+coconut-h20803.hq.couchbase.com
+coconut-h20804.hq.couchbase.com
+
+Workers
+coconut-h20805.hq.couchbase.com
+coconut-h20806.hq.couchbase.com
+coconut-h20807.hq.couchbase.com
+
+
+./scripts/ssh.py -i viber.ini sudo /opt/couchbase/bin/couchbase-cli node-init --cluster=localhost -u Administrator -p password --node-init-data-path=/mnt/data --node-init-index-path=/mnt/index

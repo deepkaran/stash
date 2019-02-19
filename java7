@@ -1,0 +1,10 @@
+ubuntu 12
+
+sudo apt-get purge openjdk*
+
+sudo add-apt-repository ppa:webupd8team/java
+sudo apt-get update
+sudo apt-get install oracle-java7-installer
+
+
+http://www.ubuntugeek.com/how-to-install-oracle-java-7-in-ubuntu-12-04.html

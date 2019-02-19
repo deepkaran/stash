@@ -1,0 +1,4 @@
+./indexer -log=2 -vbuckets=8 -projector="127.0.0.1:9999" 2>&1 | tee indexer.out
+
+ lsof -i | grep 12000 | grep indexer
+

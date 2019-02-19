@@ -1,0 +1,4 @@
+root@ubuntu1104-64:/opt/couchbase/bin/tools# curl http://10.3.3.95:8091/pools/default/buckets/default | ./vbuckettool - observeseq_1
+
+key: observeseq_1 master: 10.3.121.100:11210 vBucketId: 145 couchApiBase: http://10.3.121.100:8092/default replicas: 10.3.3.104:11210
+

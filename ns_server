@@ -1,0 +1,11 @@
+
+Command to enable debug logging
+
+curl -v -X POST http://Administrator:password@127.0.0.1:8091/diag/eval -d 'rpc:eval_everywhere(erlang, apply, [fun () -> [ale:set_loglevel(L, debug) || L <- [couchdb]] end, []]).'
+
+
+Doc on logging,name and port changes
+
+https://docs.google.com/document/d/1btkHdtK7o2efa8w_p7GZz9GJOULneTWSu_pqI91OzMM/edit?pli=1#heading=h.jczvnhkb9oz1
+
+Config variables for size are: error_logger_mf_max(bytes,files}

@@ -1,0 +1,11 @@
+import mc_bin_client
+mc = mc_bin_client.MemcachedClient(port=12000)
+mc.vbucketId = 0
+mc.vbucket_count = 64
+mc.set("key1", 0, 0, "Val1")
+mc.set("key2", 0, 0, "Val2")
+mc.get("key1")
+mc.get("key2")
+mc.delete("key1")
+mc.set("key3", 0, 0, '{"user": "nosql", "status": "beginner" }')
+mc.get("key3")

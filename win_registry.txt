@@ -1,0 +1,4 @@
+
+regedit /e c:\regdump.txt HKEY_LOCAL_MACHINE\SYSTEM\ControlSet001\services\Tcpip\Parameters
+
+systeminfo | find "System Boot Time:"

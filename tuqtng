@@ -1,0 +1,40 @@
+
+
+To start tuqtng
+./tuqtng -couchbase dir:./test -pool=json
+
+nohup ./cbq-engine -couchbase http://122.248.225.107:8091 -log HTTP,NETWORK,PIPELINE -dev &
+
+./tuqtng -couchbase http://localhost:8091 -log HTTP,NETWORK,PIPELINE,CATALOG -dev
+
+./tuqtng -couchbase http://localhost:8091 -log HTTP,NETWORK,PIPELINE,CATALOG -dev -addr :8096
+
+tuq_client:
+
+./tuq_client -engine="http://localhost:8096/"
+
+To build stuff:
+/Users/deepkaran/gocode/src/github.com/couchbaselabs/tuqtng
+go build -av (-a build everything again)
+
+
+To run tuq_client
+
+export GOPATH=/Users/deepkaran/gocode
+./tuq_client
+
+
+GIT Method
+Make your changes
+Commit the changes
+Get other's changes in:
+git pull --rebase origin master
+Push your changes:
+git push origin HEAD:master
+
+
+Out of date repo:
+
+go get -u ./...
+ 
+ ./tuq_client -engine http://localhost:8096/

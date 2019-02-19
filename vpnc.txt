@@ -1,0 +1,8 @@
+sudo vpnc --dpd-idle 0 --enable-1des
+Enter IPSec gateway address: 202.174.92.10
+Enter IPSec ID for 202.174.92.10: CouchBase_RemoteVPN
+Enter IPSec secret for indus-del@202.174.92.10: D5A$!&cFJYVq5Ry!G5-4GMsrp2rAEYCt3Kx
+Enter username for 202.174.92.10: deepkaran.salooja
+Enter password for deepkaran.salooja@202.174.92.10: 
+VPNC started in background (pid: 9124)...
+

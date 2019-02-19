@@ -1,0 +1,4 @@
+/opt/couchbase/bin/cbbackup http://10.3.3.95:8091 backups/backup-1 -u Administrator -p password -b saslbucket
+
+/opt/couchbase/bin/cbrestore backups/backup-1 http://Administrator:password@10.3.3.95:8091 --bucket-source=saslbucket
+

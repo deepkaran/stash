@@ -1,0 +1,2 @@
+how to grab diags
+bash -c "python scripts/grabdiags.py -i ~/workspace/stash/vm-4nodes.ini;exit 0;"

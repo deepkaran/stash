@@ -1,0 +1,17 @@
+Projector settings
+
+curl -X POST -u <user:pass> http://localhost:9102/settings --data '{"projector.dcp.numConnections": 1}'
+
+Indexer settings
+
+curl -X POST -u <user:pass> http://localhost:9102/settings --data '{"indexer.settings.compaction.min_size": <size_in_bytes>}'
+
+
+Compaction related
+
+curl -X POST -u Administrator:asdasd http://localhost:9102/settings --data '{"indexer.settings.compaction.min_size": 1000}'
+curl -X POST -u Administrator:asdasd http://localhost:9102/settings --data '{"indexer.settings.compaction.check_period": 1}'
+curl -X POST -u Administrator:asdasd http://localhost:9102/settings --data '{"indexer.settings.compaction.min_frag": 2}'
+
+scan timeout
+curl -X POST -u <user:pass> http://<ip>:9102/settings --data '{"indexer.settings.scan_timeout": <timeout_in_milliseconds>}'

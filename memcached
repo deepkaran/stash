@@ -1,0 +1,65 @@
+
+Code:
+
+/home/deepkaran/workspace/couchbase-2.0/memcached/daemon
+
+memcached.c
+
+
+Command Line:
+
+from mc_bin_client import MemcachedClient
+mc = MemcachedClient("10.17.15.18".12006)
+mc.get("x")
+
+MemcachedClient("10.17.15.18",12006).stats()
+
+
+-- change verbosity level
+wget -O- -q --user=Administrator --password=asdasd --post-data='ns_config:update_key({node, node(), memcached}, fun (PList) -> lists:keyreplace(verbosity, 1, PList, {verbosity, "-vvv"}) end).' http://127.0.0.1:9000/diag/eval
+
+
+import mc_bin_client
+c = mc_bin_client.MemcachedClient(port=12000)
+c.vbucketId = 0
+c.vbucket_count = 128
+
+
+>>> import mc_bin_client
+>>> mc = mc_bin_client.MemcachedClient(port=12000)
+>>> mc.vbucketId = 0
+>>> mc.vbucket_count = 1024
+>>> mc.set("a b", 0, 0, "Val")
+(1721531415, 16930833413043, '')
+>>> mc.set("a\rb", 0, 0, "Val")
+(2040382068, 16937804802056, '')
+>>> mc.set("a\nb", 0, 0, "Valn")
+(2788642267, 16947297369499, '')
+>>> mc.set("a\rb", 0, 0, "Valr")
+(524642072, 16955269364992, '')
+>>> mc.set("ab\0", 0, 0, "Val0")
+(3449476418, 16960821114142, '')
+
+
+>>> import mc_ascii_client
+>>> mc = mc_ascii_client.MemcachedAsciiClient(port=12001)
+>>> c.set("key1", 0, 0, "val1")
+Traceback (most recent call last):
+  File "<stdin>", line 1, in <module>
+NameError: name 'c' is not defined
+>>> mc.set("key1", 0, 0, "val1")
+>>> mc.get("key1")
+(0, 34683849050371, 'val1')
+
+
+import sys
+sys.path.append("lib")
+sys.path.append(".")
+from mc_bin_client import MemcachedClient
+client_source = MemcachedClient("source_cluster_ip", 11211)
+for i in range (10000):
+    client_source.set("couchbase%d"%i, 0, 10000+i, "nosql")
+
+
+>>> mc.sasl_auth_plain("mem2", "")
+(2378877977, 0, 'Authenticated')

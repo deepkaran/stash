@@ -1,0 +1,5 @@
+Junyi: there are well documented "long pauses" for processes trying to allocate memory when THP is enabled. This will happen at the time of a page fault. The process (I think it's the whole process, not just a thread) will not be scheduled for a long period of time while memory is being shuffled to arrange things in a huge page. There are several articles about this.
+
+The tradeoff of having 4k pages is that the TLB cache will frequently be overrun.
+
+Disabling it should be a good thing, since it'll ensure lower latencies for memory allocation operations at a cost of slightly higher latencies when accessing different memory pages.

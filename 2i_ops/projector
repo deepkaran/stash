@@ -1,0 +1,31 @@
+
+if there is large document size and projector is taking lot of cpu, its internal chans can be reduced using:
+
+curl -X POST -u Administrator:asdasd http://<ip>:<port>/settings --data 
+'{"projector.dcp.dataChanSize": 1000, "projector.mutationChanSize": 20}'
+
+
+Projector CPU profile.
+
+1. Run below command on any indexer node to turn on projector cpu profiling:
+curl -X POST -u Administrator:asdasd http://127.0.0.1:9102/settings --data '{"projector.cpuProfFname" : "proj.pprof", "projector.cpuProfile" : true}'
+
+2. Wait for 60 seconds
+
+3. Turn off cpu profiling:
+curl -X POST -u Administrator:asdasd http://127.0.0.1:9102/settings --data '{"projector.cpuProfFname" : "", "projector.cpuProfile" : false}'
+
+4. Collect the file 'proj.pprof' from /opt/couchbase/var/lib/couchbase on the data node
+
+
+Customer Instructions
+
+1. Run below command on any indexer node to turn on projector cpu profiling:
+curl -X POST -u <user>:<pass> http://<ip>:9102/settings --data '{"projector.cpuProfFname" : "proj.pprof", "projector.cpuProfile" : true}'
+ 
+2. Wait for 60 seconds
+  
+3. Turn off cpu profiling:
+curl -X POST -u <user>:<pass> http://<ip>:9102/settings --data '{"projector.cpuProfFname" : "", "projector.cpuProfile" : false}'
+   
+4. Collect the file 'proj.pprof' from /opt/couchbase/var/lib/couchbase on the data node

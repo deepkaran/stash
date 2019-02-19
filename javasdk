@@ -1,0 +1,9 @@
+
+git clone
+
+cd to the dir
+ant compile
+ant jar
+
+How to run a test with junit:
+java -cp .:build/ivy/lib/couchbase-client/common/*:build/jars/* org.junit.runner.JUnitCore com.couchbase.client.ViewTest

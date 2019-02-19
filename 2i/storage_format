@@ -1,0 +1,55 @@
+protobuf/projector/n1ql_evaluate.go
+
+N1QLTransform is the function to look for.
+
+Summary:
+
+There are 3 special cases mainly:
+
+Non-array
+- If the item is MISSING and leading, it is skipped.
+- If the item is MISSING and non-leading, it is indexed as MISSING.
+
+- If the item is null and leading/non-leading, it is indexed as null.
+
+Array
+- If the item is [] and leading, it is skipped(same as missing).
+- If the item is MISSING and leading, it is skipped.
+- If the item is [null] and leading, it is indexed as null.
+
+- If the item is [] and non-leading, it is indexed as missing(same as missing).
+- If the item is MISSING and non-leading, it is indexed as missing.
+- If the item is [null] and non-leading, it is indexed as null.
+
+Some test outputs:
+
+1.
+Index array with single item which in turn is an empty array
+ScanAll single leading-  [[]] ... d1
+ScanAll composite leading- [[] BLR] ... d1
+ScanAll composite non-leading- [BLR []] ... d1
+
+2.
+[ [1,2,3] ]
+ScanAll single leading- [[1 2 3]] ... d1
+ScanAll composite leading- [[1 2 3] BLR] ... d1
+ScanAll composite non-leading- [BLR [1 2 3]] ... d1
+
+[ [null] ]
+ScanAll single leading- [[<nil>]] ... d1
+ScanAll composite leading- [[<nil>] BLR] ... d1
+ScanAll composite non-leading- [BLR [<nil>]] ... d1
+
+
+[1, [ ] ]
+ScanAll single leading-
+[1] ... d1
+[[]] ... d1
+ScanAll composite leading-
+[1 BLR] ... d1
+[[] BLR] ... d1
+ScanAll composite non-leading-
+[BLR 1] ... d1
+[BLR []] ... d1
+
+

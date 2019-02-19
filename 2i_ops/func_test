@@ -1,0 +1,14 @@
+go test -v -timeout 5000s 2>&1 | tee testf.out
+export CBAUTH_REVRPC_URL='http://Administrator:asdasd@127.0.0.1:9000'
+export CBAUTH_REVRPC_URL="http://Administrator:asdasd@127.0.0.1:9000/query2"
+
+
+COUCHBASE_NUM_VBUCKETS=64 ./cluster_run -n2
+
+./cluster_connect -n2 -T n0:kv+n1ql,n1:kv+index -I 1200 -s 1200
+
+cd tests/functionaltests
+go test -v -ldflags -s -timeout 5000s 2>&1 | tee testf.out
+
+Single Test:
+go test -v -timeout 4h -skipsetup -test.run  TestGroupAggrSetup

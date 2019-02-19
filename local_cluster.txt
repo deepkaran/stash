@@ -1,0 +1,27 @@
+
+
+Toy Build Machine:
+ubuntu@54.254.19.253
+ssh -oPort=2222 couchbase@localhost
+run ./build(by default this will build unstable)
+and then publish URL for build in AWS
+
+
+Perf Cluster:
+apple, banana, choco, donut
+couchbase/couchbase
+root (key is in ~/ssh/root_key)
+
+Docker Machine: docker
+docker run ubuntu /bin/echo hello world
+
+
+you can connect to 'ssh jump@act.northscale.in' and port forward to cluster
+you can also use jump@{ax1,ax2,ax3,ax4}.northscale.in
+
+try ssh -v jump@router.northscale.in to test inside office
+ssh -v jump@router.northscale.in -L2222:apple:22 -N
+
+ssh -oPort=3000 couchbase@localhost
+ssh  jump@act.northscale.in -L 127.0.0.1:3000:apple:22 -N
+

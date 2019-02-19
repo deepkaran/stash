@@ -1,0 +1,6 @@
+# grep ext3 /proc/mounts
+/dev/mapper/vg_cor_scs-lv_cor_scs /usr/sap/COR/SCS00 ext3 rw,relatime,errors=continue,barrier=1,data=ordered 0 0
+
+cat /etc/fstab
+LABEL=cloudimg-rootfs/ ext4defaults0 0
+/dev/xvdb/mntautodefaults,nobootwait,comment=cloudconfig02

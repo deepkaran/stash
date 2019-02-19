@@ -1,0 +1,4 @@
+go tool pprof -svg /opt/couchbase/bin/cbq-engine http://localhost:8093/debug/pprof/heap > cbqengine_mprof.svg
+
+
+http://localhost:8093/debug/pprof/goroutine?debug=2

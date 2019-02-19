@@ -1,0 +1,11 @@
+tcp retransmission stat from netstats -s is a good smoke test
+
+netstat -ano (to look at active connections)
+
+
+
+I used this command to introduce network delay:
+tc qdisc add dev eth0 root netem delay 100ms
+And then I ran pillow fight:
+/usr/bin/cbc-pillowfight -I 40000000 -m 1000 -M 1000 -U couchbase://172.23.106.25/default -t 50 -p load_1_ -r 100
+And I did see cursor dropping

@@ -1,0 +1,26 @@
+I wouldn't use pull in any of that.  
+pull means "fetch + merge (or rebase)"  
+You're  not fetching if you're just working locally.  
+To keep it up-to-date with master:      
+
+git checkout wireprotocol      
+git rebase master                    
+
+When it's ready:      
+
+git checkout master      
+git merge wireprotocol  
+
+This is the same effect as what you were doing, but more directly. Should work fine.  
+
+merge from testing from unstable:
+git merge -—no-ff testing 854c6e6c08c1f8813f6b98456c461a1463fc3f1e.
+
+Merge to master from branch feat:
+git checkout master
+git pull 
+git merge --no-ff feat
+[This should create a merge commit which can then be pushed to gerrit.]
+[Make sure to verify the parents of the merge commit.]
+[If merge is required from a specified commit]
+git merge -—no-ff feat <sha-id>

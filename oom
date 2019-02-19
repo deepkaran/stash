@@ -1,0 +1,3 @@
+sudo egrep -i -r 'killed process' /var/log/
+
+check oom killer logs

@@ -1,0 +1,14 @@
+/Users/deepkaran/workspace/couchbase_new/install/bin
+
+
+./cbindex -type create -bucket default -index age_idx -fields=age -auth "Administrator:asdasd"
+
+./cbindex -type count -bucket default -index age_idx
+
+./cbworkloadgen -n 127.0.0.1:9000 -i 1000000 -j -u Administrator -p asdasd --prefix abc
+
+./cbindex -type create -bucket default -index age_name -fields=name -auth "Administrator:asdasd" -using=memdb -with='{"defer_build": true}'
+
+./cbindex -type=build -indexes=default:age_idx1,default:age_idx2,default:age_idx3,default:age_name
+
+./cbindex -type move -indexes 'travel-sample:def_faa' -with '{"dest":"27b08ecea5847c26b11aa83020c7a671"}'

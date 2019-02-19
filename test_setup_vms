@@ -1,0 +1,49 @@
+
+
+Setup1
+
+Load data
+./lib/perf_engines/mcsoda.py saslbucket:saslpass@10.3.2.57 vbuckets=128 doc-gen=0 doc-cache=0 ratio-creates=1 ratio-sets=1 ratio-misses=0 min-value-size=256,512  max-items=4000 exit-after-creates=1 prefix=70one
+
+Create 1 dev view:
+
+curl -v -X PUT -H 'Content-Type: application/json' 'http://saslbucket:saslpass@10.3.2.57:8092/saslbucket/_design/dev_d2' \
+   -d '{"views": { "v1":{"map":"function(doc){\nemit(doc.key,doc.name);\n}", "reduce":"_count"}, "v2":{"map":"function(doc,meta){\nemit(meta.id,[doc.key_num,doc.key_num]);\n}", "reduce":"_count"} }}'
+
+Prod View:
+
+curl -v -X PUT -H 'Content-Type: application/json' 'http://saslbucket:saslpass@10.3.2.57:8092/saslbucket/_design/d2' \
+   -d '{"views": { "v1":{"map":"function(doc){\nemit(doc.key,doc.name);\n}"}, "v2":{"map":"function(doc,meta){\nemit(meta.id,[doc.key_num,doc.key_num]);\n}"} }}'
+
+Monitor:
+
+curl -s 'http://10.3.2.57:8092/_set_view/saslbucket/_design/dev_d2/_info' | json_xs
+
+Query during indexing:
+
+curl -v -X GET 'http://saslbucket:saslpass@10.3.2.57:8092/saslbucket/_design/dev_d2/_view/v1?stale=false&full_set=true'
+
+curl -v -X GET 'http://saslbucket:saslpass@10.3.2.57:8092/saslbucket/_design/dev_d2/_view/v1?stale=ok'
+curl -s 'http://saslbucket:saslpass@10.3.2.57:8092/saslbucket/_design/dev_d2/_view/v1?stale=ok'
+
+
+
+
+Setup2
+
+./lib/perf_engines/mcsoda.py saslbucket:saslpass@10.3.3.95 vbuckets=128 doc-gen=0 doc-cache=0 ratio-creates=1 ratio-sets=1 ratio-misses=0 min-value-size=256,512  max-items=5000 exit-after-creates=1 prefix=70one
+
+curl -v -X PUT -H 'Content-Type: application/json' 'http://saslbucket:saslpass@10.3.3.95:8092/saslbucket/_design/dev_d2' \
+   -d '{"views": { "v1":{"map":"function(doc){\nemit(doc.key,doc.name);\n}"}, "v2":{"map":"function(doc,meta){\nemit(meta.id,[doc.key_num,doc.key_num]);\n}"} }}'
+
+curl -s 'http://10.3.3.95:8092/_set_view/saslbucket/_design/dev_d2/_info' 
+
+curl -s 'http://saslbucket:saslpass@10.3.3.95:8092/saslbucket/_design/dev_d2/_view/v1?stale=ok'
+
+
+curl -s 'http://saslbucket:saslpass@10.3.3.95:8092/saslbucket/_design/dev_d2/_view/v1?limit=20&stale=false&debug=true'
+
+
+
+curl -s 'http://saslbucket:saslpass@10.3.3.95:8092/saslbucket/_design/dev_d2/_view/v1?limit=20&stale=false&_type=replica&debug=true'
+curl -s 'http://saslbucket:saslpass@10.3.3.95:8092/saslbucket/_design/dev_d2/_view/v1?stale=false&full_set=true&limit=10'

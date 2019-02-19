@@ -1,0 +1,10 @@
+curl http://localhost:9102/debug/pprof/heap -u Administrator:asdasd > indexer_mprof
+
+curl http://<host>:9102/debug/pprof/heap -u <username>:<password> > indexer_mprof
+
+
+go tool pprof -alloc_space -svg /opt/couchbase/bin/indexer http://apple:9102/debug/pprof/heap > mprofa.svg
+go tool pprof -inuse_space -svg /opt/couchbase/bin/indexer http://apple:9102/debug/pprof/heap > mprofi.svg
+
+
+go tool pprof -inuse_space -svg http://Administrator:password@172.23.97.37:9999/debug/pprof/heap  > mprofi.svg

@@ -1,0 +1,6 @@
+
+1. sec key is stored in the storage in collatejson encoded format
+2. scan_pipeline - IndexScanDecoder::Routine calls piSplitEntry to convert from collatejson to json marshalled format([]byte)
+3. scan_pipeline - IndexScanWriter::Routine calls d.w.Row(pk, sk) 
+4. scan_protocol - protoResponseWrite::Row makes a COPY of these keys(copying into the rowBuf) and then marshalls into protobuf(when rowBuf is full).
+

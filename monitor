@@ -1,0 +1,3 @@
+watch -n1 "curl -s apple:9102/stats| json_pp| egrep 'ts_queue|num_docs|avg_ts_interval|storage_get|storage_set|since_last|queue_size|avg_ts_items_count'|sort"
+
+watch -n1 "curl -s apple:9102/stats/mem| json_pp|egrep 'Pause|GC|Heap'|sort"

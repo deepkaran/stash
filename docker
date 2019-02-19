@@ -1,0 +1,7 @@
+docker exec db3 less /opt/couchbase/var/lib/couchbase/logs/info.log
+docker top db3
+docker restart db3
+docker ps db3
+
+//open shell
+bash -c "clear && docker exec -it db sh"

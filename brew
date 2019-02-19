@@ -1,0 +1,2 @@
+brew tap homebrew/versions
+brew install erlang 

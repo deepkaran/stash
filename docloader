@@ -1,0 +1,3 @@
+
+/opt/couchbase/bin/cbdocloader -b beer-sample beer-sample.zip
+

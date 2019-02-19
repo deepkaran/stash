@@ -1,0 +1,1 @@
+./cbindex -type move -indexes 'travel-sample:def_airportname,travel-sample:def_city' -with '{"dest":"10.17.6.32:9000"}'

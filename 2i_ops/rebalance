@@ -1,0 +1,14 @@
+
+** Find the ns-server master using the orchestrator listed on UI log
+
+** Get the nodeuuid-ip mapping from ns-server master(ns_server.debug.log)
+
+[ns_server:debug,2017-08-08T15:54:19.114+05:30,ns_1@172.16.12.70:service_rebalancer-index-worker<0.24042.11>:service_rebalancer:rebalance:102]Got node infos:
+
+** Search for ns_server.debug.log for service_rebalancer
+
+
+** use rebalanceId to search in the logs
+
+
+
