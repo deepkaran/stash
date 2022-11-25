@@ -1,3 +1,5 @@
+PYTHONPATH=/opt/couchbase/lib/python/runtime/site-packages/ /opt/couchbase/bin/couchbase-cli
+
 ./couchbase-cli node-init -c 127.0.0.1:9000 -u Administrator -p asdasd --node-init-data-path=/Users/deepkaran/d1 --node-init-index-path=/Users/deepkaran/d2
 ./couchbase-cli cluster-init -c 127.0.0.1:9000 -u Administrator -p asdasd --cluster-port=9000 --cluster-ramsize=2048 --services="data;index;query"
 ./couchbase-cli bucket-create -c 127.0.0.1:9000 -u Administrator -p asdasd --bucket=default --bucket-ramsize=2048 --bucket-type=couchbase --wait
@@ -26,6 +28,19 @@
 
      ./lib/perf_engines/mcsoda.py membase://Administrator:asdasd@127.0.0.1:8091 vbuckets=1024 doc-gen=0 doc-cache=0 ratio-creates=1 ratio-sets=1 min-value-size=256,512  max-items=2000000 exit-after-creates=1 prefix=perf
      ./cbworkloadgen -n 127.0.0.1:8091 -r 1 -i 1000000 --prefix=perf -j -u Administrator -p asdasd
+
+
+
+FAILOVER
+
+./couchbase-cli server-add -c 127.0.0.1:9000 --server-add https://127.0.0.1:19003
+ -u Administrator -p asdasd --server-add-username Administrator --server-add-password asdasd --services data
+
+
+./couchbase-cli failover -c 127.0.0.1:9000 --server-failover 127.0.0.1:9001 -u Administrator -p asdasd --hard
+
+./couchbase-cli rebalance -c 127.0.0.1:9000 -u Administrator -p asdasd
+
 
 
 

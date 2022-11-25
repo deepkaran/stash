@@ -1,0 +1,3 @@
+unzip -l dcbd-categoryx201_2020-10-19t.zip
+
+unzip -p dcbd-categoryx201_2020-10-19t10\:20\:49+0900.zip  cbcollect_info_ns_1@dcbd-categoryx201.prod.hnd2.bdd.local_20201019-012049/ns_server.projector.log > projector.log

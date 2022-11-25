@@ -1,0 +1,4 @@
+you can brew install rpm2cpio
+
+then run
+rpm2cpio my.rpm | cpio -idmv

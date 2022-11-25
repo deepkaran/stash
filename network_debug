@@ -6,3 +6,13 @@ sudo ngrep -W byline -d lo0 port 8094
 netstat -tnp | grep TIME_WAIT | wc -l
 
 watch -n1 "netstat -tnp | grep TIME_WAIT | wc -l"
+
+
+==============
+
+The tool I used is “Network Link Conditioner” - https://nshipster.com/network-link-conditioner/
+Once I created the remote cluster references and replications successfully, I set the network link to 100% loss.
+This will also trigger the same “i/o timeout” error seen in the cbcollect logs.
+
+==============
+

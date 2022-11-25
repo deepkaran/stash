@@ -1,0 +1,11 @@
+curl -u Administrator http://localhost:8091/pools/default/buckets/hotels | /opt/couchbase/bin/tools/vbuckettool - tripactions:hotel:prices:18541:sabre:57772
+
+/opt/couchbase/bin/couch_dbdump --key tripactions:hotel:prices:18541:sabre:57772  --vbucket /couchbase/data/hotels/113.couch.*
+
+
+./mctimings  -u Administrator -P password -v GET_ALL_VB_SEQNOS -h 172.23.120.86
+
+./cbstats -u Administrator -p password -b default 172.23.120.58:11210 timings
+
+/purger interval
+global_purge_interval,0.04 (Range .04 (1hr) - 60 days)

@@ -1,0 +1,499 @@
+goroutine profile: total 369
+84 @ 0x403023b 0x40302e3 0x400830e 0x400803b 0x47dcac5 0x405e321
+#	0x47dcac4	github.com/couchbase/plasma.(*Plasma).smrWorker+0x94	/Users/deepkarans/workspace/cb_madhatter/goproj/src/github.com/couchbase/plasma/smr.go:106
+
+64 @ 0x403023b 0x404000d 0x496f7b2 0x405e321
+#	0x496f7b1	github.com/couchbase/indexing/secondary/indexer.(*streamWorker).start+0x121	/Users/deepkarans/workspace/cb_madhatter/goproj/src/github.com/couchbase/indexing/secondary/indexer/stream_reader.go:555
+
+36 @ 0x403023b 0x40302e3 0x400830e 0x400803b 0x47e4a5f 0x405e321
+#	0x47e4a5e	github.com/couchbase/plasma.(*Plasma).swapperDaemon.func1+0xce	/Users/deepkarans/workspace/cb_madhatter/goproj/src/github.com/couchbase/plasma/swapper.go:255
+
+36 @ 0x403023b 0x404000d 0x48eb9da 0x405e321
+#	0x48eb9d9	github.com/couchbase/indexing/secondary/indexer.(*plasmaSlice).handleCommandsWorker+0x1d9	/Users/deepkarans/workspace/cb_madhatter/goproj/src/github.com/couchbase/indexing/secondary/indexer/plasma_slice.go:495
+
+10 @ 0x403023b 0x404000d 0x42ab5c3 0x405e321
+#	0x42ab5c2	net/http.(*persistConn).writeLoop+0x112	/Users/deepkarans/.cbdepscache/exploded/x86_64/go-1.11/go/src/net/http/transport.go:1885
+
+7 @ 0x403023b 0x404000d 0x42aa519 0x405e321
+#	0x42aa518	net/http.(*persistConn).readLoop+0x6b8	/Users/deepkarans/.cbdepscache/exploded/x86_64/go-1.11/go/src/net/http/transport.go:1761
+
+6 @ 0x403023b 0x40302e3 0x400830e 0x4007ffb 0x47e4afb 0x405e321
+#	0x47e4afa	github.com/couchbase/plasma.(*Plasma).swapperDaemon.func2+0x3a	/Users/deepkarans/workspace/cb_madhatter/goproj/src/github.com/couchbase/plasma/swapper.go:264
+
+6 @ 0x403023b 0x40302e3 0x4040bbc 0x40407f9 0x4075dd4 0x47de786 0x405e321
+#	0x40407f8	sync.runtime_Semacquire+0x38					/Users/deepkarans/.cbdepscache/exploded/x86_64/go-1.11/go/src/runtime/sema.go:56
+#	0x4075dd3	sync.(*WaitGroup).Wait+0x63					/Users/deepkarans/.cbdepscache/exploded/x86_64/go-1.11/go/src/sync/waitgroup.go:130
+#	0x47de785	github.com/couchbase/plasma.(*Plasma).swapperDaemon+0xd5	/Users/deepkarans/workspace/cb_madhatter/goproj/src/github.com/couchbase/plasma/swapper.go:268
+
+6 @ 0x403023b 0x40302e3 0x404dc2f 0x47d6125 0x405e321
+#	0x404dc2e	time.Sleep+0x14e					/Users/deepkarans/.cbdepscache/exploded/x86_64/go-1.11/go/src/runtime/time.go:105
+#	0x47d6124	github.com/couchbase/plasma.(*Plasma).runtimeStats+0xa4	/Users/deepkarans/workspace/cb_madhatter/goproj/src/github.com/couchbase/plasma/plasma.go:646
+
+6 @ 0x403023b 0x40302e3 0x404dc2f 0x47d6b22 0x405e321
+#	0x404dc2e	time.Sleep+0x14e						/Users/deepkarans/.cbdepscache/exploded/x86_64/go-1.11/go/src/runtime/time.go:105
+#	0x47d6b21	github.com/couchbase/plasma.(*Plasma).monitorStatistics+0x31	/Users/deepkarans/workspace/cb_madhatter/goproj/src/github.com/couchbase/plasma/plasma.go:806
+
+6 @ 0x403023b 0x404000d 0x47c2063 0x405e321
+#	0x47c2062	github.com/couchbase/plasma.(*Plasma).lssCleanerDaemon+0x102	/Users/deepkarans/workspace/cb_madhatter/goproj/src/github.com/couchbase/plasma/lss_cleaner.go:371
+
+6 @ 0x403023b 0x404000d 0x47c5a0f 0x405e321
+#	0x47c5a0e	github.com/couchbase/plasma.(*Plasma).mvccPurgerDaemon+0xfe	/Users/deepkarans/workspace/cb_madhatter/goproj/src/github.com/couchbase/plasma/mvcc_purger.go:73
+
+5 @ 0x403023b 0x402b749 0x402adf6 0x4092baa 0x4092cbd 0x4093a66 0x4191e6f 0x41a4858 0x42a94b5 0x4146316 0x4146fc6 0x424cc44 0x424c752 0x424ca25 0x42a04ac 0x42a03ee 0x42acc66 0x42d6175 0x42d5ec2 0x42d5938 0x453b11b 0x405e321
+#	0x402adf5	internal/poll.runtime_pollWait+0x65					/Users/deepkarans/.cbdepscache/exploded/x86_64/go-1.11/go/src/runtime/netpoll.go:173
+#	0x4092ba9	internal/poll.(*pollDesc).wait+0x99					/Users/deepkarans/.cbdepscache/exploded/x86_64/go-1.11/go/src/internal/poll/fd_poll_runtime.go:85
+#	0x4092cbc	internal/poll.(*pollDesc).waitRead+0x3c					/Users/deepkarans/.cbdepscache/exploded/x86_64/go-1.11/go/src/internal/poll/fd_poll_runtime.go:90
+#	0x4093a65	internal/poll.(*FD).Read+0x1d5						/Users/deepkarans/.cbdepscache/exploded/x86_64/go-1.11/go/src/internal/poll/fd_unix.go:169
+#	0x4191e6e	net.(*netFD).Read+0x4e							/Users/deepkarans/.cbdepscache/exploded/x86_64/go-1.11/go/src/net/fd_unix.go:202
+#	0x41a4857	net.(*conn).Read+0x67							/Users/deepkarans/.cbdepscache/exploded/x86_64/go-1.11/go/src/net/net.go:177
+#	0x42a94b4	net/http.(*persistConn).Read+0x74					/Users/deepkarans/.cbdepscache/exploded/x86_64/go-1.11/go/src/net/http/transport.go:1497
+#	0x4146315	bufio.(*Reader).fill+0x105						/Users/deepkarans/.cbdepscache/exploded/x86_64/go-1.11/go/src/bufio/bufio.go:100
+#	0x4146fc5	bufio.(*Reader).ReadSlice+0x35						/Users/deepkarans/.cbdepscache/exploded/x86_64/go-1.11/go/src/bufio/bufio.go:341
+#	0x424cc43	net/http/internal.readChunkLine+0x33					/Users/deepkarans/.cbdepscache/exploded/x86_64/go-1.11/go/src/net/http/internal/chunked.go:122
+#	0x424c751	net/http/internal.(*chunkedReader).beginChunk+0x31			/Users/deepkarans/.cbdepscache/exploded/x86_64/go-1.11/go/src/net/http/internal/chunked.go:48
+#	0x424ca24	net/http/internal.(*chunkedReader).Read+0x124				/Users/deepkarans/.cbdepscache/exploded/x86_64/go-1.11/go/src/net/http/internal/chunked.go:93
+#	0x42a04ab	net/http.(*body).readLocked+0x6b					/Users/deepkarans/.cbdepscache/exploded/x86_64/go-1.11/go/src/net/http/transfer.go:803
+#	0x42a03ed	net/http.(*body).Read+0xdd						/Users/deepkarans/.cbdepscache/exploded/x86_64/go-1.11/go/src/net/http/transfer.go:795
+#	0x42acc65	net/http.(*bodyEOFSignal).Read+0xd5					/Users/deepkarans/.cbdepscache/exploded/x86_64/go-1.11/go/src/net/http/transport.go:2255
+#	0x42d6174	encoding/json.(*Decoder).refill+0xf4					/Users/deepkarans/.cbdepscache/exploded/x86_64/go-1.11/go/src/encoding/json/stream.go:159
+#	0x42d5ec1	encoding/json.(*Decoder).readValue+0x221				/Users/deepkarans/.cbdepscache/exploded/x86_64/go-1.11/go/src/encoding/json/stream.go:134
+#	0x42d5937	encoding/json.(*Decoder).Decode+0x77					/Users/deepkarans/.cbdepscache/exploded/x86_64/go-1.11/go/src/encoding/json/stream.go:63
+#	0x453b11a	github.com/couchbase/cbauth/metakv.doRunObserveChildren.func1+0x12a	/Users/deepkarans/workspace/cb_madhatter/godeps/src/github.com/couchbase/cbauth/metakv/metakv.go:270
+
+3 @ 0x403023b 0x402b749 0x402adf6 0x4092baa 0x4092cbd 0x4093a66 0x4191e6f 0x41a4858 0x42a94b5 0x4146316 0x414646f 0x42aa002 0x405e321
+#	0x402adf5	internal/poll.runtime_pollWait+0x65	/Users/deepkarans/.cbdepscache/exploded/x86_64/go-1.11/go/src/runtime/netpoll.go:173
+#	0x4092ba9	internal/poll.(*pollDesc).wait+0x99	/Users/deepkarans/.cbdepscache/exploded/x86_64/go-1.11/go/src/internal/poll/fd_poll_runtime.go:85
+#	0x4092cbc	internal/poll.(*pollDesc).waitRead+0x3c	/Users/deepkarans/.cbdepscache/exploded/x86_64/go-1.11/go/src/internal/poll/fd_poll_runtime.go:90
+#	0x4093a65	internal/poll.(*FD).Read+0x1d5		/Users/deepkarans/.cbdepscache/exploded/x86_64/go-1.11/go/src/internal/poll/fd_unix.go:169
+#	0x4191e6e	net.(*netFD).Read+0x4e			/Users/deepkarans/.cbdepscache/exploded/x86_64/go-1.11/go/src/net/fd_unix.go:202
+#	0x41a4857	net.(*conn).Read+0x67			/Users/deepkarans/.cbdepscache/exploded/x86_64/go-1.11/go/src/net/net.go:177
+#	0x42a94b4	net/http.(*persistConn).Read+0x74	/Users/deepkarans/.cbdepscache/exploded/x86_64/go-1.11/go/src/net/http/transport.go:1497
+#	0x4146315	bufio.(*Reader).fill+0x105		/Users/deepkarans/.cbdepscache/exploded/x86_64/go-1.11/go/src/bufio/bufio.go:100
+#	0x414646e	bufio.(*Reader).Peek+0x3e		/Users/deepkarans/.cbdepscache/exploded/x86_64/go-1.11/go/src/bufio/bufio.go:132
+#	0x42aa001	net/http.(*persistConn).readLoop+0x1a1	/Users/deepkarans/.cbdepscache/exploded/x86_64/go-1.11/go/src/net/http/transport.go:1645
+
+3 @ 0x403023b 0x404000d 0x4538844 0x45384e8 0x4538fa5 0x45fbd1d 0x45547ff 0x45fbe34 0x405e321
+#	0x4538843	github.com/couchbase/cbauth/metakv.doRunObserveChildren+0x313						/Users/deepkarans/workspace/cb_madhatter/godeps/src/github.com/couchbase/cbauth/metakv/metakv.go:287
+#	0x45384e7	github.com/couchbase/cbauth/metakv.(*store).runObserveChildren+0x57					/Users/deepkarans/workspace/cb_madhatter/godeps/src/github.com/couchbase/cbauth/metakv/metakv.go:246
+#	0x4538fa4	github.com/couchbase/cbauth/metakv.RunObserveChildren+0x54						/Users/deepkarans/workspace/cb_madhatter/godeps/src/github.com/couchbase/cbauth/metakv/metakv.go:370
+#	0x45fbd1c	github.com/couchbase/indexing/secondary/manager/common.(*CommandListener).ListenTokens.func2.1+0xfc	/Users/deepkarans/workspace/cb_madhatter/goproj/src/github.com/couchbase/indexing/secondary/manager/common/token.go:994
+#	0x45547fe	github.com/couchbase/indexing/secondary/common.(*RetryHelper).Run+0x8e					/Users/deepkarans/workspace/cb_madhatter/goproj/src/github.com/couchbase/indexing/secondary/common/retry_helper.go:36
+#	0x45fbe33	github.com/couchbase/indexing/secondary/manager/common.(*CommandListener).ListenTokens.func2+0xe3	/Users/deepkarans/workspace/cb_madhatter/goproj/src/github.com/couchbase/indexing/secondary/manager/common/token.go:999
+
+3 @ 0x403023b 0x404000d 0x49bbe1d 0x405e321
+#	0x49bbe1c	github.com/couchbase/indexing/secondary/indexer.(*timekeeper).startTimer.func1+0xdc	/Users/deepkarans/workspace/cb_madhatter/goproj/src/github.com/couchbase/indexing/secondary/indexer/timekeeper.go:3073
+
+2 @ 0x403023b 0x402b749 0x402adf6 0x4092baa 0x4092cbd 0x4093a66 0x4191e6f 0x41a4858 0x428cbec 0x4146316 0x414646f 0x4291dda 0x405e321
+#	0x402adf5	internal/poll.runtime_pollWait+0x65	/Users/deepkarans/.cbdepscache/exploded/x86_64/go-1.11/go/src/runtime/netpoll.go:173
+#	0x4092ba9	internal/poll.(*pollDesc).wait+0x99	/Users/deepkarans/.cbdepscache/exploded/x86_64/go-1.11/go/src/internal/poll/fd_poll_runtime.go:85
+#	0x4092cbc	internal/poll.(*pollDesc).waitRead+0x3c	/Users/deepkarans/.cbdepscache/exploded/x86_64/go-1.11/go/src/internal/poll/fd_poll_runtime.go:90
+#	0x4093a65	internal/poll.(*FD).Read+0x1d5		/Users/deepkarans/.cbdepscache/exploded/x86_64/go-1.11/go/src/internal/poll/fd_unix.go:169
+#	0x4191e6e	net.(*netFD).Read+0x4e			/Users/deepkarans/.cbdepscache/exploded/x86_64/go-1.11/go/src/net/fd_unix.go:202
+#	0x41a4857	net.(*conn).Read+0x67			/Users/deepkarans/.cbdepscache/exploded/x86_64/go-1.11/go/src/net/net.go:177
+#	0x428cbeb	net/http.(*connReader).Read+0xfb	/Users/deepkarans/.cbdepscache/exploded/x86_64/go-1.11/go/src/net/http/server.go:786
+#	0x4146315	bufio.(*Reader).fill+0x105		/Users/deepkarans/.cbdepscache/exploded/x86_64/go-1.11/go/src/bufio/bufio.go:100
+#	0x414646e	bufio.(*Reader).Peek+0x3e		/Users/deepkarans/.cbdepscache/exploded/x86_64/go-1.11/go/src/bufio/bufio.go:132
+#	0x4291dd9	net/http.(*conn).serve+0x7b9		/Users/deepkarans/.cbdepscache/exploded/x86_64/go-1.11/go/src/net/http/server.go:1872
+
+2 @ 0x403023b 0x402b749 0x402adf6 0x4092baa 0x4092cbd 0x4093a66 0x4191e6f 0x41a4858 0x47ff65b 0x47fffe8 0x47ff070 0x484fa8a 0x405e321
+#	0x402adf5	internal/poll.runtime_pollWait+0x65							/Users/deepkarans/.cbdepscache/exploded/x86_64/go-1.11/go/src/runtime/netpoll.go:173
+#	0x4092ba9	internal/poll.(*pollDesc).wait+0x99							/Users/deepkarans/.cbdepscache/exploded/x86_64/go-1.11/go/src/internal/poll/fd_poll_runtime.go:85
+#	0x4092cbc	internal/poll.(*pollDesc).waitRead+0x3c							/Users/deepkarans/.cbdepscache/exploded/x86_64/go-1.11/go/src/internal/poll/fd_poll_runtime.go:90
+#	0x4093a65	internal/poll.(*FD).Read+0x1d5								/Users/deepkarans/.cbdepscache/exploded/x86_64/go-1.11/go/src/internal/poll/fd_unix.go:169
+#	0x4191e6e	net.(*netFD).Read+0x4e									/Users/deepkarans/.cbdepscache/exploded/x86_64/go-1.11/go/src/net/fd_unix.go:202
+#	0x41a4857	net.(*conn).Read+0x67									/Users/deepkarans/.cbdepscache/exploded/x86_64/go-1.11/go/src/net/net.go:177
+#	0x47ff65a	github.com/couchbase/indexing/secondary/transport.fullRead+0xaa				/Users/deepkarans/workspace/cb_madhatter/goproj/src/github.com/couchbase/indexing/secondary/transport/transport.go:189
+#	0x47fffe7	github.com/couchbase/indexing/secondary/transport.Receive+0x87				/Users/deepkarans/workspace/cb_madhatter/goproj/src/github.com/couchbase/indexing/secondary/transport/util.go:60
+#	0x47ff06f	github.com/couchbase/indexing/secondary/transport.(*TransportPacket).Receive+0x6f	/Users/deepkarans/workspace/cb_madhatter/goproj/src/github.com/couchbase/indexing/secondary/transport/transport.go:119
+#	0x484fa89	github.com/couchbase/indexing/secondary/dataport.doReceive+0x229			/Users/deepkarans/workspace/cb_madhatter/goproj/src/github.com/couchbase/indexing/secondary/dataport/server.go:657
+
+2 @ 0x403023b 0x402b749 0x402adf6 0x4092baa 0x4092cbd 0x4095000 0x41927b2 0x41ad6ee 0x41ac3f7 0x484f426 0x405e321
+#	0x402adf5	internal/poll.runtime_pollWait+0x65						/Users/deepkarans/.cbdepscache/exploded/x86_64/go-1.11/go/src/runtime/netpoll.go:173
+#	0x4092ba9	internal/poll.(*pollDesc).wait+0x99						/Users/deepkarans/.cbdepscache/exploded/x86_64/go-1.11/go/src/internal/poll/fd_poll_runtime.go:85
+#	0x4092cbc	internal/poll.(*pollDesc).waitRead+0x3c						/Users/deepkarans/.cbdepscache/exploded/x86_64/go-1.11/go/src/internal/poll/fd_poll_runtime.go:90
+#	0x4094fff	internal/poll.(*FD).Accept+0x19f						/Users/deepkarans/.cbdepscache/exploded/x86_64/go-1.11/go/src/internal/poll/fd_unix.go:384
+#	0x41927b1	net.(*netFD).accept+0x41							/Users/deepkarans/.cbdepscache/exploded/x86_64/go-1.11/go/src/net/fd_unix.go:238
+#	0x41ad6ed	net.(*TCPListener).accept+0x2d							/Users/deepkarans/.cbdepscache/exploded/x86_64/go-1.11/go/src/net/tcpsock_posix.go:139
+#	0x41ac3f6	net.(*TCPListener).Accept+0x46							/Users/deepkarans/.cbdepscache/exploded/x86_64/go-1.11/go/src/net/tcpsock.go:260
+#	0x484f425	github.com/couchbase/indexing/secondary/dataport.(*Server).listener+0xd5	/Users/deepkarans/workspace/cb_madhatter/goproj/src/github.com/couchbase/indexing/secondary/dataport/server.go:610
+
+2 @ 0x403023b 0x40302e3 0x400830e 0x400803b 0x4547f6d 0x405e321
+#	0x4547f6c	github.com/couchbase/indexing/secondary/common.(*vbSeqnosReader).Routine+0xfc	/Users/deepkarans/workspace/cb_madhatter/goproj/src/github.com/couchbase/indexing/secondary/common/dcp_seqno.go:105
+
+2 @ 0x403023b 0x40302e3 0x400830e 0x400803b 0x496d113 0x405e321
+#	0x496d112	github.com/couchbase/indexing/secondary/indexer.(*mutationStreamReader).listenSupvCmd+0xc2	/Users/deepkarans/workspace/cb_madhatter/goproj/src/github.com/couchbase/indexing/secondary/indexer/stream_reader.go:203
+
+2 @ 0x403023b 0x404000d 0x46c7f15 0x405e321
+#	0x46c7f14	github.com/couchbase/cbauth/service.withTimeout.func1+0xb4	/Users/deepkarans/workspace/cb_madhatter/godeps/src/github.com/couchbase/cbauth/service/revrpc.go:38
+
+2 @ 0x403023b 0x404000d 0x484d5a0 0x405e321
+#	0x484d59f	github.com/couchbase/indexing/secondary/dataport.(*Server).genServer+0x25f	/Users/deepkarans/workspace/cb_madhatter/goproj/src/github.com/couchbase/indexing/secondary/dataport/server.go:358
+
+2 @ 0x403023b 0x404000d 0x496cea2 0x405e321
+#	0x496cea1	github.com/couchbase/indexing/secondary/indexer.(*mutationStreamReader).run+0xe1	/Users/deepkarans/workspace/cb_madhatter/goproj/src/github.com/couchbase/indexing/secondary/indexer/stream_reader.go:162
+
+2 @ 0x403023b 0x404000d 0x496e14f 0x405e321
+#	0x496e14e	github.com/couchbase/indexing/secondary/indexer.(*mutationStreamReader).syncWorker+0xde	/Users/deepkarans/workspace/cb_madhatter/goproj/src/github.com/couchbase/indexing/secondary/indexer/stream_reader.go:368
+
+1 @ 0x400d554 0x4044d4f 0x4360a52 0x405e321
+#	0x4044d4e	os/signal.signal_recv+0x9e	/Users/deepkarans/.cbdepscache/exploded/x86_64/go-1.11/go/src/runtime/sigqueue.go:139
+#	0x4360a51	os/signal.loop+0x21		/Users/deepkarans/.cbdepscache/exploded/x86_64/go-1.11/go/src/os/signal/signal_unix.go:23
+
+1 @ 0x403023b 0x402b749 0x402adf6 0x4092baa 0x4092cbd 0x4093a66 0x4191e6f 0x41a4858 0x414697f 0x43421bd 0x42d6175 0x42d5ec2 0x42d5938 0x4340d46 0x433eba7 0x433e49a 0x433daa7 0x43426f9 0x4342f5c 0x434d6cf 0x434ed35 0x405e321
+#	0x402adf5	internal/poll.runtime_pollWait+0x65			/Users/deepkarans/.cbdepscache/exploded/x86_64/go-1.11/go/src/runtime/netpoll.go:173
+#	0x4092ba9	internal/poll.(*pollDesc).wait+0x99			/Users/deepkarans/.cbdepscache/exploded/x86_64/go-1.11/go/src/internal/poll/fd_poll_runtime.go:85
+#	0x4092cbc	internal/poll.(*pollDesc).waitRead+0x3c			/Users/deepkarans/.cbdepscache/exploded/x86_64/go-1.11/go/src/internal/poll/fd_poll_runtime.go:90
+#	0x4093a65	internal/poll.(*FD).Read+0x1d5				/Users/deepkarans/.cbdepscache/exploded/x86_64/go-1.11/go/src/internal/poll/fd_unix.go:169
+#	0x4191e6e	net.(*netFD).Read+0x4e					/Users/deepkarans/.cbdepscache/exploded/x86_64/go-1.11/go/src/net/fd_unix.go:202
+#	0x41a4857	net.(*conn).Read+0x67					/Users/deepkarans/.cbdepscache/exploded/x86_64/go-1.11/go/src/net/net.go:177
+#	0x414697e	bufio.(*Reader).Read+0x22e				/Users/deepkarans/.cbdepscache/exploded/x86_64/go-1.11/go/src/bufio/bufio.go:216
+#	0x43421bc	github.com/couchbase/cbauth/revrpc.(*minirwc).Read+0x4c	/Users/deepkarans/workspace/cb_madhatter/godeps/src/github.com/couchbase/cbauth/revrpc/revrpc.go:101
+#	0x42d6174	encoding/json.(*Decoder).refill+0xf4			/Users/deepkarans/.cbdepscache/exploded/x86_64/go-1.11/go/src/encoding/json/stream.go:159
+#	0x42d5ec1	encoding/json.(*Decoder).readValue+0x221		/Users/deepkarans/.cbdepscache/exploded/x86_64/go-1.11/go/src/encoding/json/stream.go:134
+#	0x42d5937	encoding/json.(*Decoder).Decode+0x77			/Users/deepkarans/.cbdepscache/exploded/x86_64/go-1.11/go/src/encoding/json/stream.go:63
+#	0x4340d45	net/rpc/jsonrpc.(*serverCodec).ReadRequestHeader+0x75	/Users/deepkarans/.cbdepscache/exploded/x86_64/go-1.11/go/src/net/rpc/jsonrpc/server.go:66
+#	0x433eba6	net/rpc.(*Server).readRequestHeader+0x66		/Users/deepkarans/.cbdepscache/exploded/x86_64/go-1.11/go/src/net/rpc/server.go:590
+#	0x433e499	net/rpc.(*Server).readRequest+0x59			/Users/deepkarans/.cbdepscache/exploded/x86_64/go-1.11/go/src/net/rpc/server.go:550
+#	0x433daa6	net/rpc.(*Server).ServeCodec+0x96			/Users/deepkarans/.cbdepscache/exploded/x86_64/go-1.11/go/src/net/rpc/server.go:465
+#	0x43426f8	github.com/couchbase/cbauth/revrpc.(*Service).Run+0x508	/Users/deepkarans/workspace/cb_madhatter/godeps/src/github.com/couchbase/cbauth/revrpc/revrpc.go:147
+#	0x4342f5b	github.com/couchbase/cbauth/revrpc.BabysitService+0x5b	/Users/deepkarans/workspace/cb_madhatter/godeps/src/github.com/couchbase/cbauth/revrpc/revrpc.go:243
+#	0x434d6ce	github.com/couchbase/cbauth.runRPCForSvc+0xbe		/Users/deepkarans/workspace/cb_madhatter/godeps/src/github.com/couchbase/cbauth/default.go:57
+#	0x434ed34	github.com/couchbase/cbauth.startDefault.func1+0x34	/Users/deepkarans/workspace/cb_madhatter/godeps/src/github.com/couchbase/cbauth/default.go:66
+
+1 @ 0x403023b 0x402b749 0x402adf6 0x4092baa 0x4092cbd 0x4093a66 0x4191e6f 0x41a4858 0x414697f 0x43421bd 0x42d6175 0x42d5ec2 0x42d5938 0x4340d46 0x433eba7 0x433e49a 0x433daa7 0x43426f9 0x4342f5c 0x46c7dc8 0x48fd263 0x405e321
+#	0x402adf5	internal/poll.runtime_pollWait+0x65							/Users/deepkarans/.cbdepscache/exploded/x86_64/go-1.11/go/src/runtime/netpoll.go:173
+#	0x4092ba9	internal/poll.(*pollDesc).wait+0x99							/Users/deepkarans/.cbdepscache/exploded/x86_64/go-1.11/go/src/internal/poll/fd_poll_runtime.go:85
+#	0x4092cbc	internal/poll.(*pollDesc).waitRead+0x3c							/Users/deepkarans/.cbdepscache/exploded/x86_64/go-1.11/go/src/internal/poll/fd_poll_runtime.go:90
+#	0x4093a65	internal/poll.(*FD).Read+0x1d5								/Users/deepkarans/.cbdepscache/exploded/x86_64/go-1.11/go/src/internal/poll/fd_unix.go:169
+#	0x4191e6e	net.(*netFD).Read+0x4e									/Users/deepkarans/.cbdepscache/exploded/x86_64/go-1.11/go/src/net/fd_unix.go:202
+#	0x41a4857	net.(*conn).Read+0x67									/Users/deepkarans/.cbdepscache/exploded/x86_64/go-1.11/go/src/net/net.go:177
+#	0x414697e	bufio.(*Reader).Read+0x22e								/Users/deepkarans/.cbdepscache/exploded/x86_64/go-1.11/go/src/bufio/bufio.go:216
+#	0x43421bc	github.com/couchbase/cbauth/revrpc.(*minirwc).Read+0x4c					/Users/deepkarans/workspace/cb_madhatter/godeps/src/github.com/couchbase/cbauth/revrpc/revrpc.go:101
+#	0x42d6174	encoding/json.(*Decoder).refill+0xf4							/Users/deepkarans/.cbdepscache/exploded/x86_64/go-1.11/go/src/encoding/json/stream.go:159
+#	0x42d5ec1	encoding/json.(*Decoder).readValue+0x221						/Users/deepkarans/.cbdepscache/exploded/x86_64/go-1.11/go/src/encoding/json/stream.go:134
+#	0x42d5937	encoding/json.(*Decoder).Decode+0x77							/Users/deepkarans/.cbdepscache/exploded/x86_64/go-1.11/go/src/encoding/json/stream.go:63
+#	0x4340d45	net/rpc/jsonrpc.(*serverCodec).ReadRequestHeader+0x75					/Users/deepkarans/.cbdepscache/exploded/x86_64/go-1.11/go/src/net/rpc/jsonrpc/server.go:66
+#	0x433eba6	net/rpc.(*Server).readRequestHeader+0x66						/Users/deepkarans/.cbdepscache/exploded/x86_64/go-1.11/go/src/net/rpc/server.go:590
+#	0x433e499	net/rpc.(*Server).readRequest+0x59							/Users/deepkarans/.cbdepscache/exploded/x86_64/go-1.11/go/src/net/rpc/server.go:550
+#	0x433daa6	net/rpc.(*Server).ServeCodec+0x96							/Users/deepkarans/.cbdepscache/exploded/x86_64/go-1.11/go/src/net/rpc/server.go:465
+#	0x43426f8	github.com/couchbase/cbauth/revrpc.(*Service).Run+0x508					/Users/deepkarans/workspace/cb_madhatter/godeps/src/github.com/couchbase/cbauth/revrpc/revrpc.go:147
+#	0x4342f5b	github.com/couchbase/cbauth/revrpc.BabysitService+0x5b					/Users/deepkarans/workspace/cb_madhatter/godeps/src/github.com/couchbase/cbauth/revrpc/revrpc.go:243
+#	0x46c7dc7	github.com/couchbase/cbauth/service.RegisterManager+0xb7				/Users/deepkarans/workspace/cb_madhatter/godeps/src/github.com/couchbase/cbauth/service/revrpc.go:146
+#	0x48fd262	github.com/couchbase/indexing/secondary/indexer.(*ServiceMgr).registerWithServer+0x152	/Users/deepkarans/workspace/cb_madhatter/goproj/src/github.com/couchbase/indexing/secondary/indexer/rebalance_service_manager.go:285
+
+1 @ 0x403023b 0x402b749 0x402adf6 0x4092baa 0x4092cbd 0x4093a66 0x4191e6f 0x41a4858 0x42a94b5 0x4146316 0x4146fc6 0x424cc44 0x424c752 0x424ca25 0x42a04ac 0x42a03ee 0x42acc66 0x4146316 0x4146fc6 0x4147440 0x44011eb 0x4400bc9 0x4555ec3 0x405e321
+#	0x402adf5	internal/poll.runtime_pollWait+0x65								/Users/deepkarans/.cbdepscache/exploded/x86_64/go-1.11/go/src/runtime/netpoll.go:173
+#	0x4092ba9	internal/poll.(*pollDesc).wait+0x99								/Users/deepkarans/.cbdepscache/exploded/x86_64/go-1.11/go/src/internal/poll/fd_poll_runtime.go:85
+#	0x4092cbc	internal/poll.(*pollDesc).waitRead+0x3c								/Users/deepkarans/.cbdepscache/exploded/x86_64/go-1.11/go/src/internal/poll/fd_poll_runtime.go:90
+#	0x4093a65	internal/poll.(*FD).Read+0x1d5									/Users/deepkarans/.cbdepscache/exploded/x86_64/go-1.11/go/src/internal/poll/fd_unix.go:169
+#	0x4191e6e	net.(*netFD).Read+0x4e										/Users/deepkarans/.cbdepscache/exploded/x86_64/go-1.11/go/src/net/fd_unix.go:202
+#	0x41a4857	net.(*conn).Read+0x67										/Users/deepkarans/.cbdepscache/exploded/x86_64/go-1.11/go/src/net/net.go:177
+#	0x42a94b4	net/http.(*persistConn).Read+0x74								/Users/deepkarans/.cbdepscache/exploded/x86_64/go-1.11/go/src/net/http/transport.go:1497
+#	0x4146315	bufio.(*Reader).fill+0x105									/Users/deepkarans/.cbdepscache/exploded/x86_64/go-1.11/go/src/bufio/bufio.go:100
+#	0x4146fc5	bufio.(*Reader).ReadSlice+0x35									/Users/deepkarans/.cbdepscache/exploded/x86_64/go-1.11/go/src/bufio/bufio.go:341
+#	0x424cc43	net/http/internal.readChunkLine+0x33								/Users/deepkarans/.cbdepscache/exploded/x86_64/go-1.11/go/src/net/http/internal/chunked.go:122
+#	0x424c751	net/http/internal.(*chunkedReader).beginChunk+0x31						/Users/deepkarans/.cbdepscache/exploded/x86_64/go-1.11/go/src/net/http/internal/chunked.go:48
+#	0x424ca24	net/http/internal.(*chunkedReader).Read+0x124							/Users/deepkarans/.cbdepscache/exploded/x86_64/go-1.11/go/src/net/http/internal/chunked.go:93
+#	0x42a04ab	net/http.(*body).readLocked+0x6b								/Users/deepkarans/.cbdepscache/exploded/x86_64/go-1.11/go/src/net/http/transfer.go:803
+#	0x42a03ed	net/http.(*body).Read+0xdd									/Users/deepkarans/.cbdepscache/exploded/x86_64/go-1.11/go/src/net/http/transfer.go:795
+#	0x42acc65	net/http.(*bodyEOFSignal).Read+0xd5								/Users/deepkarans/.cbdepscache/exploded/x86_64/go-1.11/go/src/net/http/transport.go:2255
+#	0x4146315	bufio.(*Reader).fill+0x105									/Users/deepkarans/.cbdepscache/exploded/x86_64/go-1.11/go/src/bufio/bufio.go:100
+#	0x4146fc5	bufio.(*Reader).ReadSlice+0x35									/Users/deepkarans/.cbdepscache/exploded/x86_64/go-1.11/go/src/bufio/bufio.go:341
+#	0x414743f	bufio.(*Reader).ReadBytes+0x6f									/Users/deepkarans/.cbdepscache/exploded/x86_64/go-1.11/go/src/bufio/bufio.go:419
+#	0x44011ea	github.com/couchbase/indexing/secondary/dcp.(*Client).runObserveStreamingEndpoint+0x48a		/Users/deepkarans/workspace/cb_madhatter/goproj/src/github.com/couchbase/indexing/secondary/dcp/pools.go:378
+#	0x4400bc8	github.com/couchbase/indexing/secondary/dcp.(*Client).RunObservePool+0xd8			/Users/deepkarans/workspace/cb_madhatter/goproj/src/github.com/couchbase/indexing/secondary/dcp/pools.go:321
+#	0x4555ec2	github.com/couchbase/indexing/secondary/common.(*serviceNotifierInstance).RunPoolObserver+0x82	/Users/deepkarans/workspace/cb_madhatter/goproj/src/github.com/couchbase/indexing/secondary/common/services_notifier.go:79
+
+1 @ 0x403023b 0x402b749 0x402adf6 0x4092baa 0x4092cbd 0x4093a66 0x4191e6f 0x41a4858 0x42a94b5 0x4146316 0x4146fc6 0x424cc44 0x424c752 0x424ca25 0x42a04ac 0x42a03ee 0x42acc66 0x4146316 0x4146fc6 0x4147440 0x44011eb 0x4400d11 0x4556093 0x405e321
+#	0x402adf5	internal/poll.runtime_pollWait+0x65									/Users/deepkarans/.cbdepscache/exploded/x86_64/go-1.11/go/src/runtime/netpoll.go:173
+#	0x4092ba9	internal/poll.(*pollDesc).wait+0x99									/Users/deepkarans/.cbdepscache/exploded/x86_64/go-1.11/go/src/internal/poll/fd_poll_runtime.go:85
+#	0x4092cbc	internal/poll.(*pollDesc).waitRead+0x3c									/Users/deepkarans/.cbdepscache/exploded/x86_64/go-1.11/go/src/internal/poll/fd_poll_runtime.go:90
+#	0x4093a65	internal/poll.(*FD).Read+0x1d5										/Users/deepkarans/.cbdepscache/exploded/x86_64/go-1.11/go/src/internal/poll/fd_unix.go:169
+#	0x4191e6e	net.(*netFD).Read+0x4e											/Users/deepkarans/.cbdepscache/exploded/x86_64/go-1.11/go/src/net/fd_unix.go:202
+#	0x41a4857	net.(*conn).Read+0x67											/Users/deepkarans/.cbdepscache/exploded/x86_64/go-1.11/go/src/net/net.go:177
+#	0x42a94b4	net/http.(*persistConn).Read+0x74									/Users/deepkarans/.cbdepscache/exploded/x86_64/go-1.11/go/src/net/http/transport.go:1497
+#	0x4146315	bufio.(*Reader).fill+0x105										/Users/deepkarans/.cbdepscache/exploded/x86_64/go-1.11/go/src/bufio/bufio.go:100
+#	0x4146fc5	bufio.(*Reader).ReadSlice+0x35										/Users/deepkarans/.cbdepscache/exploded/x86_64/go-1.11/go/src/bufio/bufio.go:341
+#	0x424cc43	net/http/internal.readChunkLine+0x33									/Users/deepkarans/.cbdepscache/exploded/x86_64/go-1.11/go/src/net/http/internal/chunked.go:122
+#	0x424c751	net/http/internal.(*chunkedReader).beginChunk+0x31							/Users/deepkarans/.cbdepscache/exploded/x86_64/go-1.11/go/src/net/http/internal/chunked.go:48
+#	0x424ca24	net/http/internal.(*chunkedReader).Read+0x124								/Users/deepkarans/.cbdepscache/exploded/x86_64/go-1.11/go/src/net/http/internal/chunked.go:93
+#	0x42a04ab	net/http.(*body).readLocked+0x6b									/Users/deepkarans/.cbdepscache/exploded/x86_64/go-1.11/go/src/net/http/transfer.go:803
+#	0x42a03ed	net/http.(*body).Read+0xdd										/Users/deepkarans/.cbdepscache/exploded/x86_64/go-1.11/go/src/net/http/transfer.go:795
+#	0x42acc65	net/http.(*bodyEOFSignal).Read+0xd5									/Users/deepkarans/.cbdepscache/exploded/x86_64/go-1.11/go/src/net/http/transport.go:2255
+#	0x4146315	bufio.(*Reader).fill+0x105										/Users/deepkarans/.cbdepscache/exploded/x86_64/go-1.11/go/src/bufio/bufio.go:100
+#	0x4146fc5	bufio.(*Reader).ReadSlice+0x35										/Users/deepkarans/.cbdepscache/exploded/x86_64/go-1.11/go/src/bufio/bufio.go:341
+#	0x414743f	bufio.(*Reader).ReadBytes+0x6f										/Users/deepkarans/.cbdepscache/exploded/x86_64/go-1.11/go/src/bufio/bufio.go:419
+#	0x44011ea	github.com/couchbase/indexing/secondary/dcp.(*Client).runObserveStreamingEndpoint+0x48a			/Users/deepkarans/workspace/cb_madhatter/goproj/src/github.com/couchbase/indexing/secondary/dcp/pools.go:378
+#	0x4400d10	github.com/couchbase/indexing/secondary/dcp.(*Client).RunObserveNodeServices+0xf0			/Users/deepkarans/workspace/cb_madhatter/goproj/src/github.com/couchbase/indexing/secondary/dcp/pools.go:337
+#	0x4556092	github.com/couchbase/indexing/secondary/common.(*serviceNotifierInstance).RunServicesObserver+0x82	/Users/deepkarans/workspace/cb_madhatter/goproj/src/github.com/couchbase/indexing/secondary/common/services_notifier.go:88
+
+1 @ 0x403023b 0x402b749 0x402adf6 0x4092baa 0x4092cbd 0x4093a66 0x4191e6f 0x41a4858 0x458f047 0x458e60e 0x405e321
+#	0x402adf5	internal/poll.runtime_pollWait+0x65				/Users/deepkarans/.cbdepscache/exploded/x86_64/go-1.11/go/src/runtime/netpoll.go:173
+#	0x4092ba9	internal/poll.(*pollDesc).wait+0x99				/Users/deepkarans/.cbdepscache/exploded/x86_64/go-1.11/go/src/internal/poll/fd_poll_runtime.go:85
+#	0x4092cbc	internal/poll.(*pollDesc).waitRead+0x3c				/Users/deepkarans/.cbdepscache/exploded/x86_64/go-1.11/go/src/internal/poll/fd_poll_runtime.go:90
+#	0x4093a65	internal/poll.(*FD).Read+0x1d5					/Users/deepkarans/.cbdepscache/exploded/x86_64/go-1.11/go/src/internal/poll/fd_unix.go:169
+#	0x4191e6e	net.(*netFD).Read+0x4e						/Users/deepkarans/.cbdepscache/exploded/x86_64/go-1.11/go/src/net/fd_unix.go:202
+#	0x41a4857	net.(*conn).Read+0x67						/Users/deepkarans/.cbdepscache/exploded/x86_64/go-1.11/go/src/net/net.go:177
+#	0x458f046	github.com/couchbase/gometa/common.(*PeerPipe).readBytes+0xc6	/Users/deepkarans/workspace/cb_madhatter/goproj/src/github.com/couchbase/gometa/common/peerPipe.go:284
+#	0x458e60d	github.com/couchbase/gometa/common.(*PeerPipe).doReceive+0xcd	/Users/deepkarans/workspace/cb_madhatter/goproj/src/github.com/couchbase/gometa/common/peerPipe.go:213
+
+1 @ 0x403023b 0x402b749 0x402adf6 0x4092baa 0x4092cbd 0x4095000 0x41927b2 0x41ad6ee 0x41ac3f7 0x420f207 0x42b789c 0x4295d1f 0x499b1e3 0x405e321
+#	0x402adf5	internal/poll.runtime_pollWait+0x65							/Users/deepkarans/.cbdepscache/exploded/x86_64/go-1.11/go/src/runtime/netpoll.go:173
+#	0x4092ba9	internal/poll.(*pollDesc).wait+0x99							/Users/deepkarans/.cbdepscache/exploded/x86_64/go-1.11/go/src/internal/poll/fd_poll_runtime.go:85
+#	0x4092cbc	internal/poll.(*pollDesc).waitRead+0x3c							/Users/deepkarans/.cbdepscache/exploded/x86_64/go-1.11/go/src/internal/poll/fd_poll_runtime.go:90
+#	0x4094fff	internal/poll.(*FD).Accept+0x19f							/Users/deepkarans/.cbdepscache/exploded/x86_64/go-1.11/go/src/internal/poll/fd_unix.go:384
+#	0x41927b1	net.(*netFD).accept+0x41								/Users/deepkarans/.cbdepscache/exploded/x86_64/go-1.11/go/src/net/fd_unix.go:238
+#	0x41ad6ed	net.(*TCPListener).accept+0x2d								/Users/deepkarans/.cbdepscache/exploded/x86_64/go-1.11/go/src/net/tcpsock_posix.go:139
+#	0x41ac3f6	net.(*TCPListener).Accept+0x46								/Users/deepkarans/.cbdepscache/exploded/x86_64/go-1.11/go/src/net/tcpsock.go:260
+#	0x420f206	crypto/tls.(*listener).Accept+0x36							/Users/deepkarans/.cbdepscache/exploded/x86_64/go-1.11/go/src/crypto/tls/tls.go:52
+#	0x4295d1e	net/http.(*Server).Serve+0x22e								/Users/deepkarans/.cbdepscache/exploded/x86_64/go-1.11/go/src/net/http/server.go:2826
+#	0x499b1e2	github.com/couchbase/indexing/secondary/indexer.(*indexer).initHttpsServer.func1+0x42	/Users/deepkarans/workspace/cb_madhatter/goproj/src/github.com/couchbase/indexing/secondary/indexer/indexer.go:655
+
+1 @ 0x403023b 0x402b749 0x402adf6 0x4092baa 0x4092cbd 0x4095000 0x41927b2 0x41ad6ee 0x41ac3f7 0x42b789c 0x4295d1f 0x499b0c3 0x405e321
+#	0x402adf5	internal/poll.runtime_pollWait+0x65							/Users/deepkarans/.cbdepscache/exploded/x86_64/go-1.11/go/src/runtime/netpoll.go:173
+#	0x4092ba9	internal/poll.(*pollDesc).wait+0x99							/Users/deepkarans/.cbdepscache/exploded/x86_64/go-1.11/go/src/internal/poll/fd_poll_runtime.go:85
+#	0x4092cbc	internal/poll.(*pollDesc).waitRead+0x3c							/Users/deepkarans/.cbdepscache/exploded/x86_64/go-1.11/go/src/internal/poll/fd_poll_runtime.go:90
+#	0x4094fff	internal/poll.(*FD).Accept+0x19f							/Users/deepkarans/.cbdepscache/exploded/x86_64/go-1.11/go/src/internal/poll/fd_unix.go:384
+#	0x41927b1	net.(*netFD).accept+0x41								/Users/deepkarans/.cbdepscache/exploded/x86_64/go-1.11/go/src/net/fd_unix.go:238
+#	0x41ad6ed	net.(*TCPListener).accept+0x2d								/Users/deepkarans/.cbdepscache/exploded/x86_64/go-1.11/go/src/net/tcpsock_posix.go:139
+#	0x41ac3f6	net.(*TCPListener).Accept+0x46								/Users/deepkarans/.cbdepscache/exploded/x86_64/go-1.11/go/src/net/tcpsock.go:260
+#	0x4295d1e	net/http.(*Server).Serve+0x22e								/Users/deepkarans/.cbdepscache/exploded/x86_64/go-1.11/go/src/net/http/server.go:2826
+#	0x499b0c2	github.com/couchbase/indexing/secondary/indexer.(*indexer).initHttpServer.func1+0x42	/Users/deepkarans/workspace/cb_madhatter/goproj/src/github.com/couchbase/indexing/secondary/indexer/indexer.go:611
+
+1 @ 0x403023b 0x402b749 0x402adf6 0x4092baa 0x4092cbd 0x4095000 0x41927b2 0x41ad6ee 0x41ac3f7 0x458b632 0x405e321
+#	0x402adf5	internal/poll.runtime_pollWait+0x65				/Users/deepkarans/.cbdepscache/exploded/x86_64/go-1.11/go/src/runtime/netpoll.go:173
+#	0x4092ba9	internal/poll.(*pollDesc).wait+0x99				/Users/deepkarans/.cbdepscache/exploded/x86_64/go-1.11/go/src/internal/poll/fd_poll_runtime.go:85
+#	0x4092cbc	internal/poll.(*pollDesc).waitRead+0x3c				/Users/deepkarans/.cbdepscache/exploded/x86_64/go-1.11/go/src/internal/poll/fd_poll_runtime.go:90
+#	0x4094fff	internal/poll.(*FD).Accept+0x19f				/Users/deepkarans/.cbdepscache/exploded/x86_64/go-1.11/go/src/internal/poll/fd_unix.go:384
+#	0x41927b1	net.(*netFD).accept+0x41					/Users/deepkarans/.cbdepscache/exploded/x86_64/go-1.11/go/src/net/fd_unix.go:238
+#	0x41ad6ed	net.(*TCPListener).accept+0x2d					/Users/deepkarans/.cbdepscache/exploded/x86_64/go-1.11/go/src/net/tcpsock_posix.go:139
+#	0x41ac3f6	net.(*TCPListener).Accept+0x46					/Users/deepkarans/.cbdepscache/exploded/x86_64/go-1.11/go/src/net/tcpsock.go:260
+#	0x458b631	github.com/couchbase/gometa/common.(*PeerListener).listen+0x71	/Users/deepkarans/workspace/cb_madhatter/goproj/src/github.com/couchbase/gometa/common/peerListener.go:173
+
+1 @ 0x403023b 0x402b749 0x402adf6 0x4092baa 0x4092cbd 0x4095000 0x41927b2 0x41ad6ee 0x41ac3f7 0x4847ad7 0x405e321
+#	0x402adf5	internal/poll.runtime_pollWait+0x65						/Users/deepkarans/.cbdepscache/exploded/x86_64/go-1.11/go/src/runtime/netpoll.go:173
+#	0x4092ba9	internal/poll.(*pollDesc).wait+0x99						/Users/deepkarans/.cbdepscache/exploded/x86_64/go-1.11/go/src/internal/poll/fd_poll_runtime.go:85
+#	0x4092cbc	internal/poll.(*pollDesc).waitRead+0x3c						/Users/deepkarans/.cbdepscache/exploded/x86_64/go-1.11/go/src/internal/poll/fd_poll_runtime.go:90
+#	0x4094fff	internal/poll.(*FD).Accept+0x19f						/Users/deepkarans/.cbdepscache/exploded/x86_64/go-1.11/go/src/internal/poll/fd_unix.go:384
+#	0x41927b1	net.(*netFD).accept+0x41							/Users/deepkarans/.cbdepscache/exploded/x86_64/go-1.11/go/src/net/fd_unix.go:238
+#	0x41ad6ed	net.(*TCPListener).accept+0x2d							/Users/deepkarans/.cbdepscache/exploded/x86_64/go-1.11/go/src/net/tcpsock_posix.go:139
+#	0x41ac3f6	net.(*TCPListener).Accept+0x46							/Users/deepkarans/.cbdepscache/exploded/x86_64/go-1.11/go/src/net/tcpsock.go:260
+#	0x4847ad6	github.com/couchbase/indexing/secondary/queryport.(*Server).listener+0xc6	/Users/deepkarans/workspace/cb_madhatter/goproj/src/github.com/couchbase/indexing/secondary/queryport/server.go:222
+
+1 @ 0x403023b 0x40302e3 0x400830e 0x4007ffb 0x43dbb64 0x405e321
+#	0x43dbb63	github.com/couchbase/indexing/secondary/logging.PeriodicProfile.func1+0x43	/Users/deepkarans/workspace/cb_madhatter/goproj/src/github.com/couchbase/indexing/secondary/logging/logging.go:207
+
+1 @ 0x403023b 0x40302e3 0x400830e 0x400803b 0x458dd4c 0x405e321
+#	0x458dd4b	github.com/couchbase/gometa/common.(*PeerPipe).doSend+0x8b	/Users/deepkarans/workspace/cb_madhatter/goproj/src/github.com/couchbase/gometa/common/peerPipe.go:165
+
+1 @ 0x403023b 0x40302e3 0x400830e 0x400803b 0x45e0517 0x405e321
+#	0x45e0516	github.com/couchbase/gometa/protocol.(*Leader).listen+0xb6	/Users/deepkarans/workspace/cb_madhatter/goproj/src/github.com/couchbase/gometa/protocol/leader.go:543
+
+1 @ 0x403023b 0x40302e3 0x400830e 0x400803b 0x45e0837 0x405e321
+#	0x45e0836	github.com/couchbase/gometa/protocol.(*Leader).processResponses+0xb6	/Users/deepkarans/workspace/cb_madhatter/goproj/src/github.com/couchbase/gometa/protocol/leader.go:588
+
+1 @ 0x403023b 0x40302e3 0x400830e 0x400803b 0x4856f69 0x405e321
+#	0x4856f68	github.com/couchbase/indexing/secondary/indexer.(*clustMgrAgent).run+0xc8	/Users/deepkarans/workspace/cb_madhatter/goproj/src/github.com/couchbase/indexing/secondary/indexer/cluster_manager_agent.go:108
+
+1 @ 0x403023b 0x40302e3 0x400830e 0x400803b 0x4862e39 0x405e321
+#	0x4862e38	github.com/couchbase/indexing/secondary/indexer.(*compactionManager).run+0x88	/Users/deepkarans/workspace/cb_madhatter/goproj/src/github.com/couchbase/indexing/secondary/indexer/compaction_manager.go:731
+
+1 @ 0x403023b 0x40302e3 0x400830e 0x400803b 0x486373f 0x405e321
+#	0x486373e	github.com/couchbase/indexing/secondary/indexer.(*cpuCollector).runCollectStats+0xbe	/Users/deepkarans/workspace/cb_madhatter/goproj/src/github.com/couchbase/indexing/secondary/indexer/cpu.go:70
+
+1 @ 0x403023b 0x40302e3 0x400830e 0x400803b 0x48648a4 0x405e321
+#	0x48648a3	github.com/couchbase/indexing/secondary/indexer.(*DDLServiceMgr).run+0x93	/Users/deepkarans/workspace/cb_madhatter/goproj/src/github.com/couchbase/indexing/secondary/indexer/ddl_service_manager.go:162
+
+1 @ 0x403023b 0x40302e3 0x400830e 0x400803b 0x48c0181 0x405e321
+#	0x48c0180	github.com/couchbase/indexing/secondary/indexer.(*kvSender).run+0x70	/Users/deepkarans/workspace/cb_madhatter/goproj/src/github.com/couchbase/indexing/secondary/indexer/kv_sender.go:98
+
+1 @ 0x403023b 0x40302e3 0x400830e 0x400803b 0x48dead0 0x405e321
+#	0x48deacf	github.com/couchbase/indexing/secondary/indexer.(*mutationMgr).run+0xdf	/Users/deepkarans/workspace/cb_madhatter/goproj/src/github.com/couchbase/indexing/secondary/indexer/mutation_manager.go:122
+
+1 @ 0x403023b 0x40302e3 0x400830e 0x400803b 0x48fcd65 0x405e321
+#	0x48fcd64	github.com/couchbase/indexing/secondary/indexer.(*ServiceMgr).run+0x74	/Users/deepkarans/workspace/cb_madhatter/goproj/src/github.com/couchbase/indexing/secondary/indexer/rebalance_service_manager.go:233
+
+1 @ 0x403023b 0x40302e3 0x400830e 0x400803b 0x492b741 0x405e321
+#	0x492b740	github.com/couchbase/indexing/secondary/indexer.(*scanCoordinator).run+0x70	/Users/deepkarans/workspace/cb_madhatter/goproj/src/github.com/couchbase/indexing/secondary/indexer/scan_coordinator.go:124
+
+1 @ 0x403023b 0x40302e3 0x400830e 0x400803b 0x492b897 0x405e321
+#	0x492b896	github.com/couchbase/indexing/secondary/indexer.(*scanCoordinator).listenSnapshot+0x76	/Users/deepkarans/workspace/cb_madhatter/goproj/src/github.com/couchbase/indexing/secondary/indexer/scan_coordinator.go:142
+
+1 @ 0x403023b 0x40302e3 0x400830e 0x400803b 0x4952e01 0x405e321
+#	0x4952e00	github.com/couchbase/indexing/secondary/indexer.(*settingsManager).run+0x70	/Users/deepkarans/workspace/cb_madhatter/goproj/src/github.com/couchbase/indexing/secondary/indexer/settings.go:248
+
+1 @ 0x403023b 0x40302e3 0x400830e 0x400803b 0x4960c44 0x405e321
+#	0x4960c43	github.com/couchbase/indexing/secondary/indexer.(*statsManager).run+0x53	/Users/deepkarans/workspace/cb_madhatter/goproj/src/github.com/couchbase/indexing/secondary/indexer/stats_manager.go:1561
+
+1 @ 0x403023b 0x40302e3 0x400830e 0x400803b 0x4963501 0x405e321
+#	0x4963500	github.com/couchbase/indexing/secondary/indexer.(*storageMgr).run+0x70	/Users/deepkarans/workspace/cb_madhatter/goproj/src/github.com/couchbase/indexing/secondary/indexer/storage_manager.go:152
+
+1 @ 0x403023b 0x40302e3 0x400830e 0x400803b 0x497f7c1 0x405e321
+#	0x497f7c0	github.com/couchbase/indexing/secondary/indexer.(*timekeeper).run+0x70	/Users/deepkarans/workspace/cb_madhatter/goproj/src/github.com/couchbase/indexing/secondary/indexer/timekeeper.go:114
+
+1 @ 0x403023b 0x40302e3 0x404dc2f 0x4549d61 0x405e321
+#	0x404dc2e	time.Sleep+0x14e								/Users/deepkarans/.cbdepscache/exploded/x86_64/go-1.11/go/src/runtime/time.go:105
+#	0x4549d60	github.com/couchbase/indexing/secondary/common.pollForDeletedBuckets+0x40	/Users/deepkarans/workspace/cb_madhatter/goproj/src/github.com/couchbase/indexing/secondary/common/dcp_seqno.go:384
+
+1 @ 0x403023b 0x40302e3 0x404dc2f 0x45537ff 0x405e321
+#	0x404dc2e	time.Sleep+0x14e									/Users/deepkarans/.cbdepscache/exploded/x86_64/go-1.11/go/src/runtime/time.go:105
+#	0x45537fe	github.com/couchbase/indexing/secondary/common.(*OperationsMonitor).monitor+0x1be	/Users/deepkarans/workspace/cb_madhatter/goproj/src/github.com/couchbase/indexing/secondary/common/op_monitor.go:199
+
+1 @ 0x403023b 0x40302e3 0x404dc2f 0x47defaf 0x47dd94f 0x405e321
+#	0x404dc2e	time.Sleep+0x14e						/Users/deepkarans/.cbdepscache/exploded/x86_64/go-1.11/go/src/runtime/time.go:105
+#	0x47defae	github.com/couchbase/plasma.(*DecayInterval).Sleep+0x2e		/Users/deepkarans/workspace/cb_madhatter/goproj/src/github.com/couchbase/plasma/util.go:235
+#	0x47dd94e	github.com/couchbase/plasma.(*clockShard).runSweeper+0x38e	/Users/deepkarans/workspace/cb_madhatter/goproj/src/github.com/couchbase/plasma/swapper.go:130
+
+1 @ 0x403023b 0x40302e3 0x404dc2f 0x47df9da 0x47e008f 0x405e321
+#	0x404dc2e	time.Sleep+0x14e						/Users/deepkarans/.cbdepscache/exploded/x86_64/go-1.11/go/src/runtime/time.go:105
+#	0x47df9d9	github.com/couchbase/plasma.RunMemQuotaTunerIteration+0x369	/Users/deepkarans/workspace/cb_madhatter/goproj/src/github.com/couchbase/plasma/mem.go:148
+#	0x47e008e	github.com/couchbase/plasma.RunMemQuotaTuner+0x6e		/Users/deepkarans/workspace/cb_madhatter/goproj/src/github.com/couchbase/plasma/mem.go:169
+
+1 @ 0x403023b 0x40302e3 0x404dc2f 0x48bc797 0x405e321
+#	0x404dc2e	time.Sleep+0x14e									/Users/deepkarans/.cbdepscache/exploded/x86_64/go-1.11/go/src/runtime/time.go:105
+#	0x48bc796	github.com/couchbase/indexing/secondary/indexer.(*indexer).monitorMemUsage+0x116	/Users/deepkarans/workspace/cb_madhatter/goproj/src/github.com/couchbase/indexing/secondary/indexer/indexer.go:6927
+
+1 @ 0x403023b 0x40302e3 0x404dc2f 0x48bec48 0x405e321
+#	0x404dc2e	time.Sleep+0x14e								/Users/deepkarans/.cbdepscache/exploded/x86_64/go-1.11/go/src/runtime/time.go:105
+#	0x48bec47	github.com/couchbase/indexing/secondary/indexer.(*indexer).logMemstats+0x157	/Users/deepkarans/workspace/cb_madhatter/goproj/src/github.com/couchbase/indexing/secondary/indexer/indexer.go:7207
+
+1 @ 0x403023b 0x40302e3 0x404dc2f 0x4903d32 0x405e321
+#	0x404dc2e	time.Sleep+0x14e									/Users/deepkarans/.cbdepscache/exploded/x86_64/go-1.11/go/src/runtime/time.go:105
+#	0x4903d31	github.com/couchbase/indexing/secondary/indexer.(*ServiceMgr).rebalanceJanitor+0x41	/Users/deepkarans/workspace/cb_madhatter/goproj/src/github.com/couchbase/indexing/secondary/indexer/rebalance_service_manager.go:1217
+
+1 @ 0x403023b 0x40302e3 0x404dc2f 0x49617f6 0x405e321
+#	0x404dc2e	time.Sleep+0x14e									/Users/deepkarans/.cbdepscache/exploded/x86_64/go-1.11/go/src/runtime/time.go:105
+#	0x49617f5	github.com/couchbase/indexing/secondary/indexer.(*statsManager).runStatsDumpLogger+0x65	/Users/deepkarans/workspace/cb_madhatter/goproj/src/github.com/couchbase/indexing/secondary/indexer/stats_manager.go:1685
+
+1 @ 0x403023b 0x40302e3 0x404dc2f 0x4961d93 0x405e321
+#	0x404dc2e	time.Sleep+0x14e									/Users/deepkarans/.cbdepscache/exploded/x86_64/go-1.11/go/src/runtime/time.go:105
+#	0x4961d92	github.com/couchbase/indexing/secondary/indexer.(*statsManager).runStatsPersister+0xe2	/Users/deepkarans/workspace/cb_madhatter/goproj/src/github.com/couchbase/indexing/secondary/indexer/stats_manager.go:1749
+
+1 @ 0x403023b 0x404000d 0x42dbdf7 0x405e321
+#	0x42dbdf6	github.com/couchbase/cbauth/cbauthimpl.(*cfgChangeNotifier).loop+0xb6	/Users/deepkarans/workspace/cb_madhatter/godeps/src/github.com/couchbase/cbauth/cbauthimpl/impl.go:270
+
+1 @ 0x403023b 0x404000d 0x42dc223 0x405e321
+#	0x42dc222	github.com/couchbase/cbauth/cbauthimpl.(*tlsNotifier).loop+0xa2	/Users/deepkarans/workspace/cb_madhatter/godeps/src/github.com/couchbase/cbauth/cbauthimpl/impl.go:350
+
+1 @ 0x403023b 0x404000d 0x4538844 0x45384e8 0x4538fa5 0x490ae28 0x405e321
+#	0x4538843	github.com/couchbase/cbauth/metakv.doRunObserveChildren+0x313				/Users/deepkarans/workspace/cb_madhatter/godeps/src/github.com/couchbase/cbauth/metakv/metakv.go:287
+#	0x45384e7	github.com/couchbase/cbauth/metakv.(*store).runObserveChildren+0x57			/Users/deepkarans/workspace/cb_madhatter/godeps/src/github.com/couchbase/cbauth/metakv/metakv.go:246
+#	0x4538fa4	github.com/couchbase/cbauth/metakv.RunObserveChildren+0x54				/Users/deepkarans/workspace/cb_madhatter/godeps/src/github.com/couchbase/cbauth/metakv/metakv.go:370
+#	0x490ae27	github.com/couchbase/indexing/secondary/indexer.(*ServiceMgr).listenMoveIndex+0xe7	/Users/deepkarans/workspace/cb_madhatter/goproj/src/github.com/couchbase/indexing/secondary/indexer/rebalance_service_manager.go:2148
+
+1 @ 0x403023b 0x404000d 0x4538844 0x45384e8 0x4538fa5 0x49b1a00 0x45547ff 0x49b1add 0x405e321
+#	0x4538843	github.com/couchbase/cbauth/metakv.doRunObserveChildren+0x313				/Users/deepkarans/workspace/cb_madhatter/godeps/src/github.com/couchbase/cbauth/metakv/metakv.go:287
+#	0x45384e7	github.com/couchbase/cbauth/metakv.(*store).runObserveChildren+0x57			/Users/deepkarans/workspace/cb_madhatter/godeps/src/github.com/couchbase/cbauth/metakv/metakv.go:246
+#	0x4538fa4	github.com/couchbase/cbauth/metakv.RunObserveChildren+0x54				/Users/deepkarans/workspace/cb_madhatter/godeps/src/github.com/couchbase/cbauth/metakv/metakv.go:370
+#	0x49b19ff	github.com/couchbase/indexing/secondary/indexer.NewSettingsManager.func1.1+0x10f	/Users/deepkarans/workspace/cb_madhatter/goproj/src/github.com/couchbase/indexing/secondary/indexer/settings.go:77
+#	0x45547fe	github.com/couchbase/indexing/secondary/common.(*RetryHelper).Run+0x8e			/Users/deepkarans/workspace/cb_madhatter/goproj/src/github.com/couchbase/indexing/secondary/common/retry_helper.go:36
+#	0x49b1adc	github.com/couchbase/indexing/secondary/indexer.NewSettingsManager.func1+0xac		/Users/deepkarans/workspace/cb_madhatter/goproj/src/github.com/couchbase/indexing/secondary/indexer/settings.go:81
+
+1 @ 0x403023b 0x404000d 0x454461c 0x405e321
+#	0x454461b	github.com/couchbase/indexing/secondary/common.(*ClusterInfoClient).watchClusterChanges+0x2eb	/Users/deepkarans/workspace/cb_madhatter/goproj/src/github.com/couchbase/indexing/secondary/common/cluster_info.go:777
+
+1 @ 0x403023b 0x404000d 0x45dfdd6 0x405e321
+#	0x45dfdd5	github.com/couchbase/gometa/protocol.(*messageListener).start+0x1d5	/Users/deepkarans/workspace/cb_madhatter/goproj/src/github.com/couchbase/gometa/protocol/leader.go:424
+
+1 @ 0x403023b 0x404000d 0x45e3fc4 0x405e321
+#	0x45e3fc3	github.com/couchbase/gometa/protocol.(*LeaderServer).listenFollower+0x143	/Users/deepkarans/workspace/cb_madhatter/goproj/src/github.com/couchbase/gometa/protocol/leaderServer.go:187
+
+1 @ 0x403023b 0x404000d 0x45e5490 0x45e3bff 0x472cbfc 0x472c419 0x405e321
+#	0x45e548f	github.com/couchbase/gometa/protocol.(*LeaderServer).processRequest+0x28f	/Users/deepkarans/workspace/cb_madhatter/goproj/src/github.com/couchbase/gometa/protocol/leaderServer.go:386
+#	0x45e3bfe	github.com/couchbase/gometa/protocol.RunLeaderServerWithCustomHandler+0x4de	/Users/deepkarans/workspace/cb_madhatter/goproj/src/github.com/couchbase/gometa/protocol/leaderServer.go:131
+#	0x472cbfb	github.com/couchbase/gometa/server.(*EmbeddedServer).runOnce+0x15b		/Users/deepkarans/workspace/cb_madhatter/goproj/src/github.com/couchbase/gometa/server/embeddedServer.go:678
+#	0x472c418	github.com/couchbase/gometa/server.(*EmbeddedServer).run+0x58			/Users/deepkarans/workspace/cb_madhatter/goproj/src/github.com/couchbase/gometa/server/embeddedServer.go:578
+
+1 @ 0x403023b 0x404000d 0x47358e4 0x405e321
+#	0x47358e3	github.com/couchbase/indexing/secondary/manager.(*LifecycleMgr).processRequest+0x2f3	/Users/deepkarans/workspace/cb_madhatter/goproj/src/github.com/couchbase/indexing/secondary/manager/lifecycle.go:304
+
+1 @ 0x403023b 0x404000d 0x4742c7e 0x405e321
+#	0x4742c7d	github.com/couchbase/indexing/secondary/manager.(*LifecycleMgr).broadcastStats+0x13d	/Users/deepkarans/workspace/cb_madhatter/goproj/src/github.com/couchbase/indexing/secondary/manager/lifecycle.go:2040
+
+1 @ 0x403023b 0x404000d 0x474c2b8 0x405e321
+#	0x474c2b7	github.com/couchbase/indexing/secondary/manager.(*janitor).run+0x1c7	/Users/deepkarans/workspace/cb_madhatter/goproj/src/github.com/couchbase/indexing/secondary/manager/lifecycle.go:3359
+
+1 @ 0x403023b 0x404000d 0x474ca96 0x405e321
+#	0x474ca95	github.com/couchbase/indexing/secondary/manager.(*builder).run+0x505	/Users/deepkarans/workspace/cb_madhatter/goproj/src/github.com/couchbase/indexing/secondary/manager/lifecycle.go:3437
+
+1 @ 0x403023b 0x404000d 0x474fb5e 0x405e321
+#	0x474fb5d	github.com/couchbase/indexing/secondary/manager.(*updator).run+0x1bd	/Users/deepkarans/workspace/cb_madhatter/goproj/src/github.com/couchbase/indexing/secondary/manager/lifecycle.go:3807
+
+1 @ 0x403023b 0x404000d 0x4753cb7 0x405e321
+#	0x4753cb6	github.com/couchbase/indexing/secondary/manager.(*IndexManager).monitorBucket+0xf6	/Users/deepkarans/workspace/cb_madhatter/goproj/src/github.com/couchbase/indexing/secondary/manager/manager.go:694
+
+1 @ 0x403023b 0x404000d 0x476a0de 0x405e321
+#	0x476a0dd	github.com/couchbase/indexing/secondary/manager.(*requestHandlerContext).runPersistor+0x18d	/Users/deepkarans/workspace/cb_madhatter/goproj/src/github.com/couchbase/indexing/secondary/manager/request_handler.go:1960
+
+1 @ 0x403023b 0x404000d 0x485e0a2 0x405e321
+#	0x485e0a1	github.com/couchbase/indexing/secondary/indexer.(*compactionDaemon).loop+0x141	/Users/deepkarans/workspace/cb_madhatter/goproj/src/github.com/couchbase/indexing/secondary/indexer/compaction_manager.go:117
+
+1 @ 0x403023b 0x404000d 0x4869201 0x405e321
+#	0x4869200	github.com/couchbase/indexing/secondary/indexer.(*DDLServiceMgr).processCreateCommand+0x1d0	/Users/deepkarans/workspace/cb_madhatter/goproj/src/github.com/couchbase/indexing/secondary/indexer/ddl_service_manager.go:843
+
+1 @ 0x403023b 0x404000d 0x488c1b2 0x4888971 0x49c4c65 0x402fe47 0x405e321
+#	0x488c1b1	github.com/couchbase/indexing/secondary/indexer.(*indexer).run+0x141	/Users/deepkarans/workspace/cb_madhatter/goproj/src/github.com/couchbase/indexing/secondary/indexer/indexer.go:788
+#	0x4888970	github.com/couchbase/indexing/secondary/indexer.NewIndexer+0x17b0	/Users/deepkarans/workspace/cb_madhatter/goproj/src/github.com/couchbase/indexing/secondary/indexer/indexer.go:366
+#	0x49c4c64	main.main+0x10e4							goproj/src/github.com/couchbase/indexing/secondary/cmd/indexer/main.go:167
+#	0x402fe46	runtime.main+0x206							/Users/deepkarans/.cbdepscache/exploded/x86_64/go-1.11/go/src/runtime/proc.go:201
+
+1 @ 0x403023b 0x404000d 0x488c375 0x405e321
+#	0x488c374	github.com/couchbase/indexing/secondary/indexer.(*indexer).listenAdminMsgs+0xd4	/Users/deepkarans/workspace/cb_madhatter/goproj/src/github.com/couchbase/indexing/secondary/indexer/indexer.go:822
+
+1 @ 0x403023b 0x404000d 0x488c8ed 0x405e321
+#	0x488c8ec	github.com/couchbase/indexing/secondary/indexer.(*indexer).listenWorkerMsgs+0xcc	/Users/deepkarans/workspace/cb_madhatter/goproj/src/github.com/couchbase/indexing/secondary/indexer/indexer.go:881
+
+1 @ 0x403023b 0x404000d 0x48dec5f 0x405e321
+#	0x48dec5e	github.com/couchbase/indexing/secondary/indexer.(*mutationMgr).handleWorkerMsgs+0xae	/Users/deepkarans/workspace/cb_madhatter/goproj/src/github.com/couchbase/indexing/secondary/indexer/mutation_manager.go:146
+
+1 @ 0x403023b 0x404000d 0x48ded97 0x405e321
+#	0x48ded96	github.com/couchbase/indexing/secondary/indexer.(*mutationMgr).listenWorkerMsgs+0xc6	/Users/deepkarans/workspace/cb_madhatter/goproj/src/github.com/couchbase/indexing/secondary/indexer/mutation_manager.go:169
+
+1 @ 0x403023b 0x404000d 0x49072d5 0x48fd4a4 0x46c81d4 0x46c762b 0x46c7a23 0x46c8ba2 0x405c6ab 0x40b0bb9 0x40b0654 0x433d1ee 0x405e321
+#	0x49072d4	github.com/couchbase/indexing/secondary/indexer.(*ServiceMgr).wait+0x2d4	/Users/deepkarans/workspace/cb_madhatter/goproj/src/github.com/couchbase/indexing/secondary/indexer/rebalance_service_manager.go:1662
+#	0x48fd4a3	github.com/couchbase/indexing/secondary/indexer.(*ServiceMgr).GetTaskList+0x143	/Users/deepkarans/workspace/cb_madhatter/goproj/src/github.com/couchbase/indexing/secondary/indexer/rebalance_service_manager.go:316
+#	0x46c81d3	github.com/couchbase/cbauth/service.serviceAPI.GetTaskList.func1+0x73		/Users/deepkarans/workspace/cb_madhatter/godeps/src/github.com/couchbase/cbauth/service/revrpc.go:99
+#	0x46c762a	github.com/couchbase/cbauth/service.withTimeout+0x7a				/Users/deepkarans/workspace/cb_madhatter/godeps/src/github.com/couchbase/cbauth/service/revrpc.go:46
+#	0x46c7a22	github.com/couchbase/cbauth/service.serviceAPI.GetTaskList+0xd2			/Users/deepkarans/workspace/cb_madhatter/godeps/src/github.com/couchbase/cbauth/service/revrpc.go:98
+#	0x405c6aa	runtime.call64+0x3a								/Users/deepkarans/.cbdepscache/exploded/x86_64/go-1.11/go/src/runtime/asm_amd64.s:523
+#	0x40b0bb8	reflect.Value.call+0x448							/Users/deepkarans/.cbdepscache/exploded/x86_64/go-1.11/go/src/reflect/value.go:447
+#	0x40b0653	reflect.Value.Call+0xa3								/Users/deepkarans/.cbdepscache/exploded/x86_64/go-1.11/go/src/reflect/value.go:308
+#	0x433d1ed	net/rpc.(*service).call+0x14d							/Users/deepkarans/.cbdepscache/exploded/x86_64/go-1.11/go/src/net/rpc/server.go:384
+
+1 @ 0x403023b 0x404000d 0x49072d5 0x48fdc34 0x46c8034 0x46c762b 0x46c78c3 0x46c8a32 0x405c6ab 0x40b0bb9 0x40b0654 0x433d1ee 0x405e321
+#	0x49072d4	github.com/couchbase/indexing/secondary/indexer.(*ServiceMgr).wait+0x2d4		/Users/deepkarans/workspace/cb_madhatter/goproj/src/github.com/couchbase/indexing/secondary/indexer/rebalance_service_manager.go:1662
+#	0x48fdc33	github.com/couchbase/indexing/secondary/indexer.(*ServiceMgr).GetCurrentTopology+0x143	/Users/deepkarans/workspace/cb_madhatter/goproj/src/github.com/couchbase/indexing/secondary/indexer/rebalance_service_manager.go:366
+#	0x46c8033	github.com/couchbase/cbauth/service.serviceAPI.GetCurrentTopology.func1+0x73		/Users/deepkarans/workspace/cb_madhatter/godeps/src/github.com/couchbase/cbauth/service/revrpc.go:76
+#	0x46c762a	github.com/couchbase/cbauth/service.withTimeout+0x7a					/Users/deepkarans/workspace/cb_madhatter/godeps/src/github.com/couchbase/cbauth/service/revrpc.go:46
+#	0x46c78c2	github.com/couchbase/cbauth/service.serviceAPI.GetCurrentTopology+0xd2			/Users/deepkarans/workspace/cb_madhatter/godeps/src/github.com/couchbase/cbauth/service/revrpc.go:75
+#	0x405c6aa	runtime.call64+0x3a									/Users/deepkarans/.cbdepscache/exploded/x86_64/go-1.11/go/src/runtime/asm_amd64.s:523
+#	0x40b0bb8	reflect.Value.call+0x448								/Users/deepkarans/.cbdepscache/exploded/x86_64/go-1.11/go/src/reflect/value.go:447
+#	0x40b0653	reflect.Value.Call+0xa3									/Users/deepkarans/.cbdepscache/exploded/x86_64/go-1.11/go/src/reflect/value.go:308
+#	0x433d1ed	net/rpc.(*service).call+0x14d								/Users/deepkarans/.cbdepscache/exploded/x86_64/go-1.11/go/src/net/rpc/server.go:384
+
+1 @ 0x403023b 0x404000d 0x49610bb 0x405e321
+#	0x49610ba	github.com/couchbase/indexing/secondary/indexer.(*statsManager).statsUpdater+0x17a	/Users/deepkarans/workspace/cb_madhatter/goproj/src/github.com/couchbase/indexing/secondary/indexer/stats_manager.go:1616
+
+1 @ 0x407e1e5 0x407d6aa 0x407aa39 0x40939a7 0x409b5fe 0x40980e9 0x455b9b5 0x405e321
+#	0x407e1e4	syscall.Syscall+0x4							/Users/deepkarans/.cbdepscache/exploded/x86_64/go-1.11/go/src/syscall/asm_darwin_amd64.s:16
+#	0x407d6a9	syscall.read+0x59							/Users/deepkarans/.cbdepscache/exploded/x86_64/go-1.11/go/src/syscall/zsyscall_darwin_amd64.go:947
+#	0x407aa38	syscall.Read+0x48							/Users/deepkarans/.cbdepscache/exploded/x86_64/go-1.11/go/src/syscall/syscall_unix.go:172
+#	0x40939a6	internal/poll.(*FD).Read+0x116						/Users/deepkarans/.cbdepscache/exploded/x86_64/go-1.11/go/src/internal/poll/fd_unix.go:165
+#	0x409b5fd	os.(*File).read+0x4d							/Users/deepkarans/.cbdepscache/exploded/x86_64/go-1.11/go/src/os/file_unix.go:249
+#	0x40980e8	os.(*File).Read+0x68							/Users/deepkarans/.cbdepscache/exploded/x86_64/go-1.11/go/src/os/file.go:108
+#	0x455b9b4	github.com/couchbase/indexing/secondary/common.ExitOnStdinClose+0x54	/Users/deepkarans/workspace/cb_madhatter/goproj/src/github.com/couchbase/indexing/secondary/common/util.go:358
+
+1 @ 0x428c710 0x405e321
+#	0x428c710	net/http.(*connReader).backgroundRead+0x0	/Users/deepkarans/.cbdepscache/exploded/x86_64/go-1.11/go/src/net/http/server.go:675
+
+1 @ 0x4356b58 0x4356960 0x4353354 0x435f600 0x4360583 0x455ebae 0x4292c04 0x4294897 0x42958ab 0x4291c66 0x405e321
+#	0x4356b57	runtime/pprof.writeRuntimeProfile+0x97				/Users/deepkarans/.cbdepscache/exploded/x86_64/go-1.11/go/src/runtime/pprof/pprof.go:707
+#	0x435695f	runtime/pprof.writeGoroutine+0x9f				/Users/deepkarans/.cbdepscache/exploded/x86_64/go-1.11/go/src/runtime/pprof/pprof.go:669
+#	0x4353353	runtime/pprof.(*Profile).WriteTo+0x3e3				/Users/deepkarans/.cbdepscache/exploded/x86_64/go-1.11/go/src/runtime/pprof/pprof.go:328
+#	0x435f5ff	net/http/pprof.handler.ServeHTTP+0x20f				/Users/deepkarans/.cbdepscache/exploded/x86_64/go-1.11/go/src/net/http/pprof/pprof.go:245
+#	0x455ebad	github.com/couchbase/indexing/secondary/common.GrHandler+0xad	/Users/deepkarans/workspace/cb_madhatter/goproj/src/github.com/couchbase/indexing/secondary/common/util.go:1023
+#	0x4292c03	net/http.HandlerFunc.ServeHTTP+0x43				/Users/deepkarans/.cbdepscache/exploded/x86_64/go-1.11/go/src/net/http/server.go:1964
+#	0x4294896	net/http.(*ServeMux).ServeHTTP+0x126				/Users/deepkarans/.cbdepscache/exploded/x86_64/go-1.11/go/src/net/http/server.go:2361
+#	0x42958aa	net/http.serverHandler.ServeHTTP+0xaa				/Users/deepkarans/.cbdepscache/exploded/x86_64/go-1.11/go/src/net/http/server.go:2741
+#	0x4291c65	net/http.(*conn).serve+0x645					/Users/deepkarans/.cbdepscache/exploded/x86_64/go-1.11/go/src/net/http/server.go:1847
+

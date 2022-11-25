@@ -12,3 +12,18 @@ tar -xvf paramiko-1.9.0.tar.gz
 cd paramiko-1.9.0
 python setup.py build
 sudo python setup.py install
+
+
+
+python3 -m pip install couchbase==2.5.10
+brew install libcouchbase@2
+
+libcouchbase@2 is keg-only, which means it was not symlinked into /usr/local,
+because this is an alternate version of another formula.
+
+If you need to have libcouchbase@2 first in your PATH, run:
+  echo 'export PATH="/usr/local/opt/libcouchbase@2/bin:$PATH"' >> /Users/deepkaran/.bash_profile
+
+For compilers to find libcouchbase@2 you may need to set:
+  export LDFLAGS="-L/usr/local/opt/libcouchbase@2/lib"
+  export CPPFLAGS="-I/usr/local/opt/libcouchbase@2/include"

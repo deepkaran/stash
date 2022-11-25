@@ -1,0 +1,20 @@
+
+TagBar
+nmap <F8> :TagbarToggle<CR>
+
+
+NerdTree
+<leader>nn Toggle
+<leader>nf Find the file in list
+s - split
+o - open(enter)
+
+
+GoDef
+au FileType go nmap <leader>ds <Plug>(go-def-vertical)
+au FileType go nmap <leader>dt <Plug>(go-def-tab)
+
+MRU
+
+shift o -> split view
+t - tab

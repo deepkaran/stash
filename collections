@@ -1,0 +1,39 @@
+curl -X POST -u Administrator:asdasd http://localhost:9000/pools/default/buckets/default/collections -d name=scope1
+curl -X POST -u Administrator:asdasd http://localhost:9000/pools/default/buckets/default/collections/scope1 -d name=coll1
+
+curl  -X GET -u Administrator:asdasd http://127.0.0.1:9000/pools/default/buckets/default/collections | json_pp
+
+
+
+./couchbase-cli collection-manage --cluster http://localhost:9000 --username Administrator --password asdasd --bucket default --create-scope scope2
+
+./couchbase-cli collection-manage --cluster http://localhost:9000 --username Administrator --password asdasd --bucket default --create-collection scope2.coll2
+
+./couchbase-cli collection-manage --cluster http://localhost:9000 --username Administrator --password asdasd --bucket default --list-collections _default
+
+./couchbase-cli collection-manage --cluster http://localhost:9000 --username Administrator --password asdasd --bucket default --list-scopes
+
+./couchbase-cli collection-manage --cluster http://localhost:9000 --username Administrator --password asdasd --bucket default --drop-collection _default._default
+
+./cbc create -u Administrator -P asdasd -U couchbase://localhost:12000/default doc1 -V '{"age" : 10 }'
+
+
+./cbstats -u Administrator -p asdasd -b default localhost:12000 collections
+./cbstats -u Administrator -p asdasd -b default localhost:12000 collections-details 0
+
+
+./cbindex -auth Administrator:asdasd -type create -bucket default -index idx_age -fields=age -server 127.0.0.1:9000
+./cbindex -auth Administrator:asdasd -type scanAll -bucket default -index s1_c1_i2 -limit 10 -server 127.0.0.1:9000
+./cbindex -auth Administrator:asdasd -type list -server 127.0.0.1:9000
+
+go test -v -timeout 4h -skipsetup -test.run  TestCollection
+
+
+CREATE SCOPE bucket1.scope1
+CREATE SCOPE bucket1.scope2
+CREATE COLLECTION bucket1.scope1.coll1
+CREATE COLLECTION bucket1.scope2.coll1
+CREATE INDEX idx1 ON bucket1.scope1.coll1(field1)
+CREATE INDEX idx1 ON bucket1.scope2.coll1(field1)
+
+./cbworkloadgen -i 100 -n 127.0.0.1:9000 -j -u Administrator -p asdasd -c 0x8

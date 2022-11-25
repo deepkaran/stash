@@ -1,0 +1,6 @@
+https://www.netdata.cloud/
+
+iostats
+
+iostat -x -p ALL 1 10 || iostat -x 1 10
+
