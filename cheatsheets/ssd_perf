@@ -3,3 +3,11 @@ Reading up a bit on SSDs, learned if write payload is >= SSD cluster size, no ma
 Internally io scheduler will make use of all parallel channels
 Most SSDs will have either 16MB or 32MB cluster block sizes
 So, it looks like setting 32MB buffer size as default for memdb persistent writer would be enough to make use of SSD with single writer.
+
+Sarath's magma paper
+We need to leverage sequential read and
+write I/O access patterns [3] to utilize the full bandwidth of the SSDs.
+Random I/O should be only incurred during point lookup operations.
+The storage engine also needs to leverage I/O concurrency to utilize
+the higher IOPS offered by modern fast NVMe SSDs
+

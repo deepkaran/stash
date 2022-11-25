@@ -1,0 +1,11 @@
+
+curl localhost:9102/stats?partition=true&pretty=true&skip_empty=true -u Administrator:asdasd
+
+Benefits
+1. Allows you to scale beyond a single node
+2. Reduce scan latency by parallel scanning of partitions
+3. Partition elimination
+
+max_parallelism
+a. "queryport.client.scan.max_concurrency" is 0 and MB-31701 enables parallel scans by default. 
+
