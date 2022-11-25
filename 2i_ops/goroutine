@@ -1,1 +1,3 @@
 kill -ABRT <pid> to get goroutine from a hung process when http is not running or process not responding on that.
+
+we can also try to dump core for the indexer process and analyze it with viewcore tool (https://github.com/golang/debug/tree/26ed8fdb6258ba418adfc924fc499a11686d86e4/cmd/viewcore). Based on the description here - https://github.com/golang/go/issues/32284#issuecomment-497851388, it can give us a more detailed breakup.

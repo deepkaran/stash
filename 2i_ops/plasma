@@ -1,0 +1,30 @@
+
+There are two stats you can change for low and high watermark for purge ratio
+
+indexer.plasma.purger.highThreshold
+indexer.plasma.purger.lowThreshold
+by default, highThreshold is 10 and lowThreshold is 7.
+You can ask customers to set it lower.  But note that mvcc purger will use IO and therefore, impacts IO intensive workload.
+
+
+
+This is plasma page compaction and occurs automatically as unresolved deltas accumulate in the page delta chain. It is also triggered by mvccPurger based on mvcc_purge_ratio storage stat. Compaction of all the pages can be forced manually via plasma diag rest call as follows:
+(1) Get plasma store ID using plasma diag. Eg for 2 indexes:
+$ curl <index-node>:9102/plasmaDiag -u <user>:<pass> -d '{"Cmd":"listDBs"}'
+----------plasma-diagnostics---------
+[0] default/index1/Backstore#15174959887622341787:0 : 824636544640
+[1] default/index2/Backstore#1976022838903453963:0 : 824698740736
+[2] default/index1/Mainstore#15174959887622341787:0 : 824700796928
+[3] default/index2/Mainstore#1976022838903453963:0 : 824698507776
+-------------------------------------
+$
+(2) Force compaction of all pages using plasma diag. Eg for Back Index of index2:
+$ curl <index-node>:9102/plasmaDiag -u <user>:<pass> -d '{"Cmd":"compactAll", "Args":[824698740736]}'
+----------plasma-diagnostics---------
+-------------------------------------
+$
+
+=======Settings to speed up the build===
+indexer.plasma.mainIndex.LSSFragmentation to 80(need enough disk space)
+indexer.plasma.backIndex.LSSFragmentation to 80
+indexer.plasma.useDirectIO to true

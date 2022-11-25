@@ -1,0 +1,14 @@
+
+raw_data_size - data size of actual index keys (excluding storage data structures overhead)
+data_size - uncompressed data size (compression_ratio * data_size_on_disk)
+disk_size is the total disk space taken up by the index(including index data files, checkpoints etc) [compressed]
+log_space_on_disk is only the index data files(including garbage) [compressed]
+data_size_on_disk is the valid data (excluding garbage) [compressed]
+
+fragmentation = ((log_space_on_disk - data_size_on_disk)/log_space_on_disk)
+
+From John:
+
+data size is the total data in plasma regardless it is currently on disk or resident in memory.   It includes old records due to MVCC.
+raw_data_size does not include old records due to MVCC
+data_size_on_disk is the actual number of bytes stored on disk (compressed)

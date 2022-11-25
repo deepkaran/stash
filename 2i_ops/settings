@@ -15,3 +15,8 @@ curl -X POST -u Administrator:asdasd http://localhost:9102/settings --data '{"in
 
 scan timeout
 curl -X POST -u <user:pass> http://<ip>:9102/settings --data '{"indexer.settings.scan_timeout": <timeout_in_milliseconds>}'
+curl -X POST -u <user:pass> http://<ip>:9102/settings --data '{"indexer.settings.persisted_snapshot.moi.interval": 60000}'
+
+
+curl -X POST -u Administrator:asdasd http://localhost:9102/settings --data '{"indexer.settings.thresholds.mem_high": 20}'
+curl -X POST -u Administrator:asdasd http://localhost:9102/settings --data '{"indexer.settings.thresholds.mem_low": 10}'

@@ -9,3 +9,35 @@ tc qdisc add dev eth0 root netem delay 100ms
 And then I ran pillow fight:
 /usr/bin/cbc-pillowfight -I 40000000 -m 1000 -M 1000 -U couchbase://172.23.106.25/default -t 50 -p load_1_ -r 100
 And I did see cursor dropping
+
+
+Netid  State      Recv-Q Send-Q Local Address:Port               Peer Address:Port
+tcp    ESTAB      0      409613 172.23.120.58:11207              172.23.120.58:60288               users:(("memcached",pid=125282,fd=960)) timer:(persist,3.880ms,0)
+         skmem:(r0,rb2226507,t0,tb425984,f5907,w415981,o0,bl0,d14906) ts sack cubic wscale:7,7 rto:207 backoff:7 rtt:6.645/11.912 ato:40 mss:65483 rcvmss:536 advmss:65483 cwnd:10 ssthresh:7 bytes_acked:50857255 bytes_received:144012 segs_out:12181 segs_in:12046 send 788.4Mbps lastsnd:60784 lastrcv:2553 lastack:22616 pacing_rate 1576.6Mbps rcv_rtt:95673.6 rcv_space:43877
+
+
+The above shows that from memcached's POV, the socket SendQ is 399KB; and from the projector\s POV its socket RecvQ is 880KB - i.e. that the proejctor has 880KB of data waiting to be read from the socket; and memcached has an additional 399KB waiting to be sent out - the projector appears to be backed up.
+
+There is zero data in memcached's recvQ or the projector's sendQ; so there is zero data waiting to be sent from projector to memcached over the TCP/IP socket.
+
+socket memory usage
+
+From the ss man page we can decode this. The main part of interest is the memory section ("skmem"):
+
+ Show socket memory usage. The output format is:
+ 
+              skmem:(r<rmem_alloc>,rb<rcv_buf>,t<wmem_alloc>,tb<snd_buf>,
+                            f<fwd_alloc>,w<wmem_queued>,o<opt_mem>,
+                            bl<back_log>,d<sock_drop>)
+memcached socket view:
+
+Field	Description	Value
+rmem_alloc	the memory allocated for receiving packet	0
+rcv_buf	the total memory can be allocated for receiving packet	2,226,507
+wmem_alloc	the memory used for sending packet (which has been sent to layer 3)	0
+snd_buf	the total memory can be allocated for sending packet	425,984
+fwd_alloc	the memory allocated by the socket as cache, but not used for receiving/sending packet yet. If need memory to send/receive packet, the memory in this cache will be used before allocate additional memory.	5907
+wmem_queued	The memory allocated for sending packet (which has not been sent to layer 3)	415,981
+ropt_mem	The memory used for storing socket option, e.g., the key for TCP MD5 signature	0
+back_log	The memory used for the sk backlog queue. On a process context, if the process is receiving packet, and a new packet is received, it will be put into the sk backlog queue, so it can be received by the process immediately	0
+sock_drop	the number of packets dropped before they are de-multiplexed into the socket	14906

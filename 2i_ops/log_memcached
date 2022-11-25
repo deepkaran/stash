@@ -1,0 +1,1 @@
+grep dp_token memcached.log | grep "vb 256\|vb:256\|vbucket:256" - follow vbucket for a bucket

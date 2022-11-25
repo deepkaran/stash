@@ -1,0 +1,10 @@
+
+network connectivity
+grep -B 2 "net_kernel.*nodedown" ns_server.debug.log | grep -o 202.-..-..T..:. | uniq -c
+
+diag.log
+2021-01-19T12:15:28.192+01:00, ns_node_disco:5:warning:node down(ns_1@couchbasep02.portima.net) - Node 'ns_1@couchbasep02.portima.net' saw that node 'ns_1@couchbasep03.portima.net' went down. Details: [{nodedown_reason,
+                                                                                                         connection_closed}]
+
+metakv
+grep -E "(PUT|DELETE|POST).*metakv.*fts" ns_server.http_access_internal.log

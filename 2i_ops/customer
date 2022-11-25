@@ -1,0 +1,6 @@
+Indexer
+curl -u <username>:<password> http://localhost:9102/debug/pprof/goroutine?debug=2 > <hostnamename>_idx-goroutine.log 
+curl -u <username>:<password> http://localhost:9102/debug/pprof/heap > <hostnamename>_idx-hprof.mprof 
+curl -u <username>:<password> http://localhost:9102/debug/pprof/profile?seconds=60 > <hostnamename>_idx.pprof
+
+Projector
