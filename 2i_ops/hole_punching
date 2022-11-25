@@ -1,0 +1,103 @@
+On ext4 - supports hole punching, check whether hole punching is supported:
+
+Create tmp file:
+
+$ dd if=/dev/zero of=tmpFile bs=100M count=1
+1+0 records in
+1+0 records out
+104857600 bytes (105 MB, 100 MiB) copied, 0.0625552 s, 1.7 GB/s
+Check Size - both usage and size are 100M:
+
+$ du -h tmpFile 
+100M tmpFile
+$ ls -lh tmpFile 
+rw-rw-r- 1 akhilmd akhilmd 100M Sep 3 15:36 tmpFile
+$ ls -sh tmpFile 
+100M tmpFile
+$ stat tmpFile 
+  File: tmpFile
+  Size: 104857600 Blocks: 204808 IO Block: 4096 regular file
+Device: 10303h/66307d Inode: 8650852 Links: 1
+Access: (0664/rw-rw-r-) Uid: ( 1000/ akhilmd) Gid: ( 1000/ akhilmd)
+Access: 2021-09-03 15:36:20.373648779 +0530
+Modify: 2021-09-03 15:36:20.401648966 +0530
+Change: 2021-09-03 15:36:20.401648966 +0530
+ Birth: -
+$
+Punch 50MB hole in the middle of the file at offset 25MB:
+
+$ fallocate -p -o 25M -l 50M tmpFile
+$
+Check Size after - usage is reduced to 50M, but size remains at 100M and this expected as usage is the more important stat to look at:
+
+$ du -h tmpFile 
+51M tmpFile
+$ ls -lh tmpFile 
+rw-rw-r- 1 akhilmd akhilmd 100M Sep 3 15:37 tmpFile 
+$ ls -sh tmpFile 
+51M tmpFile
+$ stat tmpFile 
+  File: tmpFile
+  Size: 104857600 Blocks: 102408 IO Block: 4096 regular file
+Device: 10303h/66307d Inode: 8650852 Links: 1
+Access: (0664/rw-rw-r-) Uid: ( 1000/ akhilmd) Gid: ( 1000/ akhilmd)
+Access: 2021-09-03 15:36:20.373648779 +0530
+Modify: 2021-09-03 15:37:17.522072254 +0530
+Change: 2021-09-03 15:37:17.522072254 +0530
+ Birth: -
+$
+If I create a plasma instance on this filesystem, I see that punch_hole_support is set to true.
+
+ 
+
+On vfat - does not support hole punching, check whether hole punching is supported:
+
+Create tmp file:
+
+$ dd if=/dev/zero of=tmpFile bs=100M count=1
+1+0 records in
+1+0 records out
+104857600 bytes (105 MB, 100 MiB) copied, 18.6288 s, 5.6 MB/s
+$
+Check Size - both usage and size are 100M:
+
+$ du -h tmpFile 
+100M tmpFile
+$ ls -lh tmpFile 
+rw-rr- 1 akhilmd akhilmd 100M Sep 3 15:43 tmpFile
+$ ls -sh tmpFile 
+100M tmpFile
+$ stat tmpFile
+  File: tmpFile
+  Size: 104857600 Blocks: 204800 IO Block: 4096 regular file
+Device: 810h/2064d Inode: 2142 Links: 1
+Access: (0644/rw-rr-) Uid: ( 1000/ akhilmd) Gid: ( 1000/ akhilmd)
+Access: 2021-09-03 05:30:00.000000000 +0530
+Modify: 2021-09-03 15:43:30.000000000 +0530
+Change: 2021-09-03 15:43:30.660000000 +0530
+ Birth: -
+$
+Punch 50MB hole in the middle of the file at offset 25MB - fails:
+
+$ fallocate -p -o 25M -l 50M tmpFile
+fallocate: fallocate failed: keep size mode is unsupported
+$
+Check Size after - remains at 100M:
+
+$ du -h tmpFile 
+100M tmpFile
+$ ls -lh tmpFile 
+rw-rr- 1 akhilmd akhilmd 100M Sep 3 15:43 tmpFile
+$ ls -sh tmpFile
+100M tmpFile
+$ stat tmpFile
+  File: tmpFile
+  Size: 104857600 Blocks: 204800 IO Block: 4096 regular file
+Device: 810h/2064d Inode: 2142 Links: 1
+Access: (0644/rw-rr-) Uid: ( 1000/ akhilmd) Gid: ( 1000/ akhilmd)
+Access: 2021-09-03 05:30:00.000000000 +0530
+Modify: 2021-09-03 15:43:30.000000000 +0530
+Change: 2021-09-03 15:43:30.660000000 +0530
+ Birth: -
+$
+If I create a plasma instance on this filesystem, I see that punch_hole_support is set to false.

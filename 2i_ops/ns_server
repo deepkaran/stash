@@ -1,0 +1,23 @@
+create a unresponsive node (failover)
+
+ps aux | grep ns_bootstrap | grep -v grep | col | cut -f 2
+ 20201
+ 20188
+ 20189
+ $ kill -STOP 20189
+
+
+Useful info from Steve Watanabe on how to start and stop individual virtual nodes in Mac development environment:
+
+cluster_run - Start each virtual node in a separate window by using different --start-index beginning at index 0:
+Window 0: COUCHBASE_NUM_VBUCKETS=64 ./cluster_run -n 1 --dont-rename --start-index 0
+Window 1: COUCHBASE_NUM_VBUCKETS=64 ./cluster_run -n 1 --dont-rename --start-index 1
+
+2. cluster_connect - In a third window run a single cluster_connect command that configures each node:
+Window 3: ./cluster_connect -n 2 -M plasma -T n0:kv+n1ql+index+fts,n1:kv+n1ql+index+fts -I 1200 -s 150
+Now you can ctrl-C in Window 0 and/or 1 to shut down node 0 or 1.
+To restart such a node, just rerun the original cluster_run command (up-arrow + Enter).
+Variant from me: If you don't want to manage a plethora of terminal windows, which is challenging in Mac's UI, you can run each node in the background like this (node number appears twice in each command: --start-index arg plus output filename):
+COUCHBASE_NUM_VBUCKETS=64 ./cluster_run -n 1 --dont-rename --start-index 0 > cluster_run_0.out 2>&1 &
+COUCHBASE_NUM_VBUCKETS=64 ./cluster_run -n 1 --dont-rename --start-index 1 > cluster_run_1.out 2>&1 &
+Then you can also run the cluster_connect command from the same window, and kill the appropriate background job to shut down a node. 

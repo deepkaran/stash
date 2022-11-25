@@ -1,0 +1,11 @@
+1. Configure serverless MB-52406
+
+Regular install: # Create the directory (if it doesn’t exist): sudo mkdir -p /etc/couchbase.d
+
+You will likely have to change the permissions of the directory/file: sudo chmod ugo+r /etc/couchbase.d/config_profile and obviously give whatever user is gonna write “serverless” to the file in the next step “write” permissions or use sudo.
+Place the text “serverless” (without quotes) into a file in that directory called config_profile (/etc/couchbase.d/config_profile).
+Install couchbase-server and run it or if it’s already installed and running, restarting should be enough to switch into serverless mode, but I would warn against doing it on anything but a completely fresh, uninitialized, node. You will run into problems if you are attempting to just flip back and fourth between profiles and you have initialized the server.
+Cluster_run: # This method is easier..All methods above, also work for cluster_run, OR..
+
+Just pass in --serverless to cluster_run when starting the product.
+For running in default mode, it is not required to do anything, however you can also change it to “default” by placing that text into the file /etc/couchbase.d/config_profile or the environment variable CB_FORCE_PROFILE="default" but these are not actually required.

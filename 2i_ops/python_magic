@@ -1,0 +1,11 @@
+1. Finding CAS
+
+from datetime import datetime
+import fileinput
+import re
+​
+for line in fileinput.input():
+    m = re.search(r'cas:(\d+)', line)
+    if m:
+        dt = datetime.fromtimestamp(int(m.group(1)) // 1000000000)
+        print(re.sub('cas:(\d+)', "cas:{}".format(dt.strftime('%Y-%m-%dT%H:%M:%S')), line), end='')

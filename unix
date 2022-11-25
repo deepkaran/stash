@@ -1,0 +1,4 @@
+
+Grep for NULL in a file
+
+grep -a '\x00' njrarlpapp00816_idx_flight_doc2.out|perl -pe 's/\000/\\u0000/gs'

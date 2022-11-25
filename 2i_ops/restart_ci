@@ -1,0 +1,3 @@
+
+ssh -i ~/.ssh/ci_views_rsa buildbot@ci2i-unstable.northscale.in
+./bin/redo

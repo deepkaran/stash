@@ -1,0 +1,4 @@
+ for i in $(ls *.gz); do echo $i; gzcat $i | egrep -o "before timestamp \d+" | sort | uniq -c ; done;
+
+
+ zipgrep processFlushAbort collect

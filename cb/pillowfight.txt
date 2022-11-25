@@ -1,0 +1,9 @@
+Insert 0 size documents to kv
+
+cbc-pillowfight -U 'couchbase://localhost:12000/ga_profiles' -u Administrator -P asdasd --num-threads=1 --min-size=0 --max-size=0 --set-pct=100 --num-items=10000 --expiry 1 --rate-limit 1000
+
+
+com.amdocs.billing.ms.customerbill.appliedcustomerbillingrate
+
+cbc-pillowfight -U 'couchbase://localhost:12000/com.amdocs.billing.ms.customerbill.appliedcustomerbillingrate' -u Administrator -P asdasd --num-threads=1 --min-size=0 --max-size=0 --set-pct=100 --num-items=10000 --expiry 1 --rate-limit 1000
+

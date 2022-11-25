@@ -1,0 +1,4 @@
+curl -s -u Administrator:password http://localhost:9102/_metering 
+curl -s -u Administrator:password http://localhost:9102/_prometheusMetricsHigh 
+
+

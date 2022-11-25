@@ -1,0 +1,28 @@
+1. Install golang
+wget https://golang.org/dl/go1.13.7.linux-amd64.tar.gz
+tar -C /usr/local -xzf go1.13.7.linux-amd64.tar.gz
+
+2. Configure 
+export PATH=$PATH:/usr/local/go/bin
+export GOROOT=/usr/local/go
+export GOPATH=/root/deep/gocode
+source ~/.bashrc
+
+3. Install viewcore
+mkdir deep/gocode
+git clone https://github.com/golang/debug
+cd debug/cmd/viewcore/
+go build
+
+OR
+
+go get golang.org/x/debug/cmd/viewcore
+
+4. Force core dump without killing process
+gcore <pid>
+
+
+5. View memory profile
+
+
+

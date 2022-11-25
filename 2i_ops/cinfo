@@ -1,0 +1,5 @@
+poolsStreaming
+This is a good endpoint but it does over notify for the kinds of things indexing is interested in and under notify possibly in some others things indexing cares about. The semantics of the streaming endpoint is that an update is only pushed when there's a change to the non-volatile parts of the payload. Volatile parts of the payload include: system time, so-called interesting stats and storage / disk usage information.
+Importantly: poolsStreaming does not change constantly during rebalance – just at the beginning and end of rebalance. 
+
+To get information on changing vbmaps during rebalance, I think probably best is the terse bucket info streaming endpoint: pools/default/bs/<bucket-name>.

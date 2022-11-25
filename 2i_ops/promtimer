@@ -1,0 +1,8 @@
+/Users/deepkarans/workspace/promtimer/bin/promtimer --grafana-home /usr/local/share/grafana --prometheus /usr/local/bin/prometheus
+
+
+query local prometheus
+
+curl "http://localhost:9000/_prometheus/api/v1/query?query=index_memory_quota" -u Administrator:asdasd
+{"status":"success","data":{"resultType":"vector","result":[{"metric":{"__name__":"index_memory_quota","instance":"index","job":"general","name":"index_memory_quota"},"value":[1665528805.172,"268435456"]}]}}
+

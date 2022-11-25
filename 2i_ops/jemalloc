@@ -1,0 +1,7 @@
+jemalloc profiling patches:
+indexing - review.couchbase.org/130214
+nitro - review.couchbase.org/130213
+After building and setting up cluster with above two patches, profile with allocations from last indexer process startup can be dumped with:
+$ curl localhost:9102/settings/runtime/jemallocProfile -u Administrator:asdasd
+Profile will be dumped in the path hard coded in secondary/indexer/settings.go. With the profile, an svg can be generated using jeprof that is also built with couchbase:
+$ ./install/bin/jeprof --svg ./install/bin/indexer /home/akhilmd/tmp/jeprof-indexer.out > indexer-jprof.svg

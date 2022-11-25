@@ -1,0 +1,4 @@
+
+Command to replace , with new line
+
+s/,/\r/g
