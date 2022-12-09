@@ -1,0 +1,4 @@
+
+1. Attach any graph by directly copying from google sheets and then modify like below:
+
+!image-2022-12-09-12-06-49-986.png|width=402,height=245!

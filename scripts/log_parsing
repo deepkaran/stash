@@ -23,3 +23,7 @@ grep "Building" couchbase.log > building
 cat building |json_pp| grep -B 25 -A 25 Building
 
 
+
+grep 'units_used_actual' ns_server.indexer_stats.log | cut -d' ' -f1> left
+grep -o 'units_used_actual":[0-9]*' ns_server.indexer_stats.log | cut -d: -f2>right
+paste left right > final.txt

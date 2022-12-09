@@ -1,0 +1,11 @@
+
+
+Log Cleaner
+https://issues.couchbase.com/browse/MB-54745
+
+
+Impact of big keys
+
+Take optima:idx_attachment_nested_objectId. It uses up 20GB of data. The reason is that the key size is huge (3485). In general, an index page will hold 400 keys per page on average. When the keys are big, each index page will hold fewer keys. For this index, each index page can only hold 40 keys. To fetch N rows for query scan, this index will generate 10x more IOPS than an average index. That is probably why you see IOPS + bandwidth spike with CPU.
+
+https://issues.couchbase.com/browse/CBSE-12983
