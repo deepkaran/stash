@@ -23,7 +23,16 @@ grep "Building" couchbase.log > building
 cat building |json_pp| grep -B 25 -A 25 Building
 
 
-
+1,$s/\.[A-Za-z0-9:+]*/ /g
 grep 'units_used_actual' ns_server.indexer_stats.log | cut -d' ' -f1> left
+grep 'memory_used_actual' ns_server.indexer_stats.log | cut -d' ' -f1> left
+sed -i 's/\.[A-Za-z0-9:+]*/ /g' left
 grep -o 'units_used_actual":[0-9]*' ns_server.indexer_stats.log | cut -d: -f2>right
+grep -o 'memory_used_actual":[0-9]*' ns_server.indexer_stats.log | cut -d: -f2>right
 paste left right > final.txt
+
+Scan timeouts of all indexes(watch out for any missing chars in regex)
+grep -o '"[A-Za-z0-9()_ :]*:num_scan_timeouts":[0-9]*' ps
+
+Grep only a single stat for an index
+grep -o '"rxpTransaction:finexp_mdt_off_status_idx:num_rows_scanned":[0-9]*' ps

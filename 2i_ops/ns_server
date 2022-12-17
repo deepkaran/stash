@@ -21,3 +21,11 @@ Variant from me: If you don't want to manage a plethora of terminal windows, whi
 COUCHBASE_NUM_VBUCKETS=64 ./cluster_run -n 1 --dont-rename --start-index 0 > cluster_run_0.out 2>&1 &
 COUCHBASE_NUM_VBUCKETS=64 ./cluster_run -n 1 --dont-rename --start-index 1 > cluster_run_1.out 2>&1 &
 Then you can also run the cluster_connect command from the same window, and kill the appropriate background job to shut down a node. 
+
+
+Sample data loading
+
+cluster_run --serverless --dont-rename --nodes 1
+couchbase-cli cluster-init --cluster-username couchbase --cluster-password couchbase -c 127.0.0.1:9000 --ip-family ipv4 --services data,index,query
+couchbase-cli setting-index -c 127.0.0.1:9000 -u couchbase -p couchbase --replicas 0
+cbimport json -f sample -b travel-sample --bucket-replicas 0 -c 127.0.0.1:9000 -u couchbase -p couchbase --verbose -d file:///<path_to_workspace>/install/samples/travel-sample.zip
