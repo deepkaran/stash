@@ -1,0 +1,8 @@
+
+On demand index rebalance
+
+https://issues.couchbase.com/browse/MB-45782
+
+
+
+

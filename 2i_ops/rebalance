@@ -14,4 +14,16 @@ Rebalance protocol details
 MB-45553
 
 
+Setting redistribute index 
+
+1. Enable redistribute index setting and wait for 10 seconds.
+
+curl -X POST -u Administrator:password http://localhost:8091/settings/indexes -d redistributeIndexes=true
+2. Trigger rebalance from CLI
+
+./couchbase-cli rebalance -c http://localhost:8091 -u Administrator -p password
+3. Disable redistribute index setting
+
+curl -X POST -u Administrator:password http://localhost:8091/settings/indexes -d redistributeIndexes=false
+
 

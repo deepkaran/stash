@@ -1,0 +1,16 @@
+
+1. Download build
+
+wget http://latestbuilds.service.couchbase.com/builds/latestbuilds/couchbase-server/elixir/3451/couchbase-server-enterprise-7.5.0-3451-centos7.x86_64.rpm
+
+2. Copy pprof to remote box
+scp indexer_cprof.log root@172.23.105.18://opt/couchbase/var/lib/couchbase/logs
+
+3. Get the profile svg
+
+cd /opt/couchbase/var/lib/couchbase/logs
+go tool pprof -svg /opt/couchbase/bin/indexer indexer_cprof.log > cprof.svg
+
+4. Copy the svg to local
+
+scp  root@172.23.105.18://opt/couchbase/var/lib/couchbase/logs/cprof.svg .

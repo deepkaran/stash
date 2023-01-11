@@ -1,0 +1,22 @@
+
+
+1. pillowfight to get the customer out of stuck index merge 
+https://issues.couchbase.com/browse/CBSE-13059
+
+
+
+2. TTL related for plasma
+high reclaim pending
+https://issues.couchbase.com/browse/CBSE-11688
+
+
+3. Indexer queue causing high memory build up in memcached 
+
+
+4. High mvcc_purge ratio and related fixes in 7.0/7.1
+https://issues.couchbase.com/browse/CBSE-13331
+
+
+
+
+
