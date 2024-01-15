@@ -1,0 +1,93 @@
+manager/client/metadata_provider.go
+watcher.processChange
+
+//is this used for new index?
+func (r *metadataRepo) unmarshallAndAddDefn(content []byte) error
+
+func (r *metadataRepo) unmarshallAndUpdateTopology
+func (r *metadataRepo) updateTopology(topology *mc.IndexTopology, indexerId c.IndexerId) {
+
+
+Scan code-flow
+func (si *secondaryIndex3) Scan3
+-> func (c *GsiClient) Scan3Internal
+-> func (c *GsiClient) doScan(
+-> func (c *RequestBroker) scatter
+-> func (c *RequestBroker) scatterScan2
+-> func (c *RequestBroker) scanSingleNode
+--invoke scan handler set by Scan3Internal
+-> func (c *GsiScanClient) Scan3
+-> func (c *GsiScanClient) doStreamingWithRetry
+
+
+Metadata update on topology change
+func (b *metadataClient) watchClusterChanges()
+-> func (b *metadataClient) updateIndexerList
+-> func (b *metadataClient) safeupdate
+-- update scan client by notifying on b.metaCh
+-> func (c *GsiClient) updateScanClients()
+-> func (c *GsiScanClient) Close()
+-> func (cp *connectionPool) Close()
+
+
+Failover mechanics
+
+GsiClient retry mechanism for scan failures:
+
+1. GsiClient within the query process maintains a connection pool of TCP connections to each index service node.
+2. Each index scan selects an index replica and grabs a connection from the pool for execution. 
+3. Scan request is sent to the Indexer. 
+4. If there is any error returned (TCP error or from indexer), and no result entry has been returned to query, GsiClient will retry the scan on a different replica if available.
+5. If any result entry has been returned from the GsiClient to query, no retry will happen.
+
+Index node failover:
+1. GsiClient subscribes to streaming notifications from local ns-server REST endpoint.
+2. Any topology change or node status change will be detected as a notification.
+3. GsiClient will find the latest list of all indexers (excluding "unhealthy"). Any failed over indexer will get excluded here.
+4. GsiClient will update its metadata cache to exclude the index metadata for the failed over/unhealthy nodes.
+5. Also, for any failed over or unhealthy nodes, the connection pool gets discarded and connections are closed. Any ongoing/waiting scans for those nodes will get aborted and return error. These scans are eligible for retry if no result has been returned.
+
+
+Notes on node.Status:
+1. If node is not reachable - Unhealthy
+2. If memcached is down - Unhealthy
+3. If index service is down - Healthy
+
+
+ClusterMembership changes at the end of the failover completion.
+
+
+PoolChangeNotification
+
+meta_client -> metaCh triggers updateScanClients
+
+func (c *GsiClient) updateScanClients() {
+
+Refresh
+
+
+meta_client
+updateTopology() constructs list of queryports from connected watchers
+
+client.go
+calls into c.bridge.GetScanports() to get the list of scan ports
+and compares with the list of scanports it has to see if a refresh is required
+
+GsiClient listens to streaming notifications from ns-server
+Whenever a node failover happens, it will receive notification
+Update metadata
+This notification is then used to remove the connection pool of nodes which are not 
+
+Any blocked Read or Write operations will be unblocked and return errors.
+
+Retry logic is in func "(c *GsiClient) doScan"
+
+
+
+=====
+
+MB-57932
+
+ns-server started sending updated service map before the failover on the streaming endpoint in 7.5.
+
+This MB added the ability in gsi scan client to close the connections in the pool to the failing over node. Earlier, as there was not bookkeeping of active connections, those wouldn't get closed (e.g. in case of a network partition where indexer node is still alive). 
