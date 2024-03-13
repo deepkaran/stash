@@ -12,3 +12,29 @@ go test -v -ldflags -s -timeout 5000s 2>&1 | tee testf.out
 
 Single Test:
 go test -v -timeout 4h -skipsetup -test.run  TestGroupAggrSetup
+
+After upgrading golang
+https://github.com/golang/go/issues/36572
+
+go test -v -exec "env DYLD_LIBRARY_PATH=/Users/deepkaran/workspace/cb_elixir/install/lib" -timeout 4h -skipsetup -test.run  TestTenantAwarePlanner
+
+
+COUCHBASE_NUM_VBUCKETS=64 ./cluster_run -n6 --serverless
+go test -v -exec "env DYLD_LIBRARY_PATH=/Users/deepkaran/workspace/cb_elixir/install/lib" -timeout 4h  -cbconfig ../config/buildtest_plasma.json -test.run TestPauseResume
+
+Serverless rebalance test:
+curl -X POST -u Administrator:asdasd http://localhost:9108/settings --data '{"indexer.settings.rebalance.blob_storage_scheme": ""}'
+curl -X POST -u Administrator:asdasd http://localhost:9108/settings --data '{"indexer.settings.rebalance.blob_storage_bucket": "/Users/deepkaran/workspace/cb_elixir"}'
+curl -X POST -u Administrator:asdasd http://localhost:9108/settings --data '{"indexer.settings.rebalance.blob_storage_prefix": "rebalance"}'
+curl -X POST -u Administrator:asdasd http://localhost:9108/settings --data '{"indexer.plasma.serverless.shardCopy.dbg" : true}'
+curl -X POST -u Administrator:asdasd http://localhost:9108/settings --data '{"indexer.rebalance.serverless.transferBatchSize" : 2}'
+
+
+Manual setup
+./couchbase-cli server-add -c 127.0.0.1:9000 --server-add https://127.0.0.1:19001 -u Administrator -p asdasd --server-add-username Administrator --server-add-password asdasd --services index --group-name g1
+./couchbase-cli server-add -c 127.0.0.1:9000 --server-add https://127.0.0.1:19002 -u Administrator -p asdasd --server-add-username Administrator --server-add-password asdasd --services index --group-name g2
+./couchbase-cli server-add -c 127.0.0.1:9000 --server-add https://127.0.0.1:19003 -u Administrator -p asdasd --server-add-username Administrator --server-add-password asdasd --services index --group-name g1
+./couchbase-cli server-add -c 127.0.0.1:9000 --server-add https://127.0.0.1:19004 -u Administrator -p asdasd --server-add-username Administrator --server-add-password asdasd --services index --group-name g2
+
+./couchbase-cli rebalance -c 127.0.0.1:9000 -u Administrator -p asdasd
+

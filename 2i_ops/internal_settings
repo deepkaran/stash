@@ -2,3 +2,6 @@ curl -X POST http://Administrator:password@<ip>:8091/internalSettings -d gotrace
 
 
 http://172.23.97.37:8091/ui/index.html#!/buckets?enableInternalSettings=true
+
+
+/settings?internal=ok

@@ -3,20 +3,41 @@
 1. pillowfight to get the customer out of stuck index merge 
 https://issues.couchbase.com/browse/CBSE-13059
 
-
-
 2. TTL related for plasma
 high reclaim pending
 https://issues.couchbase.com/browse/CBSE-11688
 
+3. Indexer queue causing high memory build up in memcached, leading to OOM.
+https://issues.couchbase.com/browse/CBSE-13520
+https://issues.couchbase.com/browse/CBSE-13130
 
-3. Indexer queue causing high memory build up in memcached 
-
+KV improvement
+https://issues.couchbase.com/browse/MB-46740
 
 4. High mvcc_purge ratio and related fixes in 7.0/7.1
 https://issues.couchbase.com/browse/CBSE-13331
 
+5. Plasma OOM due to high reclaim pending on slow disk
+https://issues.couchbase.com/browse/MB-55051
+
+6. Rollback to zero due to xdcr DelWithMeta
+https://issues.couchbase.com/browse/CBSE-12118
+
+7. Rollback to zero due to KV replica behind active
+https://issues.couchbase.com/browse/CBSE-13393
+
+8. Plasma issue with larger key size
+https://issues.couchbase.com/browse/CBSE-12983?focusedCommentId=640118&page=com.atlassian.jira.plugin.system.issuetabpanels%3Acomment-tabpanel#comment-640118
 
 
+large key index occupying lot of memory which cannot be evicted:
+https://issues.couchbase.com/browse/CBSE-13945?focusedId=668773&page=com.atlassian.jira.plugin.system.issuetabpanels%3Acomment-tabpanel#comment-668773
 
+https://issues.couchbase.com/browse/CBSE-14524?focusedId=691286&page=com.atlassian.jira.plugin.system.issuetabpanels%3Acomment-tabpanel#comment-691286
+
+https://issues.couchbase.com/browse/CBSE-16522 (High disk size due to recovery LSS not being compressed)
+
+- Projector OOM kill due to XATTR
+https://issues.couchbase.com/browse/CBSE-13894
+Fixed via https://issues.couchbase.com/browse/MB-54474
 
