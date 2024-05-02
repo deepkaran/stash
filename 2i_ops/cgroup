@@ -1,0 +1,6 @@
+
+
+sys_cpu_host_utilization_rate is the cpu usage by couchbase within the host. sys_cpu_utilization_rate is the cpu usage within the cgroup containing couchbase. If couchbase isn't in a cgroup then sys_cpu_utilization_rate will be the same as sys_cpu_host_utilization_rate. 
+
+That brings you down into the "kernel specifics" of cgroups 
+ you should find some links at the bottom of https://src.couchbase.org/source/xref/trinity/platform/cgroup/cgroups.md?r=fdef1528
