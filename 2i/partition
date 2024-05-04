@@ -9,3 +9,19 @@ Benefits
 max_parallelism
 a. "queryport.client.scan.max_concurrency" is 0 and MB-31701 enables parallel scans by default. 
 
+Theory
+
+Our questions are mainly related to the number of partitions we should use:
+
+
+In a case like ours where the partition key doesn’t match the index key, I’m assuming that queries need to perform a scan on each partition, and then merge the results.  Is this the case when partitions are co-located on a single indexing node?  That is, if we’re running with the default 8 partitions but there are only two indexing nodes, are we ending up with two scans, or 8? 
+ 
+[John] Query will broadcast the scan to the relevant indexer nodes.   In each indexer node, each partition will then perform a scan.   After scan, GSI will merge the partition results at two levels:  (1) if the partitions are co-located in the same node, they will be merged in the indexer node before sending it to the query node (2) query node will then merge the results from different indexer nodes.    When there are more partitions than indexer nodes, it allows merging to happen in parallel at each indexer node, but merging the final results at the query node.   Merging is implemented as consumer/producer so it does not wait for all the scan results are ready before merging.   One thing to note is that since scan can happen in parallel, there will be higher usage of IO and CPU.  
+ 
+I suppose the real question is related to the overall performance of the query – for queries that need to hit every partition, where the number of index nodes is less than the number of partitions, should we be attempting the tune the number of partitions to something closer to the number of indexing nodes?  
+ 
+[John] That would be ideal for performance, but it will affect your ability to scale out, since we do not split partition while scaling out.     There are different considerations for performance:
+If the scan is large,  it could be beneficial to parallelize, despite the fact that it has to perform merge.  
+If the scan requires sorting in the indexer order (e.g. the sort order is based on the first index key), then GSI will merge the result in sorted order.  This means that the performance is dictated by the slowest partition or indexer node.  
+If the scan does not require sorting (or the query does the sorting), then merging simply combine the results from different partitions/nodes.  
+
