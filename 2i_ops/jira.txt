@@ -4,5 +4,9 @@ On demand index rebalance
 https://issues.couchbase.com/browse/MB-45782
 
 
+Disk IO stats collection in sigar
+https://issues.couchbase.com/browse/MB-53556
+
+
 
 
