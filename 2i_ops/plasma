@@ -28,3 +28,29 @@ $
 indexer.plasma.mainIndex.LSSFragmentation to 80(need enough disk space)
 indexer.plasma.backIndex.LSSFragmentation to 80
 indexer.plasma.useDirectIO to true
+
+
+
+===========================
+
+1. Minimum memory required at 0% resident by a plasma instance.
+
+at 0% resident ratio, “memory_stats_size_page” + “memory_stats_size_index” should be considered.
+
+for a swapped out page, the low key is allocated in the skiplist - memory_size_index and the high key in the swapoutDelta - memory_size_page.
+
+
+============================
+
+1. Command to stop the cleaner (increase the min file size, doesn't require restart)
+curl -X POST -u <user:pass> http://<IP>:9102/settings --data '{"plasma.mainIndex.LSSFragMinFileSize":1125899906842624}'
+curl -X POST -u <user:pass> http://<IP>:9102/settings --data '{"plasma.backIndex.LSSFragMinFileSize":1125899906842624}'
+
+By default they are 16MB
+
+
+2. Increase the max threshold so that cleaner doesn't throttle mutations
+
+curl -X POST -u <user:pass> http://<IP>:9102/settings --data '{"indexer.plasma.backIndex.maxLSSFragmentation":200}'
+curl -X POST -u <user:pass> http://<IP>:9102/settings --data '{"indexer.plasma.mainIndex.maxLSSFragmentation":200}'
+
