@@ -1,0 +1,36 @@
+To build faiss, 
+cd faiss
+make -C build
+sudo make -C build install 
+
+
+https://gist.github.com/maxime/ef3fae0c2cf255fcb5c123978ec70da5
+
+xcode-select --install
+
+brew install llvm
+brew install libomp
+
+Make sure /usr/local/opt/llvm/bin is in your PATH
+
+LDFLAGS="-L/usr/local/opt/llvm/lib" CPPFLAGS="-I/usr/local/opt/llvm/include" CXX=/usr/local/opt/llvm/bin/clang++ CC=/usr/local/opt/llvm/bin/clang cmake -B build -DFAISS_ENABLE_GPU=OFF -DFAISS_ENABLE_C_API=ON -DBUILD_SHARED_LIBS=ON -DFAISS_ENABLE_PYTHON=OFF .
+
+Follow steps here
+https://issues.couchbase.com/browse/MB-58902
+
+Another option
+LDFLAGS="-L/usr/local/opt/llvm/lib" CPPFLAGS="-I/usr/local/opt/llvm/include" CXX=/usr/local/opt/llvm/bin/clang++ CC=/usr/local/opt/llvm/bin/clang cmake -B build -DFAISS_ENABLE_GPU=OFF -DFAISS_ENABLE_C_API=ON -DBUILD_SHARED_LIBS=ON -DOpenMP_CXX_FLAGS="-Xpreprocessor -fopenmp /usr/local/opt/libomp/lib/libomp.dylib -I/usr/local/opt/libomp/include" -DOpenMP_CXX_LIB_NAMES="libomp" -DOpenMP_libomp_LIBRARY="/usr/local/opt/libomp/lib/libomp.dylib" -DFAISS_ENABLE_PYTHON=OFF -DBUILD_TESTING=OFF .
+
+
+=======================================================================================
+1. git clone https://github.com/blevesearch/faiss.git
+2. cd faiss (make sure you're on latest of bleve branch)
+3. Configure
+export LDFLAGS="-L/usr/local/opt/llvm/lib/c++ -Wl,-rpath,/usr/local/opt/llvm/lib/c++"
+export CPPFLAGS="-I/usr/local/opt/llvm/include"
+export CXX=/usr/local/opt/llvm/bin/clang++
+export CC=/usr/local/opt/llvm/bin/clang cmake
+cmake -B build -DFAISS_ENABLE_GPU=OFF -DFAISS_ENABLE_C_API=ON -DBUILD_SHARED_LIBS=ON -DFAISS_ENABLE_PYTHON=OFF .
+4. make -C build
+5. sudo make -C build install
+6. sudo cp build/c_api/libfaiss_c.dylib /usr/local/lib
