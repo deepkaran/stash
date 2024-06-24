@@ -1,0 +1,18 @@
+IndexPartitionSets are used for partition elimination when using INCLUDE fields
+The main difference with include is that query will not push down predicates on include fields as spans but rather as filters. This is because include is used as a post or inline filter as it is not in sort order.
+
+e.g. if index is partition by HASH(state, city)
+
+and query has state IN ["CA", "NY"] AND city IN ["San Jose", "New York"]
+
+For any equality or IN clause on include fields, the partitions can be eliminated.
+
+Query will push down only in such a case in the following format
+
+["CA", ""San Jose"]
+["CA", "New York"]
+["NY", "San Jose"]
+["NY", "New York"]
+
+GsiClient can run the hash function on this and find out which partitions need to be scanned. Rest can be eliminated.
+
