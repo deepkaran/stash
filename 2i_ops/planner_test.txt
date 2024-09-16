@@ -1,0 +1,5 @@
+
+curl -X POST http://localhost:9102/settings/planner?excludeNode=in -u Administrator:asdasd
+curl -X POST http://localhost:9108/settings/planner?excludeNode=in -u Administrator:asdasd
+curl -X POST http://localhost:9114/settings/planner?excludeNode=in -u Administrator:asdasd
+
