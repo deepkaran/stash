@@ -12,3 +12,5 @@
 ./cbindex -type=build -indexes=default:age_idx1,default:age_idx2,default:age_idx3,default:age_name
 
 ./cbindex -type move -indexes 'travel-sample:def_faa' -with '{"dest":"27b08ecea5847c26b11aa83020c7a671"}'
+
+./cbindex -server 127.0.0.1:9000 -auth Administrator:asdasd -type create -bucket default -using plasma -index idx3 -fields=age -with '{"num_replica" : 1}'
