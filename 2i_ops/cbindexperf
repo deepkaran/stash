@@ -5,3 +5,9 @@ OR
 and
 go tool pprof -seconds=40 -svg /Users/deepkaran/workspace/cb_vulcan/install/bin/indexer http://localhost:9102/debug/pprof/profile > cpu_prof.svg
 go tool pprof -seconds=40 /Users/deepkaran/workspace/cb_vulcan/install/bin/indexer http://localhost:9102/debug/pprof/profile 
+
+Check source code locally
+
+go tool pprof -alloc_space -source_path=/Users/deepkaran/workspace/cb_morpheus/goproj/src -alloc_space /Users/deepkaran/workspace/triage/rpms/770-19584/opt/couchbase/bin/indexer ec2-34-239-150-20.compute-1.amazonaws.com_index_heap_240915221255_e63f8c.pprof
+
+go tool pprof -source_path=/path/to/your/source /path/to/your_binary /path/to/profile_file
