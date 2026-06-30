@@ -41,3 +41,7 @@ https://issues.couchbase.com/browse/CBSE-16522 (High disk size due to recovery L
 https://issues.couchbase.com/browse/CBSE-13894
 Fixed via https://issues.couchbase.com/browse/MB-54474
 
+- Plasma eviction at 0% RR
+https://jira.issues.couchbase.com/browse/MB-58147
+https://jira.issues.couchbase.com/browse/MB-63097
+
