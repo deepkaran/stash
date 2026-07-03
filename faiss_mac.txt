@@ -29,8 +29,60 @@ LDFLAGS="-L/usr/local/opt/llvm/lib" CPPFLAGS="-I/usr/local/opt/llvm/include" CXX
 export LDFLAGS="-L/usr/local/opt/llvm/lib/c++ -Wl,-rpath,/usr/local/opt/llvm/lib/c++"
 export CPPFLAGS="-I/usr/local/opt/llvm/include"
 export CXX=/usr/local/opt/llvm/bin/clang++
-export CC=/usr/local/opt/llvm/bin/clang cmake
+export CC=/usr/local/opt/llvm/bin/clang 
 cmake -B build -DFAISS_ENABLE_GPU=OFF -DFAISS_ENABLE_C_API=ON -DBUILD_SHARED_LIBS=ON -DFAISS_ENABLE_PYTHON=OFF .
 4. make -C build
 5. sudo make -C build install
 6. sudo cp build/c_api/libfaiss_c.dylib /usr/local/lib
+
+
+=======================================================================================
+09/26/24
+
+1. git clone https://github.com/blevesearch/faiss.git
+2. cd faiss (make sure you're on latest of bleve branch)
+3. Configure
+a.
+export LDFLAGS="-L/usr/local/opt/llvm/lib/c++ -Wl,-rpath,/usr/local/opt/llvm/lib/c++"
+export CPPFLAGS="-I/usr/local/opt/llvm/include"
+export CXX=/usr/local/opt/llvm/bin/clang++
+export CC=/usr/local/opt/llvm/bin/clang 
+cmake -B build -DFAISS_ENABLE_GPU=OFF -DFAISS_ENABLE_C_API=ON -DBUILD_SHARED_LIBS=ON -DFAISS_ENABLE_PYTHON=OFF -DFAISS_OPT_LEVEL="avx2" -DCMAKE_BUILD_TYPE=RelWithDebInfo  -DCMAKE_INSTALL_LIBDIR=lib .
+
+b.
+LDFLAGS="-L/usr/local/opt/llvm/lib/c++ -Wl,-rpath,/usr/local/opt/llvm/lib/c++" CPPFLAGS="-I/usr/local/opt/llvm/include" CXX=/usr/local/opt/llvm/bin/clang++ CC=/usr/local/opt/llvm/bin/clang cmake -B build -DFAISS_ENABLE_GPU=OFF -DFAISS_ENABLE_C_API=ON -DBUILD_SHARED_LIBS=ON -DFAISS_ENABLE_PYTHON=OFF -DFAISS_OPT_LEVEL="avx2" -DCMAKE_BUILD_TYPE=RelWithDebInfo  -DCMAKE_INSTALL_LIBDIR=lib .
+
+4. make -C build
+5. sudo make -C build install
+6. sudo cp build/c_api/libfaiss_c.dylib /usr/local/lib
+
+=============
+
+Local faiss changes testing
+
+1. 
+cp install/lib/libfaiss_c.dylib ./build/tlm/deps/faiss.exploded/lib/
+cp install/lib/libfaiss_avx2.dylib ./build/tlm/deps/faiss.exploded/lib/
+cp ./faiss/c_api/IndexIVF_c_ex.h ./build/tlm/deps/faiss.exploded/include/faiss/c_api/
+
+cd faiss
+cp build/faiss/libfaiss_avx2.dylib ../../cb_morpheus/install/lib
+cp build/c_api/libfaiss_c.dylib ../../cb_morpheus/install/lib
+
+On error
+Library not loaded: @rpath/libfaiss_avx2.dylib
+  Referenced from: <513C63C9-4EB8-34B5-AF1D-0889F2E4943C> /usr/local/lib/libfaiss_c.dylib
+
+install_name_tool -change @rpath/libfaiss_avx2.dylib /usr/local/lib/libfaiss_avx2.dylib /usr/local/lib/libfaiss_c.dylib
+
+****
+build fails due to not being able to find the right version of libomp
+
+cd /usr/local/Cellar/llvm/18.1.4/lib
+ln -s /Users/deepkaran/workspace/cb_morpheus/install/lib/libomp.dylib .
+
+*****
+push to unstable faiss in blevesearch
+
+bygit	git@github.com:blevesearch/faiss.git (fetch)
+bygit	git@github.com:blevesearch/faiss.git (push)
