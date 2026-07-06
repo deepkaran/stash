@@ -1,0 +1,21 @@
+
+gnuplot
+
+set terminal png
+set output 'graph.png'
+set xdata time
+set timefmt "%Y-%m-%d %H:%M:%S"
+plot 'data.txt' using 1:2 with lines
+
+e.g. plot mutation queue size from logs
+
+grep 'mutation_queue_size' ns_server.indexer_stats.log | cut -d' ' -f1> left
+sed -i '' 's/\.[A-Za-z0-9:+]*/ /g' left
+grep -o 'mutation_queue_size":[0-9]*' ns_server.indexer_stats.log | cut -d: -f2>right
+paste left right > final.txt
+
+//replace tab with space
+sed -i '' 's/\t/ /g' final.txt
+
+//replace multiple spaces by single
+sed -i '' 's/ \+/ /g' final.txt

@@ -46,3 +46,20 @@ grep -o 'HeapInuse":[0-9]*' ns_server.indexer.log | cut -d: -f2>righthu
 
 grep Aggregated ns_server.indexer.log | cut -d' ' -f1> leftpq
 grep -o 'current_quota":[\ 0-9]*' ns_server.indexer.log |sed s/\ //g |cut -d: -f2>rightpq
+
+
+number of times init stream started
+grep StreamState::initKeyspaceIdInStream ns_server.indexer.log |grep -v MAINT_STREAM | cut -d' ' -f6> init_streams
+cat init_streams |sort|uniq
+
+Parsing timestamp from logs and diff
+
+sed -n '3,1026p' tsinfo > mts
+awk '{ print $2, $5, $6, $7 }' mts > mts1
+diff mts1 its1
+paste mts1 its1 | awk '{sum += ($2 - $6)} END {print sum}' //diff between seqnos
+
+
+Sum of est_resident_mem
+grep est_resident_mem couchbase.log > est.txt
+awk -F": " '{sum += $2} END {print sum / (1024^3) " GB"}' est.txt

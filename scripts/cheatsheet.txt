@@ -2,3 +2,26 @@
 Command to replace , with new line
 
 s/,/\r/g
+
+replace multiple spaces with a single space
+tr -s ' ' < input_file > output_file
+
+replace last char 
+1,$s/.$//g
+
+Get the sum of all seqno in flushTs, buildTs
+awk '{col1 += $1; col2 += $2} END {print col1, col2}' flushts
+
+Sum of 3rd column in a file with space as separator
+awk '{ sum += $3 } END { print sum }' items1
+Change the separator
+awk -F'\t' '{ sum += $3 } END { print sum }' data.txt
+
+Remove leading space
+1,$s/^[[:space:]]*//
+
+Search 2 patterns for matching lines
+grep 'foo\|bar' file.txt
+
+Start for a particular timestamp
+awk '/2024-02-12T10:59:20/{f=1;next}f' ns_server.projector.log
