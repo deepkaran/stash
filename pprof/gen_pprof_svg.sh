@@ -2,7 +2,7 @@
 
 usage() {
     cat <<EOF
-Usage: $(basename "$0") <version-build> <pprof-dir> <cpu|mem> [toy]
+Usage: $(basename "$0") <version-build> <pprof-dir> <cpu|mem> [toy] [arch]
 
 Arguments:
   version-build  Version and build number in the form <version>-<build>,
@@ -15,6 +15,11 @@ Arguments:
                            mprofi.svg          (inuse_space)
   toy            Optional. Pass 'toy' to download from the toy builds URL
                  instead of the regular release builds.
+  arch           Optional. RPM architecture to download: x86_64 (default)
+                 or aarch64 (alias: arm64). Toy builds are often published
+                 for aarch64 only. Note: pprof only reads the binary to
+                 resolve symbols, so an aarch64 binary works on an x86_64
+                 host and vice versa. 'toy' and arch may be given in any order.
 
 Environment:
   TRIAGE_RPM_DIR  Root directory for RPM builds. Defaults to ~/triage/rpms if unset.
@@ -33,10 +38,24 @@ RPM Download:
     https://latestbuilds.service.couchbase.com/builds/latestbuilds/couchbase-server/toybuilds/<build>/
   (no codename mapping is required for toy builds).
 
+Notes:
+  You may see a warning like:
+    Local symbolization failed for libpthread-2.31.so ...: no such file or directory
+    Some binary filenames not available. Symbolization may be incomplete.
+  This is non-fatal -- the .svg is still generated. Your Go frames (from the
+  indexer binary) are symbolized fine; only C/system-library frames such as
+  libpthread are affected, since those .so files are part of the capture host's
+  OS, not the Couchbase RPM. Usually safe to ignore.
+
+  To symbolize those frames too, obtain the matching .so (pprof matches by build
+  ID) from the capture host and point pprof at the directory holding it:
+    export PPROF_BINARY_PATH=/path/to/dir/with/libs
+
 Examples:
   $(basename "$0") 8.1.0-1937 /tmp/pprof_files cpu
   $(basename "$0") 8.1.0-1937 /tmp/pprof_files mem
   $(basename "$0") 8.1.0-23037 /tmp/pprof_files cpu toy
+  $(basename "$0") 8.1.0-22895 /tmp/pprof_files cpu toy aarch64
 EOF
 }
 
@@ -50,16 +69,24 @@ original_dir=$(pwd)
 rpm_dir="${TRIAGE_RPM_DIR:-$HOME/triage/rpms}"
 
 this_rpm=$1
+
+# Parse optional trailing flags (args 4+): 'toy' and an arch keyword.
 is_toy=""
-if [ "$4" == "toy" ]; then
-    is_toy=1
-fi
+arch="x86_64"
+for flag in "${@:4}"; do
+    case "$flag" in
+        toy)            is_toy=1 ;;
+        x86_64|amd64)   arch="x86_64" ;;
+        aarch64|arm64)  arch="aarch64" ;;
+        *) echo "Unknown flag '$flag'. Expected 'toy' or an arch (x86_64|aarch64)."; exit 1 ;;
+    esac
+done
 
 version="${this_rpm%-*}"
 build="${this_rpm##*-}"
 major_minor="${version%.*}"
 
-rpm_filename="couchbase-server-enterprise-${version}-${build}-linux.x86_64.rpm"
+rpm_filename="couchbase-server-enterprise-${version}-${build}-linux.${arch}.rpm"
 
 if [ -n "$is_toy" ]; then
     rpm_url="https://latestbuilds.service.couchbase.com/builds/latestbuilds/couchbase-server/toybuilds/${build}/${rpm_filename}"
