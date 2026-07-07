@@ -113,6 +113,38 @@ func sizingMemory(m *model.Model, r *Report) {
 			r.add(SecSizing, sev, "Plasma current quota", humanBytes(current)+note)
 		}
 	}
+
+	// Estimated resident memory: sum est_resident_mem across all storage
+	// instances (MainStore + BackStore) from the couchbase.log /stats/storage
+	// snapshot. 10% of this is roughly the memory needed for a 10% resident
+	// ratio.
+	if total, ok := sumEstResidentMem(m); ok {
+		r.add(SecSizing, SevInfo, "Total est_resident_mem", humanBytes(total))
+		r.add(SecSizing, SevInfo, "Plasma estimated resident memory @10%",
+			fmt.Sprintf("%.2f GB", float64(total)/10/(1024*1024*1024)))
+	}
+}
+
+// sumEstResidentMem totals est_resident_mem over every storage instance's
+// MainStore and BackStore in the point-in-time /stats/storage snapshot.
+func sumEstResidentMem(m *model.Model) (int64, bool) {
+	var total int64
+	found := false
+	for _, e := range m.Snapshot.StorageStats {
+		stats, ok := e.Sub("Stats")
+		if !ok {
+			continue
+		}
+		for _, store := range []string{"MainStore", "BackStore"} {
+			if st, ok := stats.Sub(store); ok {
+				if v, ok := st.Int("est_resident_mem"); ok {
+					total += v
+					found = true
+				}
+			}
+		}
+	}
+	return total, found
 }
 
 // ---- Indexer Node Health: Workload -------------------------------------
