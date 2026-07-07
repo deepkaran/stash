@@ -57,10 +57,14 @@ Two complementary data planes are parsed from one node's cbcollect:
 - **Phase 1 (done):** `indexer_stats.log` + `memstats` + `Periodic Aggregated
   StorageStats` + `couchbase.log` snapshot → Sizing/Memory, Workload, index &
   indexer-level outliers, topology, usage top-N.
-- **Phase 2:** `indexer.log` event scanning (restarts/OOM, rollbacks, hung-op
-  warnings, memtuner quota decrements, GC pause spikes); richer
+- **Phase 2 (done):** `indexer.log` event scanning (crashes/panics, restarts,
+  rollbacks, flush-monitor stalls, slow-op / long-lock warnings, memtuner
+  plasma-quota decrements, transport/peer/dataport errors, stream-level
+  non-aligned-TS and stream-repair activity) plus GC pause spikes from
+  memstats. Events are level-routed for cheap single-pass scanning and
+  aggregated (count + first/last + max magnitude) to keep memory bounded.
+- **Phase 3:** `rebalance_report_*.json` parsing & summary; richer
   `indexstorage_*` rules (reclaim_pending, lss_fragmentation).
-- **Phase 3:** `rebalance_report_*.json` parsing & summary.
 - **Phase 4:** projector-node support; multi-cbcollect aggregation (rebalance
   master, cross-node missing replicas).
 - **Future:** Prometheus `stats_snapshot` reader; live-cluster mode; graphs.

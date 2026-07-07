@@ -85,6 +85,10 @@ type Model struct {
 	// Point-in-time snapshot, from couchbase.log.
 	Snapshot Snapshot
 
+	// Events aggregates notable log lines scanned from indexer.log, keyed by
+	// event class (see loader/events.go).
+	Events map[string]*Event
+
 	// SampleWindow is how many recent samples each series retains.
 	SampleWindow int
 
@@ -99,6 +103,7 @@ func NewModel(source string, window int) *Model {
 		Storage:      map[string]*Series{},
 		Mem:          NewSeries(window),
 		PlasmaAgg:    NewSeries(window),
+		Events:       map[string]*Event{},
 		SampleWindow: window,
 		Source:       source,
 	}

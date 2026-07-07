@@ -45,7 +45,10 @@ func parseIndexerLog(path string, m *model.Model) error {
 			if sample, ok := readAggBlock(sc); ok {
 				m.PlasmaAgg.Push(model.TSPoint{Ts: ts, Data: sample})
 			}
+			continue
 		}
+
+		scanEvent(firstToken(line), line, m)
 	}
 	return sc.Err()
 }

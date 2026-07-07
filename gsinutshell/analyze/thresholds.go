@@ -18,6 +18,11 @@ const (
 	KeySizeBytesCeil      = 512 // flag index key size > 512 bytes
 	RowsScannedPerReqCeil = 10000
 	NumRowsScannedTopN    = 5
+
+	// Phase 2 log-event thresholds.
+	FlushWaitSecFlag = 60                // flush-monitor wait >=60s -> FLAG (else WARN)
+	SlowOpMsFlag     = 5000              // slow op/lock hold >=5s -> FLAG (else WARN)
+	GCPauseNsFlag    = 100 * 1000 * 1000 // single GC pause >=100ms -> FLAG
 )
 
 // Section names (mirror the spec's report layout).
@@ -26,6 +31,7 @@ const (
 	SecWorkload   = "Indexer Node Health / Workload"
 	SecIndexOut   = "Outliers / Index Level"
 	SecIndexerOut = "Outliers / Indexer Level"
+	SecStreamOut  = "Outliers / Stream Level"
 	SecTopology   = "Topology / Replicas-Partitions"
 	SecUsage      = "Usage Analytics"
 )
@@ -43,6 +49,19 @@ const (
 	CatCPU      = "CPU saturation"
 	CatResident = "Resident ratio"
 	CatRestart  = "Restart / health"
+
+	// Phase 2 indexer.log event categories.
+	CatCrash        = "Crash / panic"
+	CatRollback     = "Rollback"
+	CatFlushMonitor = "Flush monitor stalls"
+	CatSlowOp       = "Slow operations"
+	CatMemtuner     = "Memtuner quota decrement"
+	CatCommError    = "Communication errors"
+	CatGCPause      = "GC pauses"
+
+	// Stream-level categories.
+	CatNonAlign = "Non-aligned timestamps"
+	CatRepair   = "Stream repair"
 
 	CatNotReady     = "Not Ready"
 	CatPartCoverage = "Partition coverage"

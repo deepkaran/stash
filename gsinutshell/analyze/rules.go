@@ -15,6 +15,7 @@ func Analyze(m *model.Model) *Report {
 	workload(m, r)
 	indexOutliers(m, r)
 	indexerOutliers(m, r)
+	logEvents(m, r)
 	topology(m, r)
 	usage(m, r)
 	return r
@@ -320,8 +321,113 @@ func indexerOutliers(m *model.Model, r *Report) {
 			r.addCat(SecIndexerOut, CatRestart, SevFlag, "Needs restart", "indexer reports needs_restart=true")
 		}
 	}
-	// Phase 2 will add indexer.log event scanning (restarts/OOM, rollbacks,
-	// hung-op warnings, memtuner quota decrements, GC pause spikes).
+}
+
+// ---- Outliers from indexer.log event scanning (Phase 2) ----------------
+
+func logEvents(m *model.Model, r *Report) {
+	ev := func(key string) *model.Event { return m.Events[key] }
+
+	// Crashes / restarts.
+	if e := ev(model.EvCrash); e != nil {
+		r.addCat(SecIndexerOut, CatCrash, SevFlag, "Panic / fatal error",
+			fmt.Sprintf("%d occurrence(s), first %s, last %s", e.Count, shortTs(e.First), shortTs(e.Last)))
+	}
+	if e := ev(model.EvRestart); e != nil && e.Count > 1 {
+		// More than one start banner in the log window implies a restart.
+		r.addCat(SecIndexerOut, CatRestart, SevFlag, "Indexer restarts",
+			fmt.Sprintf("%d start banners in log (first %s, last %s)", e.Count, shortTs(e.First), shortTs(e.Last)))
+	}
+	if e := ev(model.EvRollback); e != nil {
+		r.addCat(SecIndexerOut, CatRollback, SevFlag, "Rollbacks",
+			fmt.Sprintf("%d occurrence(s), last %s", e.Count, shortTs(e.Last)))
+	}
+
+	// Flush-monitor stalls (magnitude = max seconds waited).
+	if e := ev(model.EvFlushMon); e != nil {
+		sev := SevWarn
+		if e.Max >= FlushWaitSecFlag {
+			sev = SevFlag
+		}
+		detail := fmt.Sprintf("%d warning(s), max wait %.0fs", e.Count, e.Max)
+		if e.MaxDetail != "" {
+			detail += " (" + e.MaxDetail + ")"
+		}
+		r.addCat(SecIndexerOut, CatFlushMonitor, sev, "Flush stalls", detail)
+	}
+
+	// Slow operations / long lock holds (magnitude = max ms).
+	if e := ev(model.EvSlowOp); e != nil {
+		sev := SevWarn
+		if e.Max >= SlowOpMsFlag {
+			sev = SevFlag
+		}
+		detail := fmt.Sprintf("%d warning(s), max %.0fms", e.Count, e.Max)
+		if e.MaxDetail != "" {
+			detail += " in " + e.MaxDetail
+		}
+		r.addCat(SecIndexerOut, CatSlowOp, sev, "Slow operations", detail)
+	}
+
+	// Memtuner decrementing the plasma quota (memory pressure).
+	if e := ev(model.EvMemtuner); e != nil {
+		r.addCat(SecIndexerOut, CatMemtuner, SevWarn, "Plasma quota decrements",
+			fmt.Sprintf("%d event(s) between %s and %s (adaptive quota under memory pressure)",
+				e.Count, shortTs(e.First), shortTs(e.Last)))
+	}
+
+	// Communication errors.
+	if e := ev(model.EvCommErr); e != nil {
+		r.addCat(SecIndexerOut, CatCommError, SevWarn, "Transport/peer/dataport errors",
+			fmt.Sprintf("%d error line(s), last %s", e.Count, shortTs(e.Last)))
+	}
+
+	// GC pause spikes from memstats.
+	if mem, ok := last(m.Mem); ok {
+		if maxNs, ok := maxArray(mem, "PauseNs"); ok && maxNs >= GCPauseNsFlag {
+			r.addCat(SecIndexerOut, CatGCPause, SevFlag, "GC pause spike",
+				fmt.Sprintf("max recent GC pause %.0fms (>=%dms)", maxNs/1e6, GCPauseNsFlag/1000000))
+		}
+	}
+
+	// Stream-level events.
+	if e := ev(model.EvNonAlignTS); e != nil {
+		r.addCat(SecStreamOut, CatNonAlign, SevFlag, "Non-aligned timestamps",
+			fmt.Sprintf("%d occurrence(s), last %s", e.Count, shortTs(e.Last)))
+	}
+	if e := ev(model.EvRepair); e != nil {
+		r.addCat(SecStreamOut, CatRepair, SevFlag, "Stream repair activity",
+			fmt.Sprintf("%d occurrence(s), last %s", e.Count, shortTs(e.Last)))
+	}
+}
+
+// maxArray returns the max numeric value of a JSON array field (e.g. PauseNs).
+func maxArray(s model.Sample, field string) (float64, bool) {
+	raw, ok := s[field]
+	if !ok {
+		return 0, false
+	}
+	arr, ok := raw.([]any)
+	if !ok || len(arr) == 0 {
+		return 0, false
+	}
+	max, found := 0.0, false
+	for _, v := range arr {
+		if f, ok := v.(float64); ok {
+			if !found || f > max {
+				max, found = f, true
+			}
+		}
+	}
+	return max, found
+}
+
+// shortTs trims a log timestamp to seconds precision for display.
+func shortTs(ts string) string {
+	if i := strings.IndexByte(ts, '.'); i >= 0 {
+		return ts[:i]
+	}
+	return ts
 }
 
 // ---- Topology: replicas / partitions -----------------------------------
