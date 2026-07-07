@@ -2,7 +2,7 @@
 
 usage() {
     cat <<EOF
-Usage: $(basename "$0") <version-build> <pprof-dir> <cpu|mem>
+Usage: $(basename "$0") <version-build> <pprof-dir> <cpu|mem> [toy]
 
 Arguments:
   version-build  Version and build number in the form <version>-<build>,
@@ -13,6 +13,8 @@ Arguments:
                    cpu  -> cpu_prof.svg        (CPU flame graph)
                    mem  -> mprofa.svg          (alloc_space)
                            mprofi.svg          (inuse_space)
+  toy            Optional. Pass 'toy' to download from the toy builds URL
+                 instead of the regular release builds.
 
 Environment:
   TRIAGE_RPM_DIR  Root directory for RPM builds. Defaults to ~/triage/rpms if unset.
@@ -27,9 +29,14 @@ RPM Download:
     8.1.x  (totoro)
   The indexer binary is extracted on first run and reused on subsequent runs.
 
+  For toy builds, pass 'toy' as the 4th argument. The RPM is then fetched from:
+    https://latestbuilds.service.couchbase.com/builds/latestbuilds/couchbase-server/toybuilds/<build>/
+  (no codename mapping is required for toy builds).
+
 Examples:
   $(basename "$0") 8.1.0-1937 /tmp/pprof_files cpu
   $(basename "$0") 8.1.0-1937 /tmp/pprof_files mem
+  $(basename "$0") 8.1.0-23037 /tmp/pprof_files cpu toy
 EOF
 }
 
@@ -43,19 +50,28 @@ original_dir=$(pwd)
 rpm_dir="${TRIAGE_RPM_DIR:-$HOME/triage/rpms}"
 
 this_rpm=$1
+is_toy=""
+if [ "$4" == "toy" ]; then
+    is_toy=1
+fi
+
 version="${this_rpm%-*}"
 build="${this_rpm##*-}"
 major_minor="${version%.*}"
 
-case "$major_minor" in
-    8.1) codename="totoro" ;;
-    8.0) codename="morpheus" ;;
-    7.6) codename="trinity" ;;
-    *)   echo "Unknown version '$major_minor'. Add a codename mapping for it."; exit 1 ;;
-esac
-
 rpm_filename="couchbase-server-enterprise-${version}-${build}-linux.x86_64.rpm"
-rpm_url="https://latestbuilds.service.couchbase.com/builds/latestbuilds/couchbase-server/${codename}/${build}/${rpm_filename}"
+
+if [ -n "$is_toy" ]; then
+    rpm_url="https://latestbuilds.service.couchbase.com/builds/latestbuilds/couchbase-server/toybuilds/${build}/${rpm_filename}"
+else
+    case "$major_minor" in
+        8.1) codename="totoro" ;;
+        8.0) codename="morpheus" ;;
+        7.6) codename="trinity" ;;
+        *)   echo "Unknown version '$major_minor'. Add a codename mapping for it."; exit 1 ;;
+    esac
+    rpm_url="https://latestbuilds.service.couchbase.com/builds/latestbuilds/couchbase-server/${codename}/${build}/${rpm_filename}"
+fi
 
 full_path="${rpm_dir}/${this_rpm}"
 indexer_bin=/opt/couchbase/bin/indexer
