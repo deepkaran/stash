@@ -29,3 +29,15 @@ curl -X POST -u <user>:<pass> http://<ip>:9102/settings --data '{"projector.cpuP
 curl -X POST -u <user>:<pass> http://<ip>:9102/settings --data '{"projector.cpuProfFname" : "", "projector.cpuProfile" : false}'
    
 4. Collect the file 'proj.pprof' from /opt/couchbase/var/lib/couchbase on the data node
+
+Projector Log Parsing:
+
+Channels
+
+2023-01-14T04:15:54.754+00:00 [Info] DCPT[secidx:proj-cb-elitepack:users:views-INIT_STREAM_TOPIC_838b425f5b320c9421d52e5c453bf4de-13577030772608726071/0] ##1eb stats: {"rcvchLen":0}
+2023-01-14T04:15:54.754+00:00 [Info] DCPT[secidx:proj-cb-elitepack:users:views-INIT_STREAM_TOPIC_838b425f5b320c9421d52e5c453bf4de-13577030772608726071/2] ##1eb stats: {"rcvchLen":0}
+2023-01-14T04:15:54.754+00:00 [Info] DCPT[secidx:proj-cb-elitepack:users:views-INIT_STREAM_TOPIC_838b425f5b320c9421d52e5c453bf4de-13577030772608726071/3] ##1eb stats: {"rcvchLen":0}
+2023-01-14T04:15:54.754+00:00 [Info] DCPT[secidx:proj-cb-elitepack:users:views-INIT_STREAM_TOPIC_838b425f5b320c9421d52e5c453bf4de-13577030772608726071/1] ##1eb stats: {"rcvchLen":0}
+2023-01-14T04:15:54.756+00:00 [Info] KVDT[<-cb-elitepack:users:views<-127.0.0.1:8091 #INIT_STREAM_TOPIC_838b425f5b320c9421d52e5c453bf4de] ##1eb stats: {"mutChLen":0}
+2023-01-14T04:15:54.756+00:00 [Info] WRKR[<-cb-elitepack:users:views<-127.0.0.1:8091 #INIT_STREAM_TOPIC_838b425f5b320c9421d52e5c453bf4de] ##1eb stats: {"datachLen":0}
+2023-01-14T04:15:54.756+00:00 [Info] ENDP[<-(gxkqbfdr7twingk.wwecfq58m4tmqxww.cloud.couchbase.com:9103,6eb4)<-127.0.0.1:8091 #INIT_STREAM_TOPIC_838b425f5b320c9421d52e5c453bf4de] stats: {"endpChLen":0}
