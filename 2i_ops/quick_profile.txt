@@ -1,7 +1,10 @@
+============CPU=============
 
 1. Download build
 
 wget http://latestbuilds.service.couchbase.com/builds/latestbuilds/couchbase-server/elixir/3451/couchbase-server-enterprise-7.5.0-3451-centos7.x86_64.rpm
+
+uninstall old rpm/install latest rpm
 
 2. Copy pprof to remote box
 scp indexer_cprof.log root@172.23.105.18://opt/couchbase/var/lib/couchbase/logs
@@ -14,3 +17,50 @@ go tool pprof -svg /opt/couchbase/bin/indexer indexer_cprof.log > cprof.svg
 4. Copy the svg to local
 
 scp  root@172.23.105.18://opt/couchbase/var/lib/couchbase/logs/cprof.svg .
+
+5. Analyze profile
+go tool pprof -top /opt/couchbase/bin/indexer indexer_cprof.log
+go tool pprof -peek snappy.Decode -lines  /opt/couchbase/bin/indexer indexer_cprof.log
+
+============Memory=============
+
+
+1. Download build
+
+wget http://latestbuilds.service.couchbase.com/builds/latestbuilds/couchbase-server/elixir/3451/couchbase-server-enterprise-7.5.0-3451-centos7.x86_64.rpm
+
+uninstall old rpm/install latest rpm
+
+2. Copy pprof to remote box
+scp indexer_mprof.log root@172.23.105.18://opt/couchbase/var/lib/couchbase/logs
+
+3. Get the profile svg
+
+cd /opt/couchbase/var/lib/couchbase/logs
+go tool pprof -svg /opt/couchbase/bin/indexer indexer_mprof.log > mprof.svg
+
+4. Copy the svg to local
+
+scp  root@172.23.105.18://opt/couchbase/var/lib/couchbase/logs/mprof.svg .
+
+============Localhost===========
+
+Projector
+
+go tool pprof -seconds=10 -svg  /Users/deepkaran/workspace/cb_morpheus/install/bin/projector http://Administrator:asdasd@localhost:10000/debug/pprof/profile > cpu_prof.svg
+go tool pprof -alloc_space -svg /Users/deepkaran/workspace/cb_morpheus/install/bin/projector http://Administrator:asdasd@localhost:10000/debug/pprof/heap > mprofa.svg
+go tool pprof -inuse_space -svg /Users/deepkaran/workspace/cb_morpheus/install/bin/projector http://Administrator:asdasd@localhost:10000/debug/pprof/heap > mprofi.svg
+
+Indexer
+
+go tool pprof -seconds=10 -svg  /Users/deepkaran/workspace/cb_morpheus/install/bin/indexer http://Administrator:asdasd@localhost:9102/debug/pprof/profile > cpu_prof.svg
+go tool pprof -alloc_space -svg /Users/deepkaran/workspace/cb_morpheus/install/bin/indexer http://Administrator:asdasd@localhost:9102/debug/pprof/heap > mprofa.svg
+go tool pprof -inuse_space -svg /Users/deepkaran/workspace/cb_morpheus/install/bin/indexer http://Administrator:asdasd@localhost:9102/debug/pprof/heap > mprofi.svg
+
+go tool pprof  -svg  /opt/couchbase/bin/indexer index_cpu_240802121559_b3b1f1.pprof > cpu_prof_scan.svg
+go tool pprof -alloc_space -svg /opt/couchbase/bin/indexer index_heap_240802121529_0edbb6.pprof > mprofa.svg
+
+go tool pprof -inuse_space -svg /opt/couchbase/bin/indexer index_heap_240802121529_0edbb6.pprof > mprofi.svg
+
+***View source code when using remote binary
+go tool pprof -alloc_space -source_path=/Users/deepkaran/workspace/cb_morpheus/goproj /Users/deepkaran/workspace/triage/rpms/770-19533/opt/couchbase/bin/indexer ec2-44-220-48-251.compute-1.amazonaws.com_index_heap_240908074912_00876c.pprof
